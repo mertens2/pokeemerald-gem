@@ -46,6 +46,14 @@ enum {
 	AMAZE_MULCH // done, halved grow time, always watered, +2 extra berries, does die
 };
 
+// struct MulchApplied {
+	// u8 flavorTextPlanted;
+	// u8 flavorTextWatered;
+	// u16 itemId;
+// }
+
+// extern const struct MulchApplied gMulchAppliedToTree[];
+
 extern const struct BerryCrushBerryData gBerryCrush_BerryData[];
 
 #endif // GUARD_BERRY_H

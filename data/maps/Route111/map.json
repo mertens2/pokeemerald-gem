@@ -683,21 +683,21 @@
       "y": 142,
       "elevation": 0,
       "dest_map": "MAP_MAUVILLE_CITY",
-      "dest_warp_id": "6"
+      "dest_warp_id": 6
     },
     {
       "x": 16,
       "y": 142,
       "elevation": 0,
       "dest_map": "MAP_MAUVILLE_CITY",
-      "dest_warp_id": "7"
+      "dest_warp_id": 7
     },
     {
       "x": 17,
       "y": 142,
       "elevation": 0,
       "dest_map": "MAP_MAUVILLE_CITY",
-      "dest_warp_id": "8"
+      "dest_warp_id": 8
     }
   ],
   "coord_events": [

@@ -3327,7 +3327,13 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
 				FlagSet(FLAG_SHINY_CREATION);
 			}
 			else if ((VarGet(VAR_SHINY_TREECKO) == species+1) || (VarGet(VAR_SHINY_MUDKIP) == species+1) || (VarGet(VAR_SHINY_TORCHIC) == species+1)){
-				FlagSet(FLAG_NO_SHINIES);
+				do
+				{
+					personality = Random32();
+				} while ((GET_SHINY_VALUE(value, personality)) < SHINY_ODDS);
+				VarSet(VAR_SHINY_TREECKO,0);
+				VarSet(VAR_SHINY_TORCHIC,0);
+				VarSet(VAR_SHINY_MUDKIP,0);
 			}
 			if (FlagGet(FLAG_NO_SHINIES))
 			{
@@ -3335,10 +3341,6 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
 				{
 					personality = Random32();
 				} while ((GET_SHINY_VALUE(value, personality)) < SHINY_ODDS);
-				FlagClear(FLAG_NO_SHINIES);
-				VarSet(VAR_SHINY_TREECKO,0);
-				VarSet(VAR_SHINY_TORCHIC,0);
-				VarSet(VAR_SHINY_MUDKIP,0);
 			}
 			else if (FlagGet(FLAG_SHINY_CREATION))
 			{
@@ -8443,6 +8445,8 @@ u32 CalculateShininess(bool8 affectsShinyFlags, u8 method, u8 flagAffected, u16 
                  | (gSaveBlock2Ptr->playerTrainerId[1] << 8)
                  | (gSaveBlock2Ptr->playerTrainerId[2] << 16)
                  | (gSaveBlock2Ptr->playerTrainerId[3] << 24);
+	
+	
 	
 	switch (method){
 		case METHOD_MASUDA_METHOD:

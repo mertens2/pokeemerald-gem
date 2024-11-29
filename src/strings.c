@@ -2389,7 +2389,7 @@ const u8 gText_SideQuestMap_28[] = _("Map 28");
 const u8 gText_SideQuestMap_29[] = _("Map 29");
 const u8 gText_SideQuestMap_30[] = _("Map 30");
 //rewards
-const u8 gText_SideQuestReward_1[] = _("Bayas Aranja");
+const u8 gText_SideQuestReward_1[] = _("Repartir Experiencia");
 const u8 gText_SideQuestReward_2[] = _("Amuleto Iris");
 const u8 gText_SideQuestReward_3[] = _("Desconocida");
 const u8 gText_SideQuestReward_4[] = _("¥30.000");

@@ -8,11 +8,11 @@ AbandonedShip_CaptainsOffice_Text_NoSuccessFindingScanner::
 	.string "Estoy investigando este barco\n"
 	.string "en nombre del Capitán Stern.\p"
 	.string "También me ha pedido que encuentre\n"
-	.string "un ESCÁNER, pero no lo he visto aún…$"
+	.string "un Escáner, pero no lo he visto aún…$"
 
 AbandonedShip_CaptainsOffice_Text_OhCanYouDeliverScanner::
 # 33 "data/text/npc_dialogue.pory"
-	.string "¡Ahí va! ¡Eso es un ESCÁNER!\p"
+	.string "¡Ahí va! ¡Eso es un Escáner!\p"
 	.string "Escucha, ¿puedes llevárselo\n"
 	.string "tú al Capitán Stern?\p"
 	.string "Todavía no he terminado\n"
@@ -21,7 +21,8 @@ AbandonedShip_CaptainsOffice_Text_OhCanYouDeliverScanner::
 AbandonedShip_CaptainsOffice_Text_ThisIsSSCactus::
 # 52 "data/text/npc_dialogue.pory"
 	.string "Este barco se llama S.S. CACTUS.\n"
-	.string "Es más antiguo que andar “palante”…$"
+	.string "Es tan viejo que seguro los Tyrantrum\l"
+	.string "la pilotaban…$"
 
 AbandonedShip_Corridors_1F_Text_CharlieIntro::
 # 65 "data/text/npc_dialogue.pory"

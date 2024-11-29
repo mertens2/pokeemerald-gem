@@ -10,6 +10,13 @@ text Birch {
 text BirchEng {
 	format("{COLOR LIGHT_BLUE}{SHADOW BLUE}Professor Birch")
 }
+
+text EmpleadoDevon {
+	poryswitch(LANGUAGE){
+		ES:format("{COLOR LIGHT_BLUE}{SHADOW BLUE}Empleado Devon")
+		EN:format("{COLOR LIGHT_BLUE}{SHADOW BLUE}Devon Employee")
+	}
+}
 text Norman {
 	poryswitch(LANGUAGE){
 		ES:format("{COLOR LIGHT_BLUE}{SHADOW BLUE}Papá")

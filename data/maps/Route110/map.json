@@ -513,28 +513,28 @@
       "y": 4,
       "elevation": 0,
       "dest_map": "MAP_MAUVILLE_CITY",
-      "dest_warp_id": "10"
+      "dest_warp_id": 10
     },
     {
       "x": 14,
       "y": 4,
       "elevation": 0,
       "dest_map": "MAP_MAUVILLE_CITY",
-      "dest_warp_id": "11"
+      "dest_warp_id": 11
     },
     {
       "x": 15,
       "y": 4,
       "elevation": 0,
       "dest_map": "MAP_MAUVILLE_CITY",
-      "dest_warp_id": "12"
+      "dest_warp_id": 12
     },
     {
       "x": 16,
       "y": 4,
       "elevation": 0,
       "dest_map": "MAP_MAUVILLE_CITY",
-      "dest_warp_id": "13"
+      "dest_warp_id": 13
     }
   ],
   "coord_events": [

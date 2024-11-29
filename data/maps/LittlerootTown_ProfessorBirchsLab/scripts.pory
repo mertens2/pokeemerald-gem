@@ -88,6 +88,8 @@ script LittlerootTown_ProfessorBirchsLab_EventScript_GoSeeRival {
 }
 
 script LittlerootTown_ProfessorBirchsLab_EventScript_GivePokedex {
+	clearflag(FLAG_NO_SHINIES)
+	setflag(FLAG_SYS_EXP_SHARE)
 	poryswitch(LANGUAGE){
 		ES{
 			namebox (Birch)
@@ -99,7 +101,7 @@ script LittlerootTown_ProfessorBirchsLab_EventScript_GivePokedex {
 			namebox (Birch)
 			msgbox (format("Tengo algo que decirte, {PLAYER}.\p"
 					"Muchos Pokémon han estado {COLOR BLUE}migrando a Hoenn{COLOR DARK_GRAY}. Y estoy investigando la razón. Pero necesito su ayuda.\p"
-					"Por eso, {PLAYER} y {RIVAL}, sus Pokédex tienen acceso al {COLOR LIGHT_RED SHADOW RED}Modo Nacional{COLOR DARK_GRAY SHADOW LIGHT_GRAY}.\p"
+					"Por eso, {PLAYER} y {RIVAL}, sus Pokédex\ntienen acceso al {COLOR LIGHT_RED SHADOW RED}Modo Nacional{COLOR DARK_GRAY SHADOW LIGHT_GRAY}.\p"
 					"Si me ayudan, los recompensaré enormemente.\p"
 					"¡Además! ¡Por cumplir la misión que te di antes, ten esta recompensa!"))
 		}
@@ -119,7 +121,7 @@ script LittlerootTown_ProfessorBirchsLab_EventScript_GivePokedex {
 		}
 	}
 	hidenamebox
-	giveitem (ITEM_ORAN_BERRY, 5)
+	giveitem (ITEM_EXP_SHARE)
 	questmenu (QUEST_MENU_UNLOCK_QUEST SIDE_QUEST_2)
 	questmenu (QUEST_MENU_UNLOCK_QUEST SIDE_QUEST_5)
 	questmenu (QUEST_MENU_UNLOCK_QUEST SIDE_QUEST_6)
@@ -154,6 +156,8 @@ script LittlerootTown_ProfessorBirchsLab_EventScript_GivePokedex {
 }
 
 script LittlerootTown_ProfessorBirchsLab_EventScript_RivalGivePokeBalls {
+	applymovement(LOCALID_RIVAL, Common_Movement_FacePlayer)
+	waitmovement(0)
 	poryswitch(LANGUAGE){
 		ES{
 			msgbox (format("…{PAUSE 10}…{PAUSE 10}…{PAUSE 10}\n¡Eh!\p"
@@ -175,6 +179,8 @@ script LittlerootTown_ProfessorBirchsLab_EventScript_RivalGivePokeBalls {
 		}
 	}
 	hidenamebox
+	applymovement(LOCALID_RIVAL, Common_Movement_FaceOriginalDirection)
+	waitmovement(0)
 	setvar (VAR_RESULT, 0)
 	return
 }
@@ -473,11 +479,10 @@ LittlerootTown_ProfessorBirchsLab_EventScript_Aide_1:
 LittlerootTown_ProfessorBirchsLab_EventScript_Aide_2:
 	goto_if_unset FLAG_BIRCH_AIDE_MET, LittlerootTown_ProfessorBirchsLab_EventScript_Aide_5
 	msgbox LittlerootTown_ProfessorBirchsLab_EventScript_Aide_Text_2
-	releaseall
 	goto LittlerootTown_ProfessorBirchsLab_EventScript_Aide_1
 
 LittlerootTown_ProfessorBirchsLab_EventScript_Aide_5:
-	msgbox LittlerootTown_ProfessorBirchsLab_EventScript_Aide_Text_0, MSGBOX_AUTOCLOSE
+	msgbox LittlerootTown_ProfessorBirchsLab_EventScript_Aide_Text_0
 	fadescreen FADE_TO_BLACK
 	closemessage
 	delay 120

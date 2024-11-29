@@ -77,5 +77,7 @@ extern void *gWindowBgTilemapBuffers[];
 extern u32 gUnusedWindowVar1;
 extern u32 gUnusedWindowVar2;
 extern u32 gUnusedWindowVar3;
+u32 WindowWidthPx(u32 windowId);
+u32 WindowTemplateWidthPx(const struct WindowTemplate *template);
 
 #endif // GUARD_WINDOW_H

@@ -64,7 +64,7 @@ script AquaHideout_B2F_EventScript_MattNoticePlayer {
 		msgbox(format("Será sólo un{A} niñ{OA}, pero ha estado de nuestro lado antes… Aún así, Matt, esto no es necesario…"))
 		call (AquaHideout_B2F_EventScript_WinonaPrepare)
 		// call (AquaHideout_B2F_EventScript_LostMultiBattle)
-		multi_fixed_2_vs_1 (TRAINER_WINONA_AQUA_HIDEOUT, "¡Impresionante!\nNo me esperaba menos\pdel Equipo Aqua.", TRAINER_MATT_PARTNER, TRAINER_BACK_PIC_RED)
+		multi_fixed_2_vs_1 (TRAINER_WINONA_AQUA_HIDEOUT, "¡Impresionante!\nNo me esperaba menos\ldel Equipo Aqua.", TRAINER_MATT_PARTNER, TRAINER_BACK_PIC_RED)
 		specialvar (VAR_RESULT, GetBattleOutcome)
 		compare (VAR_RESULT, B_OUTCOME_LOST)
 		goto_if_eq (MtChimney_EventScript_LostMultiBattle)

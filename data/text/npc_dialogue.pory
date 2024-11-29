@@ -23,9 +23,9 @@ text AbandonedShip_CaptainsOffice_Text_NoSuccessFindingScanner{
 		}
 	ES {
 		format( "Estoy investigando este barco\n"
-	"en nombre del Capitán Stern.\p"
-	"También me ha pedido que encuentre\n"
-	"un ESCÁNER, pero no lo he visto aún…")
+		"en nombre del Capitán Stern.\p"
+		"También me ha pedido que encuentre\n"
+		"un Escáner, pero no lo he visto aún…")
 }
 }
 }
@@ -40,11 +40,11 @@ text AbandonedShip_CaptainsOffice_Text_OhCanYouDeliverScanner{
 		"little more.")
 	}
 	ES {
-		format( "¡Ahí va! ¡Eso es un ESCÁNER!\p"
-	"Escucha, ¿puedes llevárselo\n"
-	"tú al Capitán Stern?\p"
-	"Todavía no he terminado\n"
-	"de investigar el barco…")
+		format( "¡Ahí va! ¡Eso es un Escáner!\p"
+		"Escucha, ¿puedes llevárselo\n"
+		"tú al Capitán Stern?\p"
+		"Todavía no he terminado\n"
+		"de investigar el barco…")
 }
 	}
 }
@@ -57,7 +57,7 @@ text AbandonedShip_CaptainsOffice_Text_ThisIsSSCactus{
 		}
 	ES {
 		format( "Este barco se llama S.S. CACTUS.\n"
-	"Es más antiguo que andar “palante”…")
+		"Es tan viejo que seguro los Tyrantrum la pilotaban…")
 	}
 }
 }

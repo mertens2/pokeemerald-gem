@@ -1061,7 +1061,7 @@ static void CB2_GiveStarter(void)
     PlayBattleBGM();
     SetMainCallback2(CB2_StartFirstBattle);
 	FlagClear(FLAG_SHINY_CREATION);
-	FlagClear(FLAG_NO_SHINIES);
+	FlagSet(FLAG_NO_SHINIES);
 	VarSet(VAR_SHINY_TREECKO,0);
 	VarSet(VAR_SHINY_TORCHIC,0);
 	VarSet(VAR_SHINY_MUDKIP,0);

@@ -638,28 +638,29 @@
     }
 
 #define MINIOR_METEOR_ATTRIBUTES\
-        .baseHP        = 60,    \
-        .baseAttack    = 60,    \
-        .baseDefense   = 100,   \
-        .baseSpeed     = 60,    \
-        .baseSpAttack  = 60,    \
-        .baseSpDefense = 100
+        .baseHP        = 70,    \
+        .baseAttack    = 70,    \
+        .baseDefense   = 120,   \
+        .baseSpeed     = 70,    \
+        .baseSpAttack  = 70,    \
+        .baseSpDefense = 120
 
 #define MINIOR_CORE_ATTRIBUTES\
-        .baseHP        = 60,  \
-        .baseAttack    = 100, \
-        .baseDefense   = 60,  \
+        .baseHP        = 70,  \
+        .baseAttack    = 120, \
+        .baseDefense   = 70,  \
         .baseSpeed     = 120, \
-        .baseSpAttack  = 100, \
-        .baseSpDefense = 60
+        .baseSpAttack  = 120, \
+        .baseSpDefense = 70
 
-#define MINIOR_MISC_INFO(color)                             \
+#define MINIOR_MISC_INFO(color,item)                             \
         .type1 = TYPE_ROCK,\
         .type2 = TYPE_FLYING,                \
         .catchRate = 30,                                    \
         .expYield = 154,                                    \
         .evYield_Defense   = 1,                             \
         .evYield_SpDefense = 1,                             \
+        .itemCommon = item,                        \
         .itemRare = ITEM_STAR_PIECE,                        \
         .genderRatio = MON_GENDERLESS,                      \
         .eggCycles = 3,                                    \
@@ -671,17 +672,17 @@
         .bodyColor = color,                                 \
         .noFlip = TRUE
 
-#define MINIOR_METEOR_SPECIES_INFO          \
+#define MINIOR_METEOR_SPECIES_INFO(item)          \
     {                                       \
         MINIOR_METEOR_ATTRIBUTES,           \
-        MINIOR_MISC_INFO(BODY_COLOR_BROWN), \
+        MINIOR_MISC_INFO(BODY_COLOR_BROWN, item), \
     }
 
 
 #define MINIOR_CORE_SPECIES_INFO(color) \
     {                                   \
         MINIOR_CORE_ATTRIBUTES,         \
-        MINIOR_MISC_INFO(color),        \
+        MINIOR_MISC_INFO(color, ITEM_RED_SHARD),        \
     }
 
 #define MIMIKYU_SPECIES_INFO                          \
@@ -760,12 +761,12 @@
 
 #define TOXTRICITY_SPECIES_INFO(ability2)                              \
     {                                                                  \
-        .baseHP        = 75,                                           \
-        .baseAttack    = 98,                                           \
-        .baseDefense   = 70,                                           \
+        .baseHP        = 80,                                           \
+        .baseAttack    = 100,                                           \
+        .baseDefense   = 80,                                           \
         .baseSpeed     = 75,                                           \
-        .baseSpAttack  = 114,                                          \
-        .baseSpDefense = 70,                                           \
+        .baseSpAttack  = 115,                                          \
+        .baseSpDefense = 80,                                           \
         .type1 = TYPE_ELECTRIC,\
         .type2 = TYPE_POISON,                       \
         .catchRate = 45,                                               \
@@ -19826,7 +19827,7 @@ const struct BaseStats gBaseStats[] =
         .baseHP        = 95,
         .baseAttack    = 95,
         .baseDefense   = 95,
-        .baseSpeed     = 59,
+        .baseSpeed     = 95,
         .baseSpAttack  = 95,
         .baseSpDefense = 95,
         .type1 = TYPE_NORMAL,
@@ -19847,31 +19848,7 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_SILVALLY] = SILVALLY_SPECIES_INFO(TYPE_NORMAL), 
 
-    [SPECIES_MINIOR] =
-    {
-        .baseHP        = 60,
-        .baseAttack    = 60,
-        .baseDefense   = 100,
-        .baseSpeed     = 60,
-        .baseSpAttack  = 60,
-        .baseSpDefense = 100,
-        .type1 = TYPE_ROCK,
-        .type2 = TYPE_FLYING,
-        .catchRate = 30,
-        .expYield = 154,
-        .evYield_Defense   = 1,
-        .evYield_SpDefense = 1,
-        .itemRare = ITEM_STAR_PIECE,
-        .genderRatio = MON_GENDERLESS,
-        .eggCycles = 3,
-        .friendship = 70,
-        .growthRate = GROWTH_MEDIUM_SLOW,
-        .eggGroup1 = EGG_GROUP_MINERAL,
-        .eggGroup2 = EGG_GROUP_MINERAL,
-        .abilities = {ABILITY_SHIELDS_DOWN, ABILITY_NONE},
-        .bodyColor = BODY_COLOR_BROWN,
-        .noFlip = TRUE,
-    },
+    [SPECIES_MINIOR] = MINIOR_METEOR_SPECIES_INFO(ITEM_RED_SHARD),
 
     [SPECIES_KOMALA] =
     {
@@ -27061,12 +27038,12 @@ const struct BaseStats gBaseStats[] =
     [SPECIES_SILVALLY_DARK] = SILVALLY_SPECIES_INFO(TYPE_DARK),
     [SPECIES_SILVALLY_FAIRY] = SILVALLY_SPECIES_INFO(TYPE_FAIRY),
 
-    [SPECIES_MINIOR_METEOR_ORANGE] = MINIOR_METEOR_SPECIES_INFO,
-    [SPECIES_MINIOR_METEOR_YELLOW]  MINIOR_METEOR_SPECIES_INFO,
-    [SPECIES_MINIOR_METEOR_GREEN] = MINIOR_METEOR_SPECIES_INFO,
-    [SPECIES_MINIOR_METEOR_BLUE] = MINIOR_METEOR_SPECIES_INFO,
-    [SPECIES_MINIOR_METEOR_INDIGO] = MINIOR_METEOR_SPECIES_INFO,
-    [SPECIES_MINIOR_METEOR_VIOLET] = MINIOR_METEOR_SPECIES_INFO,
+    [SPECIES_MINIOR_METEOR_ORANGE] = MINIOR_METEOR_SPECIES_INFO(ITEM_YELLOW_SHARD),
+    [SPECIES_MINIOR_METEOR_YELLOW]  MINIOR_METEOR_SPECIES_INFO(ITEM_YELLOW_SHARD),
+    [SPECIES_MINIOR_METEOR_GREEN] = MINIOR_METEOR_SPECIES_INFO(ITEM_GREEN_SHARD),
+    [SPECIES_MINIOR_METEOR_BLUE] = MINIOR_METEOR_SPECIES_INFO(ITEM_BLUE_SHARD),
+    [SPECIES_MINIOR_METEOR_INDIGO] = MINIOR_METEOR_SPECIES_INFO(ITEM_BLUE_SHARD),
+    [SPECIES_MINIOR_METEOR_VIOLET] = MINIOR_METEOR_SPECIES_INFO(ITEM_RED_SHARD),
     [SPECIES_MINIOR_CORE_RED] = MINIOR_CORE_SPECIES_INFO(BODY_COLOR_RED),
     [SPECIES_MINIOR_CORE_ORANGE] = MINIOR_CORE_SPECIES_INFO(BODY_COLOR_YELLOW),
     [SPECIES_MINIOR_CORE_YELLOW] = MINIOR_CORE_SPECIES_INFO(BODY_COLOR_YELLOW),

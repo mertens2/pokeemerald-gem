@@ -370,12 +370,7 @@ Route104_EventScript_SailToDewfordNoCall::
 	goto Route104_EventScript_ArriveInDewford
 
 Route104_EventScript_SailToDewfordDadCalls::
-	applymovement LOCALID_BOAT_R104, Route104_Movement_SailToDewfordBeforeDadCalls
-	applymovement OBJ_EVENT_ID_PLAYER, Route104_Movement_SailToDewfordBeforeDadCalls
-	delay 32
 	fadescreen FADE_TO_BLACK
-	waitmovement 0
-	goto Route104_EventScript_ArriveInDewford
 	pokenavcall Route104_Text_DadPokenavCall
 	waitmessage
 	delay 30
@@ -385,10 +380,7 @@ Route104_EventScript_SailToDewfordDadCalls::
 	closemessage
 	delay 30
 	setflag FLAG_ENABLE_NORMAN_MATCH_CALL
-	applymovement OBJ_EVENT_ID_PLAYER, Route104_Movement_SailToDewfordAfterDadCalls
-	applymovement LOCALID_BOAT_R104, Route104_Movement_SailToDewfordAfterDadCalls, MAP_ROUTE104
-	waitmovement LOCALID_BOAT_R104, MAP_ROUTE104
-	waitmovement 0
+	warp MAP_DEWFORD_TOWN, 19, 7
 	goto Route104_EventScript_ArriveInDewford
 
 Route104_EventScript_ArriveInDewford::

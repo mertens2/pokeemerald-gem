@@ -56,7 +56,7 @@ script SlateportCity_Harbor_EventScript_AquaEscapeScene {
     msgbox(format("¿¡QUÉ!?"))
     namebox (Aqua)
     msgbox(format("¡D-{PAUSE 5}Deben ser esos idiotas!{PAUSE 15}\nLos que vimos en el Instituto Meteorológ-{PAUSE 25} "), MSGBOX_INTERRUPT)
-    msgbox(format("¡AH!{PAUSE 15}\n¡O-{PAUSE 5}O-{PAUSE 5}Osea, quiero decir, es{EA} idiota {PAUSE 15}-- en singular --{PAUSE 15} que vimos en el Insituto Meteorológico! ¡{PLAYER}, creo que es!"))
+    msgbox(format("¡AH!{PAUSE 15}\n¡O-{PAUSE 5}O-{PAUSE 5}O sea, quiero decir, es{EA} idiota {PAUSE 15}-- en singular --{PAUSE 15} que vimos en el Insituto Meteorológico! ¡{PLAYER}, creo que es!"))
     namebox (Archie)
     msgbox(format("....................\n.............\p¿Hay algo que no me estés contanto, Recluta?"))
 	applymovement (LOCALID_CAPT_STERN, Common_Movement_FaceDown)

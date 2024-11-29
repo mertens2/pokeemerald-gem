@@ -543,7 +543,7 @@ SlateportCity_OceanicMuseum_1F_Text_RustboroBungled:
 # 272 "data/maps/SlateportCity_OceanicMuseum_1F/scripts.pory"
 SlateportCity_OceanicMuseum_1F_Text_DidntHaveMoney:
 # 273 "data/maps/SlateportCity_OceanicMuseum_1F/scripts.pory"
-	.string "Soy pobre, así que me alegra que\nnuestro Jefecito sea tan generoso,\l¡Siempre había soñado entrar aquí!$"
+	.string "Soy pobre, así que me alegra que\nnuestro Jefe sea tan generoso,\l¡Siempre había soñado entrar aquí!$"
 # 274 "data/maps/SlateportCity_OceanicMuseum_1F/scripts.pory"
 
 # 275 "data/maps/SlateportCity_OceanicMuseum_1F/scripts.pory"

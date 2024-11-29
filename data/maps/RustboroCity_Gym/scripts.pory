@@ -131,8 +131,7 @@ text RustboroCity_Gym_Text_TommyPostBattle {
 			format("Roxanne's power surpasses me by miles!")
 		}
 		ES {
-			format("Roxanne sobrepasa mi poder\n"
-			 "por kilómetros.\p"
+			format("Roxanne sobrepasa mi poder por kilómetros.\p"
 			 "¡Mejor ten cuidado!")
 		}
 	}
@@ -157,11 +156,11 @@ text RustboroCity_Gym_Text_MarcDefeat {
 	poryswitch(LANGUAGE){
 		EN {
 			format("Did you know?\n"
-			 "Now I'll have to clean the house!")
+			 "Now I'll have to clean the house without my wifey's help!")
 		}
 		ES {
 			format("¿Sabías qué?\n"
-			 "¡Mi mujer me hará lavar los platos!")
+			 "¡Ahora tendré que limpiar la casa sin ayuda de mi mujer!")
 		}
 	}
 
@@ -170,12 +169,11 @@ text RustboroCity_Gym_Text_MarcDefeat {
 text RustboroCity_Gym_Text_MarcPostBattle {
 	poryswitch(LANGUAGE){
 		EN {
-			format("I shouldn't have told my wife I'd do all the housecleaning if I lost!")
+			format("I shouldn't have told my wifey I'd do all the housecleaning if I lost!")
 		}
 		ES {
 	
-			format("¡No tuve que apostar hacer quehaceres\l"
-			 "con mi mujer si mantenía una racha!")
+			format("¡No tuve que apostar hacer quehaceres con mi mujer si mantenía una racha!")
 		}
 	}
 
@@ -184,14 +182,11 @@ text RustboroCity_Gym_Text_MarcPostBattle {
 text RustboroCity_Gym_Text_RoxanneIntro {
 	poryswitch(LANGUAGE){
 		ES {
-			format("¡Hola, soy Roxanne, la {COLOR RED}Líder del Gimnasio{COLOR DARK_GRAY}\n"
-	 "de esta ciudad. Prepárate...\p"
-	 "¡Vas a enfrentarte ahora, a la\n"
-	 "chica prodigio de Ciudad Rustboro!")
+			format("¡Hola, soy Roxanne, la {COLOR RED}Líder del Gimnasio{COLOR DARK_GRAY} de esta ciudad.\NPrepárate...\p"
+	 "¡Vas a enfrentarte ahora, a la chica prodigio de Ciudad Rustboro!")
 		}
 		EN {
-			format("Hi, I'm Roxanne, the {COLOR RED}Gym LEader{COLOR DARK_GRAY}\n"
-			 "of this city. Get ready, now...\p"
+			format("Hi, I'm Roxanne, the {COLOR RED}Gym Leader{COLOR DARK_GRAY} of this city.\NGet ready, now...\p"
 			 "You're about to face the prodigy of Rustboro City!")
 		}
 	}
@@ -203,10 +198,9 @@ text RustboroCity_Gym_Text_RoxanneDefeat {
 		ES {
 			format("Así que…\n"
 			 "Perdí…\p"
-			 "Ni con mi gran conocimiento conseguido\n"
-			 "con años de estudio de los combates\l"
+			 "Ni años de estudio de los combates\N"
 			 "pude ganarte.\p"
-			 "¡Acepto mi derrota humildemente!\n"
+			 "¡Acepto mi derrota humildemente!\N"
 			 "¡Eres increíble, {PLAYER}!")
 		}
 		EN {

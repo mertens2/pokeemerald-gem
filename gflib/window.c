@@ -717,3 +717,12 @@ static u8 GetNumActiveWindowsOnBg8Bit(u8 bgId)
     }
     return windowsNum;
 }
+
+u32 WindowWidthPx(u32 windowId)
+{
+    return gWindows[windowId].window.width * TILE_WIDTH;
+}
+u32 WindowTemplateWidthPx(const struct WindowTemplate *template)
+{
+    return template->width * TILE_WIDTH;
+}

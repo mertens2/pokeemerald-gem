@@ -31,6 +31,12 @@ enum { // customization
 	// CUSTOMIZATION_CRYSTAL_BLUE, new clothing items need to be added here // nuevos colores deben ser añadidos aqui
 };
 
+enum {
+	CUSTOMIZATION_OUTFIT_EMERALD = 1,
+	CUSTOMIZATION_OUTFIT_RS,
+	CUSTOMIZATION_OUTFIT_ORAS,
+};
+
 struct ClothingInfo {
 	u8 name[14]; // name. duh // el nombre. obvio
 	s8 r; // base color, lightest // color base, el más claro // valor 0 - 31
@@ -55,12 +61,15 @@ extern const struct ClothingInfo gClothingItems[];
 
 struct OutfitInfo {
 	u8 name[14]; // name. duh // nombre obvio
-	u8 Id; // id for the outift. necessary for storing it in savedata easily.  // id del outfit. necesario para tenerlo en el archivo guardado.
-	u8 playerGender; // gender necessary for the fit. // genero requerido por el outfit.
-	u16 graphicsId; // graphics id. maybe unnecessary...? // id del gráfico. quizá innecesario...?
-	u16 paletteTag; // tag of the palette. ex: OBJ_EVENT_ID_BRENDAN // tag de la paleta. ej: OBJ_EVENT_ID_BRENDAN
+	// u16 graphicsId; // graphics id. maybe unnecessary...? // id del gráfico. quizá innecesario...?
+	// u16 paletteTag; // tag of the palette. ex: OBJ_EVENT_ID_BRENDAN // tag de la paleta. ej: OBJ_EVENT_ID_BRENDAN
+	u8 skintone[2]; // where the skintone starts and ends // donde empieza y termina la piel
+	u8 main[2]; // where the main color starts and ends // donde empieza y termina el color principal
+	u8 highlight1[2]; // where the highlight color 1 starts and ends // donde empieza y termina el color secundario 1
+	u8 highlight2[2]; // where the highlight color 2 starts and ends // donde empieza y termina el color secundario 2
 };
 
-extern const struct OutfitInfo gOutfitItems[];
+extern const struct OutfitInfo gMaleOutfitItems[];
+extern const struct OutfitInfo gFemaleOutfitItems[];
 
 #endif

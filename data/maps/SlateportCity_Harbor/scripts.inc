@@ -1214,7 +1214,7 @@ SlateportCity_Harbor_EventScript_AquaEscapeScene_Text_3:
 SlateportCity_Harbor_EventScript_AquaEscapeScene_Text_4:
 # 59 "data/maps/SlateportCity_Harbor/scripts.pory"
 	.string "¡AH!{PAUSE 15}\n"
-	.string "¡O-{PAUSE 5}O-{PAUSE 5}Osea, quiero decir, es{EA} idiota {PAUSE 15}-- en\l"
+	.string "¡O-{PAUSE 5}O-{PAUSE 5}O sea, quiero decir, es{EA} idiota {PAUSE 15}-- en\l"
 	.string "singular --{PAUSE 15} que vimos en el Insituto\l"
 	.string "Meteorológico! ¡{PLAYER}, creo que\l"
 	.string "es!$"

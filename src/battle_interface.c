@@ -196,6 +196,10 @@ static void Task_FreeAbilityPopUpGfx(u8);
 
 static void SpriteCB_LastUsedBall(struct Sprite *);
 static void SpriteCB_LastUsedBallWin(struct Sprite *);
+static u8 *AddTextPrinterAndCreateWindowOnHealthboxToFit(const u8 *str, u32 x, u32 y, u32 bgColor, u32 *windowId, u32 width);
+static u8 *AddTextPrinterAndCreateWindowOnHealthboxToFitColor(const u8 *str, u32 x, u32 y, u32 bgColor, u32 *windowId, u32 width, u32 fontColor, u32 shadowColor);
+static u8 *AddTextPrinterAndCreateWindowOnHealthboxWithFont(const u8 *str, u32 x, u32 y, u32 bgColor, u32 *windowId, u32 fontId);
+static u8 *AddTextPrinterAndCreateWindowOnHealthboxWithFontAndColor(const u8 *str, u32 x, u32 y, u32 bgColor, u32 *windowId, u32 fontId, u32 fontColor, u32 shadowColor);
 
 static const struct OamData sOamData_64x32 =
 {
@@ -2135,22 +2139,22 @@ static void UpdateNickInHealthbox(u8 healthboxSpriteId, struct Pokemon *mon)
         if (shinyValue < SHINY_ODDS)
             isShiny = TRUE;
 	if (isShiny) {
-		windowTileData = AddTextPrinterAndCreateWindowOnHealthboxGender(gDisplayedStringBattle, 0, 3, 2, &windowId, 9, 4);
+		windowTileData = AddTextPrinterAndCreateWindowOnHealthboxToFitColor(gDisplayedStringBattle, 0, 3, 2, &windowId, 55, 9, 4);
 	}
 	else {
 		switch (gender)
 		{
 		default:
 			// StringCopy(ptr, gText_HealthboxGender_None);
-			windowTileData = AddTextPrinterAndCreateWindowOnHealthboxGender(gDisplayedStringBattle, 0, 3, 2, &windowId, 1, 3); // 1, 3 (shiny 9, 4)
+			windowTileData = AddTextPrinterAndCreateWindowOnHealthboxToFitColor(gDisplayedStringBattle, 0, 3, 2, &windowId, 55, 1, 3); // 1, 3 (shiny 9, 4)
 			break;
 		case MON_MALE:
 			// StringCopy(ptr, gText_HealthboxGender_Male);
-			windowTileData = AddTextPrinterAndCreateWindowOnHealthboxGender(gDisplayedStringBattle, 0, 3, 2, &windowId, 11, 15); // 12, 11
+			windowTileData = AddTextPrinterAndCreateWindowOnHealthboxToFitColor(gDisplayedStringBattle, 0, 3, 2, &windowId, 55, 11, 15); // 12, 11
 			break;
 		case MON_FEMALE:
 			// StringCopy(ptr, gText_HealthboxGender_Female);
-			windowTileData = AddTextPrinterAndCreateWindowOnHealthboxGender(gDisplayedStringBattle, 0, 3, 2, &windowId, 10, 14); // 14, 13
+			windowTileData = AddTextPrinterAndCreateWindowOnHealthboxToFitColor(gDisplayedStringBattle, 0, 3, 2, &windowId, 55, 10, 14); // 14, 13
 			break;
 		}
 	}
@@ -2727,7 +2731,7 @@ u8 GetHPBarLevel(s16 hp, s16 maxhp)
     return result;
 }
 
-static u8 *AddTextPrinterAndCreateWindowOnHealthbox(const u8 *str, u32 x, u32 y, u32 bgColor, u32 *windowId)
+static u8 *AddTextPrinterAndCreateWindowOnHealthboxWithFont(const u8 *str, u32 x, u32 y, u32 bgColor, u32 *windowId, u32 fontId)
 {
     u16 winId;
     u8 color[3];
@@ -2740,11 +2744,70 @@ static u8 *AddTextPrinterAndCreateWindowOnHealthbox(const u8 *str, u32 x, u32 y,
     color[1] = 1;
     color[2] = 3;
 
-    AddTextPrinterParameterized4(winId, FONT_SMALL, x, y, 0, 0, color, TEXT_SKIP_DRAW, str);
+    AddTextPrinterParameterized4(winId, fontId, x, y, 0, 0, color, TEXT_SKIP_DRAW, str);
 
     *windowId = winId;
     return (u8 *)(GetWindowAttribute(winId, WINDOW_TILE_DATA));
 }
+
+static u8 *AddTextPrinterAndCreateWindowOnHealthboxWithFontAndColor(const u8 *str, u32 x, u32 y, u32 bgColor, u32 *windowId, u32 fontId, u32 fontColor, u32 shadowColor)
+{
+    u16 winId;
+    u8 color[3];
+    struct WindowTemplate winTemplate = sHealthboxWindowTemplate;
+
+    winId = AddWindow(&winTemplate);
+    FillWindowPixelBuffer(winId, PIXEL_FILL(bgColor));
+
+    color[0] = bgColor;
+    color[1] = fontColor;
+    color[2] = shadowColor;
+
+    AddTextPrinterParameterized4(winId, fontId, x, y, 0, 0, color, TEXT_SKIP_DRAW, str);
+
+    *windowId = winId;
+    return (u8 *)(GetWindowAttribute(winId, WINDOW_TILE_DATA));
+}
+
+static u8 *AddTextPrinterAndCreateWindowOnHealthbox(const u8 *str, u32 x, u32 y, u32 bgColor, u32 *windowId)
+{
+    return AddTextPrinterAndCreateWindowOnHealthboxWithFont(str, x, y, bgColor, windowId, FONT_SMALL);
+}
+
+static u8 *AddTextPrinterAndCreateWindowOnHealthboxToFit(const u8 *str, u32 x, u32 y, u32 bgColor, u32 *windowId, u32 width)
+{
+    u32 fontId = GetFontIdToFit(str, FONT_SMALL, 0, width);
+    return AddTextPrinterAndCreateWindowOnHealthboxWithFont(str, x, y, bgColor, windowId, fontId);
+}
+
+static u8 *AddTextPrinterAndCreateWindowOnHealthboxToFitColor(const u8 *str, u32 x, u32 y, u32 bgColor, u32 *windowId, u32 width, u32 fontColor, u32 shadowColor)
+{
+    u32 fontId = GetFontIdToFit(str, FONT_SMALL, 0, width);
+    return AddTextPrinterAndCreateWindowOnHealthboxWithFontAndColor(str, x, y, bgColor, windowId, fontId, fontColor, shadowColor);
+}
+
+
+
+
+
+// static u8 *AddTextPrinterAndCreateWindowOnHealthbox(const u8 *str, u32 x, u32 y, u32 bgColor, u32 *windowId)
+// {
+    // u16 winId;
+    // u8 color[3];
+    // struct WindowTemplate winTemplate = sHealthboxWindowTemplate;
+
+    // winId = AddWindow(&winTemplate);
+    // FillWindowPixelBuffer(winId, PIXEL_FILL(bgColor));
+
+    // color[0] = bgColor;
+    // color[1] = 1;
+    // color[2] = 3;
+
+    // AddTextPrinterParameterized4(winId, FONT_SMALL, x, y, 0, 0, color, TEXT_SKIP_DRAW, str);
+
+    // *windowId = winId;
+    // return (u8 *)(GetWindowAttribute(winId, WINDOW_TILE_DATA));
+// }
 
 static u8 *AddTextPrinterAndCreateWindowOnHealthboxGender(const u8 *str, u32 x, u32 y, u32 bgColor, u32 *windowId, u32 fontColor, u32 shadowColor)
 {
@@ -2907,6 +2970,7 @@ static const s16 sAbilityPopUpCoordsSingles[MAX_BATTLERS_COUNT][2] =
 
 static u8* AddTextPrinterAndCreateWindowOnAbilityPopUp(const u8 *str, u32 x, u32 y, u32 color1, u32 color2, u32 color3, u32 *windowId)
 {
+	u32 fontId;
     u8 color[3] = {color1, color2, color3};
     struct WindowTemplate winTemplate = {0};
     winTemplate.width = 8;
@@ -2914,8 +2978,10 @@ static u8* AddTextPrinterAndCreateWindowOnAbilityPopUp(const u8 *str, u32 x, u32
 
     *windowId = AddWindow(&winTemplate);
     FillWindowPixelBuffer(*windowId, PIXEL_FILL(color1));
+	fontId = GetFontIdToFit(str, FONT_SMALL, 0, 76);
+    AddTextPrinterParameterized4(*windowId, fontId, x, y, 0, 0, color, TEXT_SKIP_DRAW, str);
 
-    AddTextPrinterParameterized4(*windowId, 0, x, y, 0, 0, color, -1, str);
+    // AddTextPrinterParameterized4(*windowId, 0, x, y, 0, 0, color, -1, str);
     return (u8 *)(GetWindowAttribute(*windowId, WINDOW_TILE_DATA));
 }
 
@@ -2942,8 +3008,8 @@ static void PrintOnAbilityPopUp(const u8 *str, u8 *spriteTileData1, u8 *spriteTi
 {
     u32 windowId, i;
     u8 *windowTileData;
-    u8 text1[MAX_CHARS_PRINTED];
-    u8 text2[MAX_CHARS_PRINTED];
+    u8 text1[MAX_CHARS_PRINTED+1];
+    u8 text2[MAX_CHARS_PRINTED+1];
 
     for (i = 0; i < MAX_CHARS_PRINTED; i++)
     {

@@ -2055,9 +2055,9 @@ DewfordTown_Text_FishingAdvice::
 
 DewfordTown_Text_XIsTheBiggestHappeningThingRight::
 # 158 "data/maps/DewfordTown/scripts.pory"
-	.string "Osea, está muy de moda eso de\n"
+	.string "O sea, está muy de moda eso de\n"
 	.string "“{STR_VAR_1}”\p"
-	.string "Obvio lo conoces, osea,\n"
+	.string "Obvio lo conoces, o sea,\n"
 	.string "“{STR_VAR_1}”…\l"
 	.string "¡Todos hablan de eso!\n"
 	.string "“{STR_VAR_1}”\l"
@@ -2094,7 +2094,7 @@ DewfordTown_Text_HearOfAnyTrendsComeShareWithMe::
 
 DewfordTown_Text_YeahDefinitionOfInRightNow::
 # 192 "data/maps/DewfordTown/scripts.pory"
-	.string "¡Osea, obvio!\p"
+	.string "¡O sea, obvio!\p"
 	.string "“{STR_VAR_1}” es la\n"
 	.string "definición de cool.$"
 

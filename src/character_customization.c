@@ -30,6 +30,29 @@ static u16 GetCustomizedColor(u8 item, u8 i, u8 x);
 static bool8 ClothingItemHasDarkerColor(u8 item);
 static bool8 ClothingItemHasDarkestColor(u8 item);
 
+
+const struct OutfitInfo gMaleOutfitItems[] = {
+	[CUSTOMIZATION_OUTFIT_EMERALD] = {
+		.name = _("Esmeralda"),
+		// .graphicsId = ;
+		.skintone = {1,4},
+		.main = {5,8},
+		.highlight1 = {10,11},
+		.highlight2 = {12,13},
+	},
+};
+
+const struct OutfitInfo gFemaleOutfitItems[] = {
+	[CUSTOMIZATION_OUTFIT_EMERALD] = {
+		.name = _("Esmeralda"),
+		// .graphicsId = ;
+		.skintone = {1,3},
+		.main = {12,13},
+		.highlight1 = {8,10},
+		.highlight2 = {4,6},
+	},
+};
+
 // #if GAME_LANGUAGE == LANGUAGE_SPANISH
 const struct ClothingInfo gClothingItems[] = {
 	// ejemplo
@@ -221,8 +244,6 @@ static s8 DarkenColorByMargin(s8 colorToDarken, s8 referenceColor, u8 modifier){
 	return newColor;
 }
 
-
-
 static u16 GetCustomizedColor(u8 item, u8 i, u8 x) {
 	
 	s8 shadowR, shadowG, shadowB, lightR, lightG, lightB, rx, bx, gx;
@@ -273,7 +294,6 @@ static u16 GetCustomizedColor(u8 item, u8 i, u8 x) {
 		bx= 31;
 	return _RGB(rx,gx,bx); // turn the usual 8bit rgb color to 5bit. then turn it into a color value the game reads.
 }
-
 void ApplyPaletteChangesOW(u16* colors) { // ow needs to use the palette buffer, while other places do not.
 	
     u8 i, skintone, mainClothes, highlightClothes1, highlightClothes2;
@@ -338,10 +358,8 @@ void ApplyPaletteChangesOW(u16* colors) { // ow needs to use the palette buffer,
 			if (highlightClothes2 != 0)
 				gPlttBufferFaded[i] = GetCustomizedColor(3, i, FEMALE_HAIR_START);
 		}
-
 	}
 }
-
 void ApplyPaletteChanges(u16* colors) {
 	
     u8 i, skintone, mainClothes, highlightClothes1, highlightClothes2;
@@ -350,8 +368,6 @@ void ApplyPaletteChanges(u16* colors) {
 	mainClothes = gSaveBlock2Ptr->customization[1];
 	highlightClothes1 = gSaveBlock2Ptr->customization[2];
 	highlightClothes2 = gSaveBlock2Ptr->customization[3];
-
-
 	if (gSaveBlock2Ptr->playerGender == MALE) {
 		
 		// changing up skintone
@@ -409,25 +425,19 @@ void ApplyPaletteChanges(u16* colors) {
 			if (highlightClothes2 != 0)
 				colors[i] = GetCustomizedColor(3, i, FEMALE_HAIR_START);
 		}
-
 	}
 }
-
 void LoadOutfitPalette(const u32 *src, u16 offset, u16 size)
 {
     LZDecompressWram(src, gPaletteDecompressionBuffer);
-
 	ApplyPaletteChanges((u16*) gPaletteDecompressionBuffer);
-
     CpuCopy16(gPaletteDecompressionBuffer, gPlttBufferUnfaded + offset, size);
     CpuCopy16(gPaletteDecompressionBuffer, gPlttBufferFaded + offset, size);
 }
-
 void LoadOutfitPaletteOW(const u16 *src, u16 offset, u16 size, u8 index)
 {
 	
 	ApplyPaletteChangesOW((u16*) src);
-
     CpuCopy32(gPlttBufferFaded, gPlttBufferUnfaded + offset, size);
     CpuCopy32(gPlttBufferFaded, gPlttBufferFaded + offset, size);
 }

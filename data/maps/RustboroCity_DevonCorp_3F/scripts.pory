@@ -136,10 +136,10 @@ text RustboroCity_DevonCorp_3F_Text_RepeatAndTimerHugelyPopular {
 text RustboroCity_DevonCorp_3F_Text_RareRocksDisplay {
 	poryswitch(LANGUAGE){
 		ES {
-			format("Es una colección de rocas raras.\nUna inscripción dice:\l“No te las comas otra vez, Steven.” y tiene\luna cara triste dibujada.")
+			format("Es una colección de rocas raras.\nUna inscripción dice:\l“No te las comas otra vez, Steven.”\Ny tiene una cara triste dibujada.")
 		}
 		EN {
-			format("A rare rock collection.\nThere's a plate that says:\l“Don't eat them again, Steven.” and a\lsad face is drawn besides it.")
+			format("A rare rock collection.\nThere's a plate that says:\l“Don't eat them again, Steven.”\Nand a sad face is drawn besides it.")
 		}
 	}
 	

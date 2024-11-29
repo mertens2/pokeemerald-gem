@@ -1068,7 +1068,7 @@ void GiveBackItemsAndBerries(void)
 	while(Berries[i][0])
 	{
 		gBagPockets[BERRIES_POCKET].itemSlots[i].itemId = Berries[i][0];
-		SetBagItemQuantity(&gBagPockets[BERRIES_POCKET].itemSlots[i].quantity, Items[i][1]);
+		SetBagItemQuantity(&gBagPockets[BERRIES_POCKET].itemSlots[i].quantity, Berries[i][1]);
 		Berries[i][0], Berries[i][1] = 0;
 		i++;
 	}

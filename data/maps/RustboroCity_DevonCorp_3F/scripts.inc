@@ -502,6 +502,5 @@ RustboroCity_DevonCorp_3F_Text_RareRocksDisplay::
 # 136 "data/maps/RustboroCity_DevonCorp_3F/scripts.pory"
 	.string "Es una colección de rocas raras.\n"
 	.string "Una inscripción dice:\l"
-	.string "“No te las comas otra vez, Steven.” y\l"
-	.string "tiene\l"
-	.string "una cara triste dibujada.$"
+	.string "“No te las comas otra vez, Steven.”\l"
+	.string "y tiene una cara triste dibujada.$"

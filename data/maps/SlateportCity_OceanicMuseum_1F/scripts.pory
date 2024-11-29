@@ -270,7 +270,7 @@ SlateportCity_OceanicMuseum_1F_Text_RustboroBungled:
 	.string "¡Estamos aquí por cosas secretas!\n¡Muaja ja ja ja!$"
 
 SlateportCity_OceanicMuseum_1F_Text_DidntHaveMoney:
-	.string "Soy pobre, así que me alegra que\nnuestro Jefecito sea tan generoso,\l¡Siempre había soñado entrar aquí!$"
+	.string "Soy pobre, así que me alegra que\nnuestro Jefe sea tan generoso,\l¡Siempre había soñado entrar aquí!$"
 
 SlateportCity_OceanicMuseum_1F_Text_LearnAboutSeaForBattling:
 	.string "Quiero aprender del mar y su\n"

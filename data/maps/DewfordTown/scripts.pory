@@ -156,8 +156,8 @@ text DewfordTown_Text_FishingAdvice {
 }
 
 text DewfordTown_Text_XIsTheBiggestHappeningThingRight {
-	format("Osea, está muy de moda eso de\n“{STR_VAR_1}”\p"
-	"Obvio lo conoces, osea,\n"
+	format("O sea, está muy de moda eso de\n“{STR_VAR_1}”\p"
+	"Obvio lo conoces, o sea,\n"
 	"“{STR_VAR_1}”…\l"
 	"¡Todos hablan de eso!\n"
 	"“{STR_VAR_1}”\l"
@@ -190,7 +190,7 @@ text DewfordTown_Text_HearOfAnyTrendsComeShareWithMe {
 }
 
 text DewfordTown_Text_YeahDefinitionOfInRightNow {
-	format("¡Osea, obvio!\p"
+	format("¡O sea, obvio!\p"
 	"“{STR_VAR_1}” es la\n"
 	"definición de cool.")
 }

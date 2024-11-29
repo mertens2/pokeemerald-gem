@@ -31,7 +31,13 @@ static u8 GetBerryCountByBerryTreeId(u8 id);
 static u16 GetStageDurationByBerryType(u8 berry, struct BerryTree *tree);
 static u16 GetMulchItem(u8 mulchID);
 #if GAME_LANGUAGE == LANGUAGE_SPANISH
-	
+	// const struct MulchApplied gMulchAppliedToTree[] = {
+		// [GROWTH_MULCH] = {
+			// .flavorTextPlanted = COMPOUND_STRING("La planta crecerá más rápido.");
+			// .flavorTextWatered = COMPOUND_STRING("El abono la sigue acelerando.");
+			// .itemId = ITEM_GROWTH_MULCH;
+		// }
+	// };
 //.rodata
 
 	static const u8 sBerryDescriptionPart1_Cheri[] = _("Florece con bellas y delicadas flores.");

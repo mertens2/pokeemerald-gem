@@ -636,7 +636,7 @@ AquaHideout_B2F_EventScript_MattNoticePlayer_Text_7:
 
 AquaHideout_B2F_EventScript_MattNoticePlayer_Text_8:
 # 67 "data/maps/AquaHideout_B2F/scripts.pory"
-	.string "¡Impresionante!\nNo me esperaba menos\pdel Equipo Aqua.$"
+	.string "¡Impresionante!\nNo me esperaba menos\ldel Equipo Aqua.$"
 
 AquaHideout_B2F_EventScript_MattNoticePlayer_Text_9:
 # 81 "data/maps/AquaHideout_B2F/scripts.pory"

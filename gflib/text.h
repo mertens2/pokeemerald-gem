@@ -20,6 +20,9 @@ enum {
     FONT_NARROW,
     FONT_SMALL_NARROW, // Very similar to FONT_SMALL, some glyphs are narrower
     FONT_BOLD, // JP glyph set only
+	FONT_NARROWER,
+    FONT_SMALL_NARROWER,
+    FONT_SHORT_NARROW,
 };
 
 // Géneros
@@ -44,6 +47,9 @@ enum {
 #define PLACEHOLDER_ID_ELELLA   	 0x1F
 #define PLACEHOLDER_ID_EllaEl  		 0x20
 #define PLACEHOLDER_ID_ELLAEL   	 0x21
+
+//velocidad
+// #define PLACEHOLDER_ID_TEXT_SPEED  	 0x22
 
 // Return values for font functions
 enum {
@@ -194,5 +200,8 @@ u32 GetFontIdToFit(const u8 *string, u32 fontId, u32 letterSpacing, u32 widthPx)
 // braille.c
 u16 FontFunc_Braille(struct TextPrinter *textPrinter);
 u32 GetGlyphWidth_Braille(u16 glyphId, bool32 isJapanese);
+u32 GetFontIdToFit(const u8 *string, u32 widestFontId, u32 letterSpacing, u32 widthPx);
+u8 *PrependFontIdToFit(u8 *start, u8 *end, u32 fontId, u32 width);
+u8 *WrapFontIdToFit(u8 *start, u8 *end, u32 fontId, u32 width);
 
 #endif // GUARD_TEXT_H
