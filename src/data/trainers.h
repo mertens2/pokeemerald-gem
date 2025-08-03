@@ -11126,12 +11126,12 @@ const struct Trainer gTrainers[] = {
 
     },
 
-    [TRAINER_GRUNT_MAGMA_HIDEOUT_1] =
+    [TRAINER_GRUNT_MAGMA_ROUTE112_M] =
     {
         .trainerClass = TRAINER_CLASS_TEAM_MAGMA,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MAGMA,
         .trainerPic = TRAINER_PIC_MAGMA_GRUNT_M,
-        .trainerName = _("Recluta"),
+        .trainerName = _("Alto Rango"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE,
@@ -11143,12 +11143,12 @@ const struct Trainer gTrainers[] = {
 
     },
 
-    [TRAINER_GRUNT_MAGMA_HIDEOUT_2] =
+    [TRAINER_GRUNT_MAGMA_ROUTE112_F] =
     {
         .trainerClass = TRAINER_CLASS_TEAM_MAGMA,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MAGMA,
-        .trainerPic = TRAINER_PIC_MAGMA_GRUNT_M,
-        .trainerName = _("Recluta"),
+        .trainerPic = TRAINER_PIC_MAGMA_GRUNT_F,
+        .trainerName = _("Alto Rango"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE,
@@ -11165,7 +11165,7 @@ const struct Trainer gTrainers[] = {
         .trainerClass = TRAINER_CLASS_TEAM_MAGMA,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MAGMA,
         .trainerPic = TRAINER_PIC_MAGMA_GRUNT_M,
-        .trainerName = _("Recluta"),
+        .trainerName = _("Idiota"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE,

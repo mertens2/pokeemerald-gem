@@ -1190,3 +1190,5 @@ Decline:
 	.include "data/maps/Route104North/scripts.inc"
 
 	.include "data/maps/SafariZone_SpecialArea/scripts.inc"
+
+	.include "data/maps/MauvilleCity_F1/scripts.inc"

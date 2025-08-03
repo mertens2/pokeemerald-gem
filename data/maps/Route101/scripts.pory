@@ -2,10 +2,22 @@
 script Route101_EventScript_HelpMe {
 	poryswitch(LANGUAGE){
 		ES{
-			msgbox(format("¡ALGUIEN, AYÚDEME!"))
+			msgbox(format("¡ALGUIEN, {SHAKE_SCREEN 3 3 2 3}AYÚDEME!"))
 		}
 		EN{
-			msgbox(format("SOMEBODY, HELP ME!"))
+			msgbox(format("SOMEBODY, {SHAKE_SCREEN 3 3 2 3}HELP ME!"))
+		}
+	}
+	return
+}
+
+script Route101_EventScript_Youngster {
+	poryswitch(LANGUAGE){
+		ES{
+			msgbox(format("Es raro pensar en cómo cambian las cosas, ¿No te parece?\pHace mucho, ¡Solíamos temer a los Pokémon!\N¿Te imaginas temerle a un Ralts? ¡JAJAJA!"))
+		}
+		EN{
+			msgbox(format("Weird to think about much things change, huh?\pLike, long ago, we used to fear Pokémon!\NCan you imagine fearing a RALTS!? Couldn't be me, HAHAHA!"))
 		}
 	}
 	return
@@ -17,7 +29,7 @@ script Route101_EventScript_PleaseHelp {
 			msgbox(format("¡Tú, ayúdame, soy alérgico a este Pokémon, y olvidé mi EPI-Pen!\p¡Usa las PokéBall que están en mi maletín!"))
 		}
 		EN{
-			msgbox(format("You, help me, I'm allergic to this one, and of course I had to forget my EPI-Pen!\pGrab a Ball from the case!"))
+			msgbox(format("He-help me, I'm allergic to Zigzagoon! And of course I had to forget my EPI-Pen!\pGrab a Ball from the case!"))
 		}
 	}
 	return
@@ -26,10 +38,10 @@ script Route101_EventScript_PleaseHelp {
 script Route101_EventScript_DontLeaveMe {
 	poryswitch(LANGUAGE){
 		ES{
-			msgbox(format("¡No me dejes así!"))
+			msgbox(format("{SHAKE_SCREEN 3 3 2 3}¡No me dejes así!"))
 		}
 		EN{
-			msgbox(format("Don't leave me like this!"))
+			msgbox(format("{SHAKE_SCREEN 3 3 2 3}Don't leave me like this!"))
 		}
 	}
 	return
@@ -39,7 +51,7 @@ script Route101_EventScript_YouSavedMe {
 	poryswitch(LANGUAGE){
 		ES{
 			namebox (Unknown)
-			msgbox (format("¡UFF! ¡MUCHÍSIMAS GRACIAS!\p"
+			msgbox (format("¡UFF! {SHAKE_SCREEN 2 3 2 1}¡MUCHÍSIMAS GRACIAS!\p"
 					"Eso estuvo cerca…\nEstaba estudiando los Pokémon de esta ruta, y me atacó un Zigzagoon…\p"
 					"¡Por cierto, yo soy el {COLOR BLUE}Profesor Birch{COLOR DARK_GRAY}!"))
 			hidenamebox
@@ -49,7 +61,7 @@ script Route101_EventScript_YouSavedMe {
 		}
 		EN{
 			namebox (Unknown)
-			msgbox (format("PUFF! THANK YOU SO MUCH!\p"
+			msgbox (format("PUFF! {SHAKE_SCREEN 2 3 2 1}THANK YOU SO MUCH!\p"
 					"That was close…\nI was studying the Pokémon here, and then that Zigzagoon…\p"
 					"Anyway, I'm {COLOR BLUE}Professor Birch{COLOR DARK_GRAY}!"))
 			hidenamebox
@@ -316,10 +328,7 @@ Route101_Movement_PokemonEscape:
 	set_invisible
 	step_end
 
-Route101_EventScript_Youngster::
-	special GetPokemonAttribute
-	msgbox Route101_Text_TakeTiredPokemonToPokeCenter, MSGBOX_NPC
-	end
+
 Route101_EventScript_Night::
 	msgbox Route101_Text_TakeTiredPokemonToPokeCenter2, MSGBOX_NPC
 	setwildbattle SPECIES_SNORLAX, 95, ITEM_LEFTOVERS
@@ -386,8 +395,7 @@ Route101_Movement_BirchApproachPlayer:
 	step_end
 
 
-Route101_Text_TakeTiredPokemonToPokeCenter:
-	.string "¡{STR_VAR_1}! ¡{STR_VAR_2}! ¡{STR_VAR_3}!$"
+
 Route101_Text_TakeTiredPokemonToPokeCenter2:
 	.string "¡{STR_VAR_1}!$"
 Route101_Text_WildPokemonInTallGrass:

@@ -2,15 +2,15 @@
 // abandoned ship
 text AbandonedShip_Rooms2_1F_Text_DanIntro{
 	poryswitch(LANGUAGE) {
-	EN {
-		format("DAN: While searching for treasures,\n"
-		"we discovered a TRAINER!")
+		EN {
+			format("DAN: While searching for treasures,\n"
+			"we discovered a TRAINER!")
+		}
+		ES {
+			format("DAN: While searching for treasures,\n"
+			"we discovered a TRAINER!")
+		}
 	}
-	ES {
-		format("DAN: While searching for treasures,\n"
-		"we discovered a TRAINER!")
-	}
-}
 }
 
 text AbandonedShip_CaptainsOffice_Text_NoSuccessFindingScanner{

@@ -231,6 +231,8 @@
 #define EXT_CTRL_CODE_PAUSE_MUSIC            0x17
 #define EXT_CTRL_CODE_RESUME_MUSIC           0x18
 #define EXT_CTRL_CODE_TEXT_SPEED	         0x19
+#define EXT_CTRL_CODE_SHAKE_SCREEN	       	 0x1A
+#define EXT_CTRL_CODE_FLASH	         		 0x1B
 
 #define TEXT_COLOR_TRANSPARENT  0x0
 #define TEXT_COLOR_WHITE        0x1
@@ -336,5 +338,13 @@
 #define BRAILLE_CHAR_8 BRAILLE_CHAR_H
 #define BRAILLE_CHAR_9 BRAILLE_CHAR_I
 #define BRAILLE_CHAR_0 BRAILLE_CHAR_J
+
+// // "yell" characters for ease of access
+// #define YELL_NONE    	0
+// #define YELL_LIGHT 		1
+// #define YELL_NORMAL		2
+// #define YELL_HEAVY		3
+// #define YELL_AGGRESSIVE 4
+// #define YELL_STRENGTH	5
 
 #endif // GUARD_CHARACTERS_H

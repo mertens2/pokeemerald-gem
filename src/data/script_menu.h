@@ -1,3 +1,4 @@
+
 // multichoice lists
 static const struct MenuAction MultichoiceList_BrineyOnDewford[] =
 {
@@ -780,6 +781,20 @@ static const struct MenuAction MultichoiceList_TagMatchType[] =
     {gText_Exit},
 };
 
+static const struct MenuAction MultichoiceList_PronounsChoiceEsp[] =
+{
+    {COMPOUND_STRING("Él")},
+    {COMPOUND_STRING("Ella")},
+    {COMPOUND_STRING("Elle")},
+};
+
+static const struct MenuAction MultichoiceList_PronounsChoiceEng[] =
+{
+    {COMPOUND_STRING("He/Him")},
+    {COMPOUND_STRING("She/Her")},
+    {COMPOUND_STRING("They/Them")},
+};
+
 static const struct MenuAction MultichoiceList_Exit[] =
 {
     {gText_Exit},
@@ -907,6 +922,9 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_SLATEPORT_TENT_RULES]       = MULTICHOICE(MultichoiceList_SlateportTentRules),
     [MULTI_FALLARBOR_TENT_RULES]       = MULTICHOICE(MultichoiceList_FallarborTentRules),
     [MULTI_TAG_MATCH_TYPE]             = MULTICHOICE(MultichoiceList_TagMatchType),
+    [MULTI_TAG_PRONOUNS_ESP]           = MULTICHOICE(MultichoiceList_PronounsChoiceEsp),
+    [MULTI_TAG_PRONOUNS_ENG]           = MULTICHOICE(MultichoiceList_PronounsChoiceEng),
+    // [MULTI_TAG_ABILITIES]              = MULTICHOICE(MultichoiceList_Abilities),
 };
 
 const u8 *const gStdStrings[] =
@@ -1013,3 +1031,6 @@ static const u8 *const sWirelessOptions_NoRecordMixBerryCrush[] =
     CableClub_Text_YouMayBattleHere,
     CableClub_Text_CancelSelectedItem,
 };
+
+
+

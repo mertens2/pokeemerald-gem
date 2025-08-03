@@ -46,55 +46,68 @@ u8 *StringCopy_Nickname(u8 *dest, const u8 *src)
 //Género player
 static const u8 *ExpandPlaceholder_OA(void)
 {
-    if (gSaveBlock2Ptr->playerGender == MALE)
+    if (gSaveBlock2Ptr->playerPronouns == PRONOUNS_HE)
         return gText_ExpandedPlaceholder_O;
-    else
+    else if (gSaveBlock2Ptr->playerPronouns == PRONOUNS_SHE)
         return gText_ExpandedPlaceholder_A;
+	else
+		return gText_ExpandedPlaceholder_E;
 }
 
 static const u8 *ExpandPlaceholder_A(void)
 {
-    if (gSaveBlock2Ptr->playerGender == MALE)
+	if (gSaveBlock2Ptr->playerPronouns == PRONOUNS_HE)
         return gText_ExpandedPlaceholder_Kun;
-    else
+    else if (gSaveBlock2Ptr->playerPronouns == PRONOUNS_SHE)
         return gText_ExpandedPlaceholder_A;
+	else
+		return gText_ExpandedPlaceholder_E;
 }
 
 static const u8 *ExpandPlaceholder_ElLa(void)
 {
-    if (gSaveBlock2Ptr->playerGender == MALE)
+	if (gSaveBlock2Ptr->playerPronouns == PRONOUNS_HE)
         return gText_ExpandedPlaceholder_El;
-    else
+    else if (gSaveBlock2Ptr->playerPronouns == PRONOUNS_SHE)
         return gText_ExpandedPlaceholder_La;
+	else
+		return gText_ExpandedPlaceholder_Le;
 }
 
 static const u8 *ExpandPlaceholder_ELLA(void)
 {
-    if (gSaveBlock2Ptr->playerGender == MALE)
+    if (gSaveBlock2Ptr->playerPronouns == PRONOUNS_HE)
         return gText_ExpandedPlaceholder_EL;
-    else
+    else if (gSaveBlock2Ptr->playerPronouns == PRONOUNS_SHE)
         return gText_ExpandedPlaceholder_LA;
+	else
+		return gText_ExpandedPlaceholder_LE;
 }
 
 static const u8 *ExpandPlaceholder_ITA(void)
 {
-    if (gSaveBlock2Ptr->playerGender == MALE)
+	if (gSaveBlock2Ptr->playerPronouns == PRONOUNS_HE)
         return gText_ExpandedPlaceholder_Kun;
-    else
+    else if (gSaveBlock2Ptr->playerPronouns == PRONOUNS_SHE)
         return gText_ExpandedPlaceholder_ITA;
+	else
+		return gText_ExpandedPlaceholder_ITE;
 }
 
 static const u8 *ExpandPlaceholder_ITOITA(void)
 {
-    if (gSaveBlock2Ptr->playerGender == MALE)
+	
+    if (gSaveBlock2Ptr->playerPronouns == PRONOUNS_HE)
         return gText_ExpandedPlaceholder_ITO;
-    else
+    else if (gSaveBlock2Ptr->playerPronouns == PRONOUNS_SHE)
         return gText_ExpandedPlaceholder_ITA;
+	else
+		return gText_ExpandedPlaceholder_ITE;
 }
 
 static const u8 *ExpandPlaceholder_EA(void)
 {
-    if (gSaveBlock2Ptr->playerGender == MALE)
+    if (gSaveBlock2Ptr->playerPronouns != PRONOUNS_SHE)
         return gText_ExpandedPlaceholder_E;
     else
         return gText_ExpandedPlaceholder_A;
@@ -189,14 +202,27 @@ static const u8 *ExpandPlaceholder_ELLAEL(void)
         return gText_ExpandedPlaceholder_EL2;
 }
 
+static const u8 *ExpandPlaceholder_GENDERCUSTOM(void)
+{
+    if (gSaveBlock2Ptr->playerPronouns == PRONOUNS_HE)
+        return gStringVar1;
+    else if (gSaveBlock2Ptr->playerPronouns == PRONOUNS_SHE)
+        return gStringVar2;
+    else
+        return gStringVar3;
+}
+
 
 
 static const u8 *ExpandPlaceholder_COLOR_PLAYER(void)
 {
-    if (gSaveBlock2Ptr->playerGender == MALE)
+	
+    if (gSaveBlock2Ptr->playerPronouns == PRONOUNS_HE)
         return gText_ExpandedPlaceholder_COLOR_MALE;
-    else
+    else if (gSaveBlock2Ptr->playerPronouns == PRONOUNS_SHE)
         return gText_ExpandedPlaceholder_COLOR_FEMALE;
+	else
+        return gText_ExpandedPlaceholder_COLOR_NON_BINARY;
 }
 
 static const u8 *ExpandPlaceholder_COLOR_RIVAL(void)
@@ -306,6 +332,15 @@ u8 *StringFormat(u8 *dest, u8 num , const u8 *src)
 		*dest = src[i];
 		dest++;
 		line++;
+		/*
+		i should
+		start a for checking for each full word
+		if the word is longer than the max lenght
+		search closest earlier vocal and append a - next to it
+		add a \n too and clean line lenght and word lenght
+		take max size or max number of lines
+		
+		*/
 		// if (line == 1 && src[i] == *aSimpleSpace){
 			// *dest = src[i+1];
 			// dest++;
@@ -925,6 +960,7 @@ const u8 *GetExpandedPlaceholder(u32 id)
         [PLACEHOLDER_ID_ElElla] = ExpandPlaceholder_ElElla,
         [PLACEHOLDER_ID_ELLAEL] = ExpandPlaceholder_ELLAEL,
         [PLACEHOLDER_ID_EllaEl] = ExpandPlaceholder_EllaEl,
+        [PLACEHOLDER_ID_GENDERCUSTOM] = ExpandPlaceholder_GENDERCUSTOM,
     };
 
     if (id >= ARRAY_COUNT(funcs))
@@ -1093,6 +1129,8 @@ u8 GetExtCtrlCodeLength(u8 code)
         [EXT_CTRL_CODE_PAUSE_MUSIC]            = 1,
         [EXT_CTRL_CODE_RESUME_MUSIC]           = 1,
         [EXT_CTRL_CODE_TEXT_SPEED]         	   = 2,
+        [EXT_CTRL_CODE_SHAKE_SCREEN]           = 5,
+        [EXT_CTRL_CODE_FLASH]         	   	   = 2,
     };
 
     u8 length = 0;

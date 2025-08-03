@@ -1823,6 +1823,7 @@
 	@ Displays a multichoice box from which the user can choose a selection, and blocks script execution until a selection is made.
 	@ Lists of options are provided in argv.
 	@ If ignoreBPress is set to a non-zero value, then the user will not be allowed to back out of the multichoice with the B button.
+	@ if user wants to get the height to be touching the textbox, then the minimum is 9, and each new option substracts one.
 	.macro dynmultichoice left:req, top:req, ignoreBPress:req, maxBeforeScroll:req, initialSelected:req, callbacks:req argv:vararg
 	_dynmultichoice \left, \top, \ignoreBPress, \maxBeforeScroll, FALSE, \initialSelected, \callbacks, \argv
 	.endm

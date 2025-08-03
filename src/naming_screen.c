@@ -1417,6 +1417,8 @@ static void NamingScreen_CreatePlayerIcon(void)
     u8 spriteId;
 
     rivalGfxId = GetRivalAvatarGraphicsIdByStateIdAndGender(PLAYER_AVATAR_STATE_NORMAL, sNamingScreen->monSpecies);
+	if (sNamingScreen->monSpecies == 1)
+		rivalGfxId = OBJ_EVENT_GFX_MAY_WALK_SIMPLE;
     spriteId = CreateObjectGraphicsSprite(rivalGfxId, SpriteCallbackDummy, 56, 37, 0);
     gSprites[spriteId].oam.priority = 3;
     StartSpriteAnim(&gSprites[spriteId], ANIM_STD_GO_SOUTH);

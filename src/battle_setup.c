@@ -1336,8 +1336,11 @@ const u8 *BattleSetup_ConfigureTrainerBattle(const u8 *data)
 
 static bool8 BattleHasNoWhiteout()
 {
-    if (gTrainerBattleMode == TRAINER_BATTLE_NO_WHITEOUT_CONTINUE_SCRIPT || gTrainerBattleMode == TRAINER_BATTLE_NO_INTRO_NO_WHITEOUT)
-        return TRUE;
+    if (gTrainerBattleMode == TRAINER_BATTLE_NO_WHITEOUT_CONTINUE_SCRIPT || gTrainerBattleMode == TRAINER_BATTLE_NO_INTRO_NO_WHITEOUT || FlagGet(FLAG_NO_WITHEOUT)){
+		FlagClear(FLAG_NO_WITHEOUT);
+		return TRUE;
+	}
+        
     else
         return FALSE;
 }

@@ -97,14 +97,14 @@
       "y": 33,
       "elevation": 0,
       "dest_map": "MAP_ROUTE121_SAFARI_ZONE_ENTRANCE",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     },
     {
       "x": 34,
       "y": 19,
       "elevation": 0,
       "dest_map": "MAP_SAFARI_ZONE_SPECIAL_AREA",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [],

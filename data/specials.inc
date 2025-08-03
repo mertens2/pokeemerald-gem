@@ -566,5 +566,6 @@ gSpecials::
 	def_special SetTrainerType
 	def_special ShowTrainerType
 	def_special GetPokemonAttribute
-	def_special GetMatchPokemon
+	def_special DoesMonMatch
 	def_special SetCustomization
+	def_special DisplayPokedokuList

@@ -13,7 +13,7 @@ FallarborTown_CozmosHouse_EventScript_ProfCozmo::
 # 7 "data/maps/FallarborTown_CozmosHouse/scripts.pory"
 	faceplayer
 # 8 "data/maps/FallarborTown_CozmosHouse/scripts.pory"
-	checkitem ITEM_TM27
+	checkitem ITEM_TM60
 # 9 "data/maps/FallarborTown_CozmosHouse/scripts.pory"
 	goto_if_eq VAR_RESULT, TRUE, FallarborTown_CozmosHouse_EventScript_GaveMeteorite
 # 10 "data/maps/FallarborTown_CozmosHouse/scripts.pory"
@@ -39,7 +39,7 @@ FallarborTown_CozmosHouse_EventScript_PlayerHasMeteorite::
 # 20 "data/maps/FallarborTown_CozmosHouse/scripts.pory"
 	msgbox FallarborTown_CozmosHouse_Text_PleaseUseThisTM, MSGBOX_DEFAULT
 # 21 "data/maps/FallarborTown_CozmosHouse/scripts.pory"
-	giveitem ITEM_TM27
+	giveitem ITEM_TM60
 # 22 "data/maps/FallarborTown_CozmosHouse/scripts.pory"
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 # 23 "data/maps/FallarborTown_CozmosHouse/scripts.pory"
@@ -101,7 +101,7 @@ FallarborTown_CozmosHouse_EventScript_CozmosWife::
 # 51 "data/maps/FallarborTown_CozmosHouse/scripts.pory"
 	faceplayer
 # 52 "data/maps/FallarborTown_CozmosHouse/scripts.pory"
-	checkitem ITEM_TM27
+	checkitem ITEM_TM60
 # 53 "data/maps/FallarborTown_CozmosHouse/scripts.pory"
 	goto_if_eq VAR_RESULT, TRUE, FallarborTown_CozmosHouse_EventScript_CozmoIsHappy
 # 54 "data/maps/FallarborTown_CozmosHouse/scripts.pory"

@@ -494,16 +494,18 @@ struct RankingHall2P
 
 struct SaveBlock2
 {
+	u8 _saveSentinel;
+	u16 saveVersion;
     /*0x00*/ u8 playerName[PLAYER_NAME_LENGTH + 1];
-    /*0x08*/ u8 playerGender; // MALE, FEMALE
+    /*0x08*/ u8 playerGender; // MALE, FEMALE, NON_BINARY? maybe not, appereance is decided with these, ill leave it for now
     /*0x09*/ u8 specialSaveWarpFlags;
     /*0x0A*/ u8 playerTrainerId[TRAINER_ID_LENGTH];
     /*0x0E*/ u16 playTimeHours;
     /*0x10*/ u8 playTimeMinutes;
     /*0x11*/ u8 playTimeSeconds;
     /*0x12*/ u8 playTimeVBlanks;
-    /*0x13*/ u8 optionsButtonMode;  // OPTIONS_BUTTON_MODE_[NORMAL/LR/L_EQUALS_A]
-    /*0x14*/ u16 optionsTextSpeed:3; // OPTIONS_TEXT_SPEED_[SLOW/MID/FAST]
+    /*0x13*/ u8 optionsTrainingMode:1;  // training mode
+    /*0x14*/ u16 optionsTextSpeed:2; // OPTIONS_TEXT_SPEED_[SLOW/MID/FAST]
              u16 optionsWindowFrameType:5; // Specifies one of the 20 decorative borders for text boxes
              u16 optionsSound:1; // OPTIONS_SOUND_[MONO/STEREO]
              u16 optionsBattleStyle:1; // OPTIONS_BATTLE_STYLE_[SHIFT/SET]
@@ -514,6 +516,7 @@ struct SaveBlock2
              u16 optionsExpBarSpeed:4;  //tx_optionsPlus
 			 u16 optionsShinyOdds:3;
 			 u16 optionsDifficulty:3;
+			 u16 optionsTextSkip:2;
     /*0x18*/ struct Pokedex pokedex;
     // /*0x90*/ u8 filler_90[0x8];
     /*0x98*/ struct Time localTimeOffset;
@@ -535,6 +538,7 @@ struct SaveBlock2
     /*0x????*/ u8 activeQuest;
 			   
     /*0xF2C*/  u8 itemFlags[ITEM_FLAGS_COUNT];
+			   u8 playerPronouns; //pronombres duh
 }; // sizeof=0xF2C
 
 extern struct SaveBlock2 *gSaveBlock2Ptr;

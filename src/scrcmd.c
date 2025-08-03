@@ -77,6 +77,7 @@ extern const u8 *gStdScripts_End[];
 
 static void CloseBrailleWindow(void);
 static void DynamicMultichoiceSortList(struct ListMenuItem *items, u32 count);
+static bool8 AAndBCanSkip(u8 mode);
 
 // This is defined in here so the optimizer can't see its value when compiling
 // script.c.
@@ -99,6 +100,14 @@ static u8 *const sScriptStringVars[] =
     gStringVar2,
     gStringVar3,
 };
+
+static bool8 AAndBCanSkip(u8 mode){
+	if (gSaveBlock2Ptr->optionsTextSkip >= mode){
+		if (JOY_HELD(A_BUTTON) && JOY_HELD(B_BUTTON))
+			return TRUE;
+	}
+	return FALSE;
+}
 
 bool8 ScrCmd_nop(struct ScriptContext *ctx)
 {
@@ -1337,6 +1346,8 @@ bool8 ScrCmd_closemessage(struct ScriptContext *ctx)
 
 static bool8 WaitForAorBPress(void)
 {
+	if (AAndBCanSkip(OPTIONS_TEXT_SKIP_SKIPALL))
+		return TRUE;
     if (JOY_NEW(A_BUTTON))
         return TRUE;
     if (JOY_NEW(B_BUTTON))

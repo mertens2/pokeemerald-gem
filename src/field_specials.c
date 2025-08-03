@@ -47,6 +47,7 @@
 #include "tv.h"
 #include "wallclock.h"
 #include "window.h"
+#include "constants/abilities.h"
 #include "constants/battle_frontier.h"
 #include "constants/battle_tower.h"
 #include "constants/decorations.h"
@@ -71,6 +72,8 @@
 #include "item.h"
 #include "item_menu.h"
 #include "battle_util.h"
+
+
 
 EWRAM_DATA bool8 gBikeCyclingChallenge = FALSE;
 EWRAM_DATA u8 gBikeCollisions = 0;
@@ -1445,6 +1448,36 @@ void ShakeCamera(void)
     gTasks[taskId].verticalPan = gSpecialVar_0x8004;
     SetCameraPanningCallback(NULL);
     PlaySE(SE_M_STRENGTH);
+}
+
+void ShakeCameraScript(u16 horPan, u16 verPan, u16 num, u16 delayShake, u16 shouldPlaySE)
+{
+	u8 taskId = CreateTask(Task_ShakeCamera, 9);
+    gTasks[taskId].horizontalPan = horPan;
+    gTasks[taskId].delayCounter = 0;
+    gTasks[taskId].numShakes = num;
+    gTasks[taskId].delay = delayShake;
+    gTasks[taskId].verticalPan = verPan;
+    SetCameraPanningCallback(NULL);
+	switch (shouldPlaySE){
+		case YELL_NONE:
+			break;
+		case YELL_LIGHT:
+			PlaySE(SE_WIN_OPEN);
+			break;
+		case YELL_NORMAL:
+			PlaySE(SE_EFFECTIVE);
+			break;
+		case YELL_HEAVY:
+			PlaySE(SE_M_SELF_DESTRUCT);
+			break;
+		case YELL_AGGRESSIVE:
+			PlaySE(SE_UNLOCK);
+			break;
+		case YELL_STRENGTH:
+			PlaySE(SE_M_STRENGTH);
+			break;
+	}
 }
 
 static void Task_ShakeCamera(u8 taskId)
@@ -4410,7 +4443,7 @@ void ShowTrainerType(void)
 	gSpecialVar_Result = gSaveBlock1Ptr->trainerType;
 }
 
-bool8 GetMatchPokemon(u32 data, u8 attribute, u16 species){
+bool8 DoesMonMatch(u32 data, u8 attribute, u16 species){
 	u32 total,num;
 	switch (attribute){
 		case POKEDOKU_ABILITY:
@@ -4497,8 +4530,8 @@ u32 GetPokemonAttribute(void){
 			// break;
 	// }
 	species = SPECIES_THROH;
-	check1 = GetMatchPokemon(gSpecialVar_0x8000, POKEDOKU_ABILITY, species);
-	check2 = GetMatchPokemon(gSpecialVar_0x8001, POKEDOKU_TYPE, species);
+	check1 = DoesMonMatch(gSpecialVar_0x8000, POKEDOKU_ABILITY, species);
+	check2 = DoesMonMatch(gSpecialVar_0x8001, POKEDOKU_TYPE, species);
 	if (check1 == TRUE && check2 == TRUE)
 		StringExpandPlaceholders(gStringVar3,gSpeciesNames[species]);
 	else
@@ -4533,6 +4566,71 @@ void SetCustomization(void) {
 	}
 }
 
+// char GetAbilityList(void){
+	// // u16 abilityList[ABILITIES_COUNT][12];
+	// u16 i;
+	// char dst[ABILITIES_COUNT][12];
+	// for (i=1;i<ABILITIES_COUNT;i++){
+		// StringCopy(abilityList[i], gAbilityNames[i]);
+		// // StringAppend(dst, "$");
+		// // abilityList[i] = gAbilityNames[i] + COMPOUND_STRING("$");
+		// // StringAppend(abilityList[i], COMPOUND_STRING("$"));4566
+	// }
+	// StringCopy(abilityList[ABILITIES_COUNT], "Salir");
+	// return dst;
+// }
+
+// void GetTypeList(void){
+	// u16 i;
+	// char dst[NUMBER_OF_MON_TYPES][12];
+	// for (i=1;i<NUMBER_OF_MON_TYPES;i++){
+		// StringCopy(abilityList[i], gTypeNames[i]);
+		// // StringAppend(dst, "$");
+		// // typeList[i] = gTypeNames[i] COMPOUND_STRING("$");
+	// }
+	// StringCopy(typeList[NUMBER_OF_MON_TYPES], "Salir");
+	// return dst;
+// }
+// #include "data/pokedoku.h"
+
+void BuildMultichoiceGridByString(u8 x, u8 y, u8 defaultChoice, bool8 ignoreBPress, u8 columns, char* choices){
+	// struct MenuAction menuItems[16] = {NULL};
+	// u8 count = 0;
+	// while(count < ARRAY_COUNT(menuItems)){
+		// int len = StringLength(choices);
+		// if(!len) break;
+		// menuItems[count++].text = choices;
+		// choices += len + 1;
+	// }
+	// if(defaultChoice >= count)
+		// defaultChoice = 0;
+	// if (count > 0){
+		// if(columns > 1)
+			// ScriptMenu_MultichoiceGridCustom(x, y, defaultChoice, ignoreBPress, columns, menuItems, count);
+		// else
+			// DrawMultichoiceMenuCustom(x, y, 0, ignoreBPress, defaultChoice, menuItems, count);
+	// }
+}
+
+void DisplayPokedokuList(void){
+	// u16 i;
+
+	// ScriptMenu_MultichoiceGridCustom(0, 0, 0, FALSE, 3, MultichoiceList_Abilities, ARRAY_COUNT(MultichoiceList_Abilities));
+	// VarSet(VAR_TEMP_0, VarGet(VAR_RESULT));
+	// ScriptMenu_MultichoiceGridCustom(0, 0, 0, FALSE, 3, MultichoiceList_Abilities, ARRAY_COUNT(MultichoiceList_Abilities));
+	// VarSet(VAR_TEMP_1, VarGet(VAR_RESULT));
+	// if (VarGet(VAR_TEMP_0) != ABILITIES_COUNT || VarGet(VAR_TEMP_1) != NUMBER_OF_MON_TYPES){
+		// for (i=0;i<NUM_SPECIES;i++){
+			// if (DoesMonMatch(VarGet(VAR_TEMP_0), POKEDOKU_ABILITY, i)){
+				// break;
+			// }
+		// }
+	// }
+	// if (VarGet(VAR_RESULT)==TRUE)
+		// StringExpandPlaceholders(gStringVar3,gSpeciesNames[i]);
+	// else
+		// StringExpandPlaceholders(gStringVar1,gSpeciesNames[0]);
+}
 /*
 enum {
 	// EASY

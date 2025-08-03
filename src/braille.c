@@ -45,99 +45,98 @@ u16 FontFunc_Braille(struct TextPrinter *textPrinter)
             textPrinter->delayCounter = 3;
         else
             textPrinter->delayCounter = textPrinter->textSpeed;
+		char_ = *textPrinter->printerTemplate.currentChar++;
+		switch (char_)
+		{
+		case EOS:
+			return RENDER_FINISH;
+		case CHAR_NEWLINE:
+			textPrinter->printerTemplate.currentX = textPrinter->printerTemplate.x;
+			textPrinter->printerTemplate.currentY += gFonts[textPrinter->printerTemplate.fontId].maxLetterHeight + textPrinter->printerTemplate.lineSpacing;
+			return RENDER_REPEAT;
+		case PLACEHOLDER_BEGIN:
+			textPrinter->printerTemplate.currentChar++;
+			return RENDER_REPEAT;
+		case EXT_CTRL_CODE_BEGIN:
+			char_ = *textPrinter->printerTemplate.currentChar++;
+			switch (char_)
+			{
+			case EXT_CTRL_CODE_COLOR:
+				textPrinter->printerTemplate.fgColor = *textPrinter->printerTemplate.currentChar++;
+				GenerateFontHalfRowLookupTable(textPrinter->printerTemplate.fgColor, textPrinter->printerTemplate.bgColor, textPrinter->printerTemplate.shadowColor);
+				return RENDER_REPEAT;
+			case EXT_CTRL_CODE_HIGHLIGHT:
+				textPrinter->printerTemplate.bgColor = *textPrinter->printerTemplate.currentChar++;
+				GenerateFontHalfRowLookupTable(textPrinter->printerTemplate.fgColor, textPrinter->printerTemplate.bgColor, textPrinter->printerTemplate.shadowColor);
+				return RENDER_REPEAT;
+			case EXT_CTRL_CODE_SHADOW:
+				textPrinter->printerTemplate.shadowColor = *textPrinter->printerTemplate.currentChar++;
+				GenerateFontHalfRowLookupTable(textPrinter->printerTemplate.fgColor, textPrinter->printerTemplate.bgColor, textPrinter->printerTemplate.shadowColor);
+				return RENDER_REPEAT;
+			case EXT_CTRL_CODE_COLOR_HIGHLIGHT_SHADOW:
+				textPrinter->printerTemplate.fgColor = *textPrinter->printerTemplate.currentChar;
+				textPrinter->printerTemplate.bgColor = *++textPrinter->printerTemplate.currentChar;
+				textPrinter->printerTemplate.shadowColor = *++textPrinter->printerTemplate.currentChar;
+				textPrinter->printerTemplate.currentChar++;
 
-        char_ = *textPrinter->printerTemplate.currentChar++;
-        switch (char_)
-        {
-        case EOS:
-            return RENDER_FINISH;
-        case CHAR_NEWLINE:
-            textPrinter->printerTemplate.currentX = textPrinter->printerTemplate.x;
-            textPrinter->printerTemplate.currentY += gFonts[textPrinter->printerTemplate.fontId].maxLetterHeight + textPrinter->printerTemplate.lineSpacing;
-            return RENDER_REPEAT;
-        case PLACEHOLDER_BEGIN:
-            textPrinter->printerTemplate.currentChar++;
-            return RENDER_REPEAT;
-        case EXT_CTRL_CODE_BEGIN:
-            char_ = *textPrinter->printerTemplate.currentChar++;
-            switch (char_)
-            {
-            case EXT_CTRL_CODE_COLOR:
-                textPrinter->printerTemplate.fgColor = *textPrinter->printerTemplate.currentChar++;
-                GenerateFontHalfRowLookupTable(textPrinter->printerTemplate.fgColor, textPrinter->printerTemplate.bgColor, textPrinter->printerTemplate.shadowColor);
-                return RENDER_REPEAT;
-            case EXT_CTRL_CODE_HIGHLIGHT:
-                textPrinter->printerTemplate.bgColor = *textPrinter->printerTemplate.currentChar++;
-                GenerateFontHalfRowLookupTable(textPrinter->printerTemplate.fgColor, textPrinter->printerTemplate.bgColor, textPrinter->printerTemplate.shadowColor);
-                return RENDER_REPEAT;
-            case EXT_CTRL_CODE_SHADOW:
-                textPrinter->printerTemplate.shadowColor = *textPrinter->printerTemplate.currentChar++;
-                GenerateFontHalfRowLookupTable(textPrinter->printerTemplate.fgColor, textPrinter->printerTemplate.bgColor, textPrinter->printerTemplate.shadowColor);
-                return RENDER_REPEAT;
-            case EXT_CTRL_CODE_COLOR_HIGHLIGHT_SHADOW:
-                textPrinter->printerTemplate.fgColor = *textPrinter->printerTemplate.currentChar;
-                textPrinter->printerTemplate.bgColor = *++textPrinter->printerTemplate.currentChar;
-                textPrinter->printerTemplate.shadowColor = *++textPrinter->printerTemplate.currentChar;
-                textPrinter->printerTemplate.currentChar++;
-
-                GenerateFontHalfRowLookupTable(textPrinter->printerTemplate.fgColor, textPrinter->printerTemplate.bgColor, textPrinter->printerTemplate.shadowColor);
-                return RENDER_REPEAT;
-            case EXT_CTRL_CODE_PALETTE:
-                textPrinter->printerTemplate.currentChar++;
-                return RENDER_REPEAT;
-            case EXT_CTRL_CODE_FONT:
-                subStruct->fontId = *textPrinter->printerTemplate.currentChar;
-                textPrinter->printerTemplate.currentChar++;
-                return RENDER_REPEAT;
-            case EXT_CTRL_CODE_RESET_SIZE:
-                return RENDER_REPEAT;
-            case EXT_CTRL_CODE_PAUSE:
-                textPrinter->delayCounter = *textPrinter->printerTemplate.currentChar++;
-                textPrinter->state = RENDER_STATE_PAUSE;
-                return RENDER_REPEAT;
-            case EXT_CTRL_CODE_PAUSE_UNTIL_PRESS:
-                textPrinter->state = RENDER_STATE_WAIT;
-                if (gTextFlags.autoScroll)
-                    subStruct->autoScrollDelay = 0;
-                return RENDER_UPDATE;
-            case EXT_CTRL_CODE_WAIT_SE:
-                textPrinter->state = RENDER_STATE_WAIT_SE;
-                return RENDER_UPDATE;
-            case EXT_CTRL_CODE_PLAY_BGM:
-            case EXT_CTRL_CODE_PLAY_SE:
-                textPrinter->printerTemplate.currentChar += 2;
-                return RENDER_REPEAT;
-            case EXT_CTRL_CODE_ESCAPE:
-                char_ = *++textPrinter->printerTemplate.currentChar;
-                break;
-            case EXT_CTRL_CODE_SHIFT_TEXT:
-                textPrinter->printerTemplate.currentX = textPrinter->printerTemplate.x + *textPrinter->printerTemplate.currentChar++;
-                return RENDER_REPEAT;
-            case EXT_CTRL_CODE_SHIFT_DOWN:
-                textPrinter->printerTemplate.currentY = textPrinter->printerTemplate.y + *textPrinter->printerTemplate.currentChar++;
-                return RENDER_REPEAT;
-            case EXT_CTRL_CODE_FILL_WINDOW:
-                FillWindowPixelBuffer(textPrinter->printerTemplate.windowId, PIXEL_FILL(textPrinter->printerTemplate.bgColor));
-                return RENDER_REPEAT;
-            }
-            break;
-        case CHAR_PROMPT_CLEAR:
-            textPrinter->state = RENDER_STATE_CLEAR;
-            TextPrinterInitDownArrowCounters(textPrinter);
-            return RENDER_UPDATE;
-        case CHAR_PROMPT_SCROLL:
-            textPrinter->state = RENDER_STATE_SCROLL_START;
-            TextPrinterInitDownArrowCounters(textPrinter);
-            return RENDER_UPDATE;
-        case CHAR_EXTRA_SYMBOL:
-            char_ = *textPrinter->printerTemplate.currentChar++| 0x100;
-            break;
-        case CHAR_KEYPAD_ICON:
-            textPrinter->printerTemplate.currentChar++;
-            return RENDER_PRINT;
-        }
-        DecompressGlyph_Braille(char_);
-        CopyGlyphToWindow(textPrinter);
+				GenerateFontHalfRowLookupTable(textPrinter->printerTemplate.fgColor, textPrinter->printerTemplate.bgColor, textPrinter->printerTemplate.shadowColor);
+				return RENDER_REPEAT;
+			case EXT_CTRL_CODE_PALETTE:
+				textPrinter->printerTemplate.currentChar++;
+				return RENDER_REPEAT;
+			case EXT_CTRL_CODE_FONT:
+				subStruct->fontId = *textPrinter->printerTemplate.currentChar;
+				textPrinter->printerTemplate.currentChar++;
+				return RENDER_REPEAT;
+			case EXT_CTRL_CODE_RESET_SIZE:
+				return RENDER_REPEAT;
+			case EXT_CTRL_CODE_PAUSE:
+				textPrinter->delayCounter = *textPrinter->printerTemplate.currentChar++;
+				textPrinter->state = RENDER_STATE_PAUSE;
+				return RENDER_REPEAT;
+			case EXT_CTRL_CODE_PAUSE_UNTIL_PRESS:
+				textPrinter->state = RENDER_STATE_WAIT;
+				if (gTextFlags.autoScroll)
+					subStruct->autoScrollDelay = 0;
+				return RENDER_UPDATE;
+			case EXT_CTRL_CODE_WAIT_SE:
+				textPrinter->state = RENDER_STATE_WAIT_SE;
+				return RENDER_UPDATE;
+			case EXT_CTRL_CODE_PLAY_BGM:
+			case EXT_CTRL_CODE_PLAY_SE:
+				textPrinter->printerTemplate.currentChar += 2;
+				return RENDER_REPEAT;
+			case EXT_CTRL_CODE_ESCAPE:
+				char_ = *++textPrinter->printerTemplate.currentChar;
+				break;
+			case EXT_CTRL_CODE_SHIFT_TEXT:
+				textPrinter->printerTemplate.currentX = textPrinter->printerTemplate.x + *textPrinter->printerTemplate.currentChar++;
+				return RENDER_REPEAT;
+			case EXT_CTRL_CODE_SHIFT_DOWN:
+				textPrinter->printerTemplate.currentY = textPrinter->printerTemplate.y + *textPrinter->printerTemplate.currentChar++;
+				return RENDER_REPEAT;
+			case EXT_CTRL_CODE_FILL_WINDOW:
+				FillWindowPixelBuffer(textPrinter->printerTemplate.windowId, PIXEL_FILL(textPrinter->printerTemplate.bgColor));
+				return RENDER_REPEAT;
+			}
+			break;
+		case CHAR_PROMPT_CLEAR:
+			textPrinter->state = RENDER_STATE_CLEAR;
+			TextPrinterInitDownArrowCounters(textPrinter);
+			return RENDER_UPDATE;
+		case CHAR_PROMPT_SCROLL:
+			textPrinter->state = RENDER_STATE_SCROLL_START;
+			TextPrinterInitDownArrowCounters(textPrinter);
+			return RENDER_UPDATE;
+		case CHAR_EXTRA_SYMBOL:
+			char_ = *textPrinter->printerTemplate.currentChar++| 0x100;
+			break;
+		case CHAR_KEYPAD_ICON:
+			textPrinter->printerTemplate.currentChar++;
+			return RENDER_PRINT;
+		}
+		DecompressGlyph_Braille(char_);
+		CopyGlyphToWindow(textPrinter);
         textPrinter->printerTemplate.currentX += gCurGlyph.width + textPrinter->printerTemplate.letterSpacing;
         return RENDER_PRINT;
     case RENDER_STATE_WAIT:

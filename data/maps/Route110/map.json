@@ -14,7 +14,7 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_MAUVILLE_CITY",
+      "map": "MAP_MAUVILLE_CITY_F1",
       "offset": 0,
       "direction": "up"
     },
@@ -110,8 +110,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_BOY_3",
-      "x": 15,
-      "y": 7,
+      "x": 21,
+      "y": 18,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
       "movement_range_x": 1,
@@ -228,7 +228,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_BERRY_TREE",
       "x": 5,
-      "y": 11,
+      "y": 12,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_BERRY_TREE_GROWTH",
       "movement_range_x": 0,
@@ -241,7 +241,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_BERRY_TREE",
       "x": 6,
-      "y": 11,
+      "y": 12,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_BERRY_TREE_GROWTH",
       "movement_range_x": 0,
@@ -254,7 +254,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_BERRY_TREE",
       "x": 7,
-      "y": 11,
+      "y": 12,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_BERRY_TREE_GROWTH",
       "movement_range_x": 0,
@@ -403,20 +403,20 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NORMAL",
-      "trainer_sight_or_berry_tree_id": "2",
+      "trainer_sight_or_berry_tree_id": "5",
       "script": "Route110_EventScript_Isabel",
       "flag": "0"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
-      "x": 7,
+      "x": 4,
       "y": 76,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NORMAL",
-      "trainer_sight_or_berry_tree_id": "2",
+      "trainer_sight_or_berry_tree_id": "5",
       "script": "Route110_EventScript_Kaleb",
       "flag": "0"
     },
@@ -448,8 +448,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-      "x": 6,
-      "y": 38,
+      "x": 5,
+      "y": 37,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 1,
@@ -492,49 +492,14 @@
       "y": 24,
       "elevation": 3,
       "dest_map": "MAP_NEW_MAUVILLE_ENTRANCE",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     },
     {
       "x": 10,
       "y": 65,
       "elevation": 0,
       "dest_map": "MAP_ROUTE110_TRICK_HOUSE_ENTRANCE",
-      "dest_warp_id": 0
-    },
-    {
-      "x": 12,
-      "y": 4,
-      "elevation": 0,
-      "dest_map": "MAP_MAUVILLE_CITY",
-      "dest_warp_id": 9
-    },
-    {
-      "x": 13,
-      "y": 4,
-      "elevation": 0,
-      "dest_map": "MAP_MAUVILLE_CITY",
-      "dest_warp_id": 10
-    },
-    {
-      "x": 14,
-      "y": 4,
-      "elevation": 0,
-      "dest_map": "MAP_MAUVILLE_CITY",
-      "dest_warp_id": 11
-    },
-    {
-      "x": 15,
-      "y": 4,
-      "elevation": 0,
-      "dest_map": "MAP_MAUVILLE_CITY",
-      "dest_warp_id": 12
-    },
-    {
-      "x": 16,
-      "y": 4,
-      "elevation": 0,
-      "dest_map": "MAP_MAUVILLE_CITY",
-      "dest_warp_id": 13
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [
@@ -655,8 +620,8 @@
     },
     {
       "type": "sign",
-      "x": 3,
-      "y": 17,
+      "x": 5,
+      "y": 16,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route110_EventScript_MauvilleCitySign"

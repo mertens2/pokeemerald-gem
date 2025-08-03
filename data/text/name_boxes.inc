@@ -72,15 +72,15 @@ Archie::
 
 Aqua::
 # 70 "data/text/name_boxes.pory"
-	.string "{SHADOW BLUE}Recluta Aqua$"
+	.string "{COLOR BLUE}Recluta Aqua$"
 
 Magma::
 # 76 "data/text/name_boxes.pory"
-	.string "{SHADOW RED}Recluta Magma$"
+	.string "{COLOR RED}Recluta Magma$"
 
 Maxie::
 # 82 "data/text/name_boxes.pory"
-	.string "{COLOR LIGHT_RED}{SHADOW RED}Maxie$"
+	.string "{COLOR LIGHT_BLUE}{SHADOW BLUE}Maxie$"
 
 Shelly::
 # 85 "data/text/name_boxes.pory"

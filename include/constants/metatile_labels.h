@@ -200,6 +200,14 @@
 #define METATILE_Fallarbor_RedCaveEntrance_Top       0x347
 #define METATILE_Fallarbor_RedRockWall               0x269
 
+// gTileset_FallarborNew
+#define METATILE_FallarborNew_AshField                   0x217
+#define METATILE_FallarborNew_AshGrass                   0x20C
+#define METATILE_FallarborNew_AshGrassOnGrass            0x20B
+#define METATILE_FallarborNew_NormalGrass                0x213
+#define METATILE_FallarborNew_SecretBaseBrownCaveIndent  0x357
+#define METATILE_FallarborNew_SecretBaseBrownCaveOpen    0x35F
+
 // gTileset_Fortree
 #define METATILE_Fortree_BridgeOverGrass_Lowered           0x24F
 #define METATILE_Fortree_BridgeOverGrass_Raised            0x24E
@@ -396,6 +404,15 @@
 // gTileset_MossdeepGym
 #define METATILE_MossdeepGym_YellowArrow_Right  0x250
 
+// gTileset_Nature
+#define METATILE_Nature_SecretBaseLeftTree   0x1B0
+#define METATILE_Nature_SecretBaseLeftVine   0x1A2
+#define METATILE_Nature_SecretBaseRightTree  0x1B1
+#define METATILE_Nature_SecretBaseRightVine  0x1A3
+
+// gTileset_NatureAlt
+#define METATILE_NatureAlt_SandPitCenter  0x071
+
 // gTileset_Pacifidlog
 #define METATILE_Pacifidlog_Door                               0x21A
 #define METATILE_Pacifidlog_FloatingLogs_HorizontalLeft        0x250
@@ -464,6 +481,10 @@
 #define METATILE_PokemonCenter_Floor_Plain_Alt           0x2E4
 #define METATILE_PokemonCenter_Floor_ShadowTop           0x21E
 #define METATILE_PokemonCenter_Floor_ShadowTop_Alt       0x2DC
+
+// gTileset_Route110
+#define METATILE_Route110_DeepSandBottomMid  0x2DC
+#define METATILE_Route110_DeepSandMiddle     0x2D4
 
 // gTileset_Rustboro
 #define METATILE_Rustboro_Door_Gray  0x21F

@@ -14,6 +14,8 @@
 #include "main.h"
 #include "main_menu.h"
 #include "menu.h"
+#include "constants/script_menu.h"
+#include "script_menu.h"
 #include "list_menu.h"
 #include "mystery_event_menu.h"
 #include "naming_screen.h"
@@ -28,6 +30,7 @@
 #include "save.h"
 #include "scanline_effect.h"
 #include "sound.h"
+#include "script.h"
 #include "sprite.h"
 #include "strings.h"
 #include "string_util.h"
@@ -171,6 +174,7 @@
 static EWRAM_DATA bool8 sStartedPokeBallTask = 0;
 static EWRAM_DATA u16 sCurrItemAndOptionMenuCheck = 0;
 extern u8 gSoftResetFlag;
+extern u8 Script_BirchSpeechHandlePronouns[];
 
 
 static u8 sBirchSpeechMainTaskId;
@@ -217,6 +221,7 @@ static void Task_HighlightSelectedMainMenuItem(u8);
 static void Task_NewGameBirchSpeech_WaitToShowGenderMenu(u8);
 static void Task_NewGameBirchSpeech_ChooseGender(u8);
 static void NewGameBirchSpeech_ShowGenderMenu(void);
+static void NewGameBirchSpeech_ShowPronounMenu(void);
 static s8 NewGameBirchSpeech_ProcessGenderMenuInput(void);
 static void NewGameBirchSpeech_ClearGenderWindow(u8, u8);
 static void Task_NewGameBirchSpeech_WhatsYourName(u8);
@@ -232,6 +237,9 @@ void CreateYesNoMenuParameterized(u8, u8, u16, u16, u8, u8);
 static void Task_NewGameBirchSpeech_SlidePlatformAway2(u8);
 static void Task_NewGameBirchSpeech_ReshowBirchLotad(u8);
 static void Task_NewGameBirchSpeech_WaitForSpriteFadeInAndTextPrinter(u8);
+static void Task_NewGameBirchSpeech_CreatePronouns(u8);
+static void Task_NewGameBirchSpeech_ProcessPronounMenu(u8);
+static void Task_NewGameBirchSpeech_ContinueToEnd(u8);
 static void Task_NewGameBirchSpeech_AreYouReady(u8);
 static void Task_NewGameBirchSpeech_ShrinkPlayer(u8);
 static void SpriteCB_MovePlayerDownWhileShrinking(struct Sprite *);
@@ -393,12 +401,21 @@ static const struct WindowTemplate sNewGameBirchSpeechTextWindows[] =
         .paletteNum = 15,
         .baseBlock = 0x6D
     },
-    {
+    // {
+        // .bg = 0,
+        // .tilemapLeft = 3,
+        // .tilemapTop = 2,
+        // .width = 9,
+        // .height = 10,
+        // .paletteNum = 15,
+        // .baseBlock = 0x85
+    // },
+	{
         .bg = 0,
-        .tilemapLeft = 3,
-        .tilemapTop = 2,
-        .width = 9,
-        .height = 10,
+        .tilemapLeft = 20,
+        .tilemapTop = 5,
+        .width = 6,
+        .height = 6,
         .paletteNum = 15,
         .baseBlock = 0x85
     },
@@ -457,6 +474,12 @@ static const union AffineAnimCmd *const sSpriteAffineAnimTable_PlayerShrink[] =
 static const struct MenuAction sMenuActions_Gender[] = {
     {gText_BirchBoy, NULL},
     {gText_BirchGirl, NULL}
+};
+
+static const struct MenuAction sMenuActions_Pronouns[] = {
+    {gText_ExpandedPlaceholder_El2, NULL},
+    {gText_ExpandedPlaceholder_Ella, NULL},
+    {gText_ExpandedPlaceholder_Elle, NULL}
 };
 
 static const u8 *const sMalePresetNames[] = {
@@ -647,6 +670,16 @@ static void Task_MainMenuCheckSaveFile(u8 taskId)
                 break;
             case SAVE_STATUS_CORRUPT:
                 CreateMainMenuErrorWindow(gText_SaveFileErased);
+                tMenuType = HAS_NO_SAVED_GAME;
+                gTasks[taskId].func = Task_WaitForSaveFileErrorWindow;
+                break;
+			case SAVE_STATUS_UPDATED:
+                CreateMainMenuErrorWindow(gText_SaveFileOldUpdated);
+                tMenuType = HAS_SAVED_GAME;
+                gTasks[taskId].func = Task_WaitForSaveFileErrorWindow;
+                break;
+           case SAVE_STATUS_OUTDATED:
+                CreateMainMenuErrorWindow(gText_SaveFileOldErrored);
                 tMenuType = HAS_NO_SAVED_GAME;
                 gTasks[taskId].func = Task_WaitForSaveFileErrorWindow;
                 break;
@@ -1706,10 +1739,58 @@ static void Task_NewGameBirchSpeech_ReshowBirchLotad(u8 taskId)
         NewGameBirchSpeech_StartFadeInTarget1OutTarget2(taskId, 2);
         NewGameBirchSpeech_StartFadePlatformOut(taskId, 1);
         NewGameBirchSpeech_ClearWindow(0);
-        StringExpandPlaceholders(gStringVar4, gText_Birch_YourePlayer);
-        AddTextPrinterForMessage(TRUE);
-        gTasks[taskId].func = Task_NewGameBirchSpeech_WaitForSpriteFadeInAndTextPrinter;
+		
+        StringExpandPlaceholders(gStringVar4, gText_Birch_Pronouns);
+		AddTextPrinterForMessage(TRUE);
+		NewGameBirchSpeech_ClearWindow(1);
+        gTasks[taskId].func = Task_NewGameBirchSpeech_CreatePronouns; //Task_NewGameBirchSpeech_WaitForSpriteFadeInAndTextPrinter;
     }
+}
+static void Task_NewGameBirchSpeech_CreatePronouns(u8 taskId)
+{
+	if (!RunTextPrintersAndIsPrinter0Active())
+    {
+		NewGameBirchSpeech_ShowPronounMenu();
+		
+        gTasks[taskId].func = Task_NewGameBirchSpeech_ProcessPronounMenu;
+    }
+}
+
+static void Task_NewGameBirchSpeech_ProcessPronounMenu(u8 taskId)
+{
+	int gender = NewGameBirchSpeech_ProcessGenderMenuInput();
+    int gender2;
+
+    switch (gender)
+    {
+        case 0:
+            PlaySE(SE_SELECT);
+            gSaveBlock2Ptr->playerPronouns = gender;
+            NewGameBirchSpeech_ClearGenderWindow(2, 1);
+            gTasks[taskId].func = Task_NewGameBirchSpeech_ContinueToEnd;
+            break;
+        case 1:
+            PlaySE(SE_SELECT);
+            gSaveBlock2Ptr->playerPronouns = gender;
+            NewGameBirchSpeech_ClearGenderWindow(2, 1);
+            gTasks[taskId].func = Task_NewGameBirchSpeech_ContinueToEnd;
+            break;
+		case 2:
+            PlaySE(SE_SELECT);
+            gSaveBlock2Ptr->playerPronouns = gender;
+            NewGameBirchSpeech_ClearGenderWindow(2, 1);
+            gTasks[taskId].func = Task_NewGameBirchSpeech_ContinueToEnd;
+            break;
+    }
+}
+
+static void Task_NewGameBirchSpeech_ContinueToEnd(u8 taskId)
+{
+	// NewGameBirchSpeech_ClearWindow(1);
+	NewGameBirchSpeech_ClearWindow(0);
+	StringExpandPlaceholders(gStringVar4, gText_Birch_YourePlayer);
+    AddTextPrinterForMessage(TRUE);
+    gTasks[taskId].func = Task_NewGameBirchSpeech_WaitForSpriteFadeInAndTextPrinter;
 }
 
 static void Task_NewGameBirchSpeech_WaitForSpriteFadeInAndTextPrinter(u8 taskId)
@@ -2128,6 +2209,18 @@ static void NewGameBirchSpeech_ShowGenderMenu(void)
     PutWindowTilemap(1);
     CopyWindowToVram(1, COPYWIN_FULL);
 }
+
+static void NewGameBirchSpeech_ShowPronounMenu(void)
+{
+	// ClearMainMenuWindowTilemap()
+    DrawMainMenuWindowBorder(&sNewGameBirchSpeechTextWindows[2], 0xF3);
+	FillWindowPixelBuffer(2, PIXEL_FILL(1));
+	PrintMenuTable(2, ARRAY_COUNT(sMenuActions_Pronouns), sMenuActions_Pronouns);
+	InitMenuInUpperLeftCornerNormal(2, ARRAY_COUNT(sMenuActions_Pronouns), 0);
+	PutWindowTilemap(2);
+	CopyWindowToVram(2, COPYWIN_FULL);
+}
+
 
 static s8 NewGameBirchSpeech_ProcessGenderMenuInput(void)
 {

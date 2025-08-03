@@ -854,8 +854,8 @@ movement GraniteCave_1F_Movement_PlayerEscapes {
 	lock_facing_direction
 	walk_right
 	unlock_facing_direction
-	walk_fast_right * 2
-	walk_fast_down
+	player_run_left * 2
+	player_run_down
 }
 
 movement GraniteCave_1F_Movement_PlayerBacksDown {

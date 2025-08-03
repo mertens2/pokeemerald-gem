@@ -181,6 +181,7 @@ ElElla        = FD 1E
 ELELLA        = FD 1F
 EllaEl        = FD 20
 ELLAEL        = FD 21
+GENDER        = FD 22
 
 @ Hiragana
 'あ' = 01
@@ -473,6 +474,8 @@ ENG = FC 16
 PAUSE_MUSIC = FC 17
 RESUME_MUSIC = FC 18
 TEXT_SPEED = FC 19
+SHAKE_SCREEN = FC 1A
+FLASH = FC 1B
 
 @ fonts
 

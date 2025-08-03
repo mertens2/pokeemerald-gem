@@ -3,6 +3,7 @@
 #include "apprentice.h"
 #include "event_data.h"
 #include "battle_setup.h"
+#include "constants/battle_setup.h"
 #include "overworld.h"
 #include "random.h"
 #include "text.h"
@@ -23,6 +24,7 @@
 #include "field_message_box.h"
 #include "tv.h"
 #include "battle_factory.h"
+// #include "scrcmd.h"
 #include "constants/apprentice.h"
 #include "constants/battle_dome.h"
 #include "constants/battle_frontier.h"
@@ -39,6 +41,10 @@
 
 extern const u8 MossdeepCity_SpaceCenter_2F_EventScript_MaxieTrainer[];
 extern const u8 MossdeepCity_SpaceCenter_2F_EventScript_TabithaTrainer[];
+extern const u8 EventScript_SetUpTrainerA[];
+extern const u8 EventScript_SetUpTrainerB[];
+extern const u8 Route112_EventScript_SetUpTrainerA[];
+extern const u8 Route112_EventScript_SetUpTrainerB[];
 
 // EWRAM vars.
 EWRAM_DATA const struct BattleFrontierTrainer *gFacilityTrainers = NULL;
@@ -2174,6 +2180,15 @@ void DoSpecialTrainerBattle(void)
 
         if (gSpecialVar_0x8005 & MULTI_BATTLE_CHOOSE_MONS) // Skip mons restoring(done in the script)
             gBattleScripting.specialTrainerBattleType = 0xFF;
+        break;
+	case SPECIAL_BATTLE_1_VS_2:
+        gBattleTypeFlags = BATTLE_TYPE_TRAINER | BATTLE_TYPE_DOUBLE | BATTLE_TYPE_TWO_OPPONENTS;
+		if (gSpecialVar_0x8005 == TRUE){
+			FlagSet(FLAG_NO_WITHEOUT);
+		}
+        CreateTask(Task_StartBattleAfterTransition, 1);
+        PlayMapChosenOrBattleBGM(0);
+        BattleTransition_StartOnField(GetTrainerBattleTransition());
         break;
     }
 }

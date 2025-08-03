@@ -4106,7 +4106,7 @@ static void Cmd_getexp(void)
                         gBattleMoveDamage = (gBattleMoveDamage * 200) / 100;
                     if (gBattleTypeFlags & BATTLE_TYPE_TRAINER && B_TRAINER_EXP_MULTIPLIER <= GEN_7)
                         gBattleMoveDamage = (gBattleMoveDamage * 150) / 100;
-					if (gSaveBlock2Ptr->optionsButtonMode == 1)
+					if (gSaveBlock2Ptr->optionsTrainingMode == OPTIONS_TRAINING_MODE_ON)
                         gBattleMoveDamage = (gBattleMoveDamage * 150) / 100;
                     #if (B_SCALED_EXP >= GEN_5) && (B_SCALED_EXP != GEN_6)
                     {

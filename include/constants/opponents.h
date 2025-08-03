@@ -717,8 +717,8 @@
 #define TRAINER_KAI                         713
 #define TRAINER_CHARLOTTE                   714
 #define TRAINER_DEANDRE                     715
-#define TRAINER_GRUNT_MAGMA_HIDEOUT_1       716
-#define TRAINER_GRUNT_MAGMA_HIDEOUT_2       717
+#define TRAINER_GRUNT_MAGMA_ROUTE112_M      716
+#define TRAINER_GRUNT_MAGMA_ROUTE112_F      717
 #define TRAINER_GRUNT_MAGMA_HIDEOUT_3       718
 #define TRAINER_GRUNT_MAGMA_HIDEOUT_4       719
 #define TRAINER_GRUNT_MAGMA_HIDEOUT_5       720

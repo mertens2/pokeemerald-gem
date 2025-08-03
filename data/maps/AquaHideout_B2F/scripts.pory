@@ -90,7 +90,6 @@ script AquaHideout_B2F_EventScript_MattNoticePlayer {
 	else {
 		call (AquaHideout_B2F_EventScript_WinonaPrepare)
 	}
-	
 	releaseall
 	end
 }

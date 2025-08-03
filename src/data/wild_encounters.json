@@ -2431,6 +2431,26 @@
                 "species": "SPECIES_BARBOACH"
               }
             ]
+          },
+          "hidden_mons": {
+            "encounter_rate": 0,
+            "mons": [
+              {
+                "min_level": 15,
+                "max_level": 18,
+                "species": "SPECIES_PANCHAM"
+              },
+              {
+                "min_level": 15,
+                "max_level": 18,
+                "species": "SPECIES_SLURPUFF"
+              },
+              {
+                "min_level": 15,
+                "max_level": 18,
+                "species": "SPECIES_AROMATISSE"
+              }
+            ]
           }
         },
         {
@@ -2613,6 +2633,26 @@
                 "min_level": 40,
                 "max_level": 45,
                 "species": "SPECIES_BARBOACH"
+              }
+            ]
+          },
+          "hidden_mons": {
+            "encounter_rate": 0,
+            "mons": [
+              {
+                "min_level": 15,
+                "max_level": 18,
+                "species": "SPECIES_PANCHAM"
+              },
+              {
+                "min_level": 15,
+                "max_level": 18,
+                "species": "SPECIES_SKIDDO"
+              },
+              {
+                "min_level": 18,
+                "max_level": 20,
+                "species": "SPECIES_DOUBLADE"
               }
             ]
           }

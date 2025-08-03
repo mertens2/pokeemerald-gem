@@ -396,35 +396,35 @@
       "y": 18,
       "elevation": 0,
       "dest_map": "MAP_RUSTURF_TUNNEL",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     },
     {
       "x": 46,
       "y": 15,
       "elevation": 0,
       "dest_map": "MAP_ROUTE116_TUNNELERS_REST_HOUSE",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     },
     {
       "x": 68,
       "y": 18,
       "elevation": 0,
       "dest_map": "MAP_RUSTURF_TUNNEL",
-      "dest_warp_id": 2
+      "dest_warp_id": "2"
     },
     {
       "x": 67,
       "y": 12,
       "elevation": 0,
       "dest_map": "MAP_TERRA_CAVE_ENTRANCE",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     },
     {
       "x": 82,
       "y": 21,
       "elevation": 0,
       "dest_map": "MAP_TERRA_CAVE_ENTRANCE",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [

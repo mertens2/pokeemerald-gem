@@ -14,6 +14,7 @@
 #include "text_window.h"
 #include "international_string_util.h"
 #include "strings.h"
+#include "string_util.h"
 #include "gba/m4a_internal.h"
 #include "constants/rgb.h"
 
@@ -24,12 +25,13 @@ enum
     MENUITEM_BATTLESCENE,
     MENUITEM_BATTLESTYLE,
     MENUITEM_SOUND,
-    MENUITEM_BUTTONMODE,
+    MENUITEM_TRAININGMODE,
     MENUITEM_HP_BAR,
     MENUITEM_EXP_BAR,
     MENUITEM_UNIT_SYSTEM,
     MENUITEM_SHINY_ODDS,
     MENUITEM_DIFFICULTY,
+    MENUITEM_TEXTSKIP,
     MENUITEM_FRAMETYPE,
     MENUITEM_CANCEL,
     MENUITEM_COUNT,
@@ -66,6 +68,7 @@ static void DrawChoices_HpBar(int selection, int y);
 static void DrawChoices_UnitSystem(int selection, int y);
 static void DrawChoices_ShinyOdds(int selection, int y);
 static void DrawChoices_Difficulty(int selection, int y);
+static void DrawChoices_TextSkip(int selection, int y);
 static void DrawChoices_FrameType(int selection, int y);
 static void DrawChoices_Options_Four(const u8 *const *const strings, int selection, int y);
 static void DrawTextOption(void);
@@ -89,12 +92,13 @@ struct
     [MENUITEM_BATTLESCENE]  = {DrawChoices_BattleScene, ProcessInput_Options_Two},
     [MENUITEM_BATTLESTYLE]  = {DrawChoices_BattleStyle, ProcessInput_Options_Two},
     [MENUITEM_SOUND]        = {DrawChoices_Sound,       ProcessInput_Options_Two},
-    [MENUITEM_BUTTONMODE]   = {DrawChoices_ButtonMode,  ProcessInput_Options_Two},
+    [MENUITEM_TRAININGMODE] = {DrawChoices_ButtonMode,  ProcessInput_Options_Two},
     [MENUITEM_HP_BAR]       = {DrawChoices_HpBar,       ProcessInput_Options_Eleven},
     [MENUITEM_EXP_BAR]      = {DrawChoices_HpBar,       ProcessInput_Options_Eleven},
     [MENUITEM_UNIT_SYSTEM]  = {DrawChoices_UnitSystem,  ProcessInput_Options_Two},
     [MENUITEM_SHINY_ODDS]   = {DrawChoices_ShinyOdds,   ProcessInput_Options_Four},
     [MENUITEM_DIFFICULTY]   = {DrawChoices_Difficulty,  ProcessInput_Options_Four},
+    [MENUITEM_TEXTSKIP]     = {DrawChoices_TextSkip,    ProcessInput_Options_Four},
     [MENUITEM_FRAMETYPE]    = {DrawChoices_FrameType,   ProcessInput_FrameType},
     [MENUITEM_CANCEL]       = {NULL, NULL},
 };
@@ -112,32 +116,35 @@ static const u8 sEqualSignGfx[] = INCBIN_U8("graphics/interface/option_menu_equa
 	static const u8 sText_UnitSystem[] = _("MEDICIÓN");
 	static const u8 sText_ShinyOdds[] = _("SHINIES 1 ENTRE");
 	static const u8 sText_Difficulty[] = _("DIFICULTAD");
+	static const u8 gText_TextSkip[] = _("SALTA-TEXTO A+B");
 #else
 	static const u8 sText_HpBar[] = _("HP BAR");
 	static const u8 sText_ExpBar[] = _("EXP BAR");
 	static const u8 sText_UnitSystem[] = _("UNIT SYSTEM");
 	static const u8 sText_ShinyOdds[] = _("SHINIES 1 IN");
+	static const u8 gText_TextSkip[] = _("A+B TEXT-SKIP");
 	static const u8 sText_Difficulty[] = _("DIFFICULTY");
 #endif
 
 static const u8 *const sOptionMenuItemsNames[MENUITEM_COUNT] =
 {
-    [MENUITEM_TEXTSPEED]   = gText_TextSpeed,
-    [MENUITEM_BATTLESCENE] = gText_BattleScene,
-    [MENUITEM_BATTLESTYLE] = gText_BattleStyle,
-    [MENUITEM_SOUND]       = gText_Sound,
-    [MENUITEM_BUTTONMODE]  = gText_ButtonMode,
-    [MENUITEM_HP_BAR]      = sText_HpBar,
-    [MENUITEM_EXP_BAR]     = sText_ExpBar,
-    [MENUITEM_UNIT_SYSTEM] = sText_UnitSystem,
-    [MENUITEM_SHINY_ODDS]  = sText_ShinyOdds,
-    [MENUITEM_DIFFICULTY]  = sText_Difficulty,
-    [MENUITEM_FRAMETYPE]   = gText_Frame,
-    [MENUITEM_CANCEL]      = gText_OptionMenuSave,
+    [MENUITEM_TEXTSPEED]     = gText_TextSpeed,
+    [MENUITEM_BATTLESCENE]   = gText_BattleScene,
+    [MENUITEM_BATTLESTYLE]   = gText_BattleStyle,
+    [MENUITEM_SOUND]         = gText_Sound,
+    [MENUITEM_TRAININGMODE]  = gText_ButtonMode,
+    [MENUITEM_HP_BAR]        = sText_HpBar,
+    [MENUITEM_EXP_BAR]       = sText_ExpBar,
+    [MENUITEM_UNIT_SYSTEM]   = sText_UnitSystem,
+    [MENUITEM_SHINY_ODDS]    = sText_ShinyOdds,
+    [MENUITEM_DIFFICULTY]    = sText_Difficulty,
+    [MENUITEM_TEXTSKIP]      = gText_TextSkip,
+    [MENUITEM_FRAMETYPE]     = gText_Frame,
+    [MENUITEM_CANCEL]        = gText_OptionMenuSave,
 };
 
 #if GAME_LANGUAGE == LANGUAGE_SPANISH
-	static const u8 sText_Faster[]   = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}+RÁPIDO");
+	static const u8 sText_Faster[]   = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}+ RÁP.");
 	static const u8 sText_Instant[]  = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}INSTANT");
 	static const u8 sText_Shiny8k[]  = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}8192");
 	static const u8 sText_Shiny4k[]  = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}4096");
@@ -146,7 +153,11 @@ static const u8 *const sOptionMenuItemsNames[MENUITEM_COUNT] =
 	static const u8 sText_Easy[]     = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}FÁCIL");
 	static const u8 sText_Normal[]   = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}NRML");
 	static const u8 sText_Hard[]     = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}DFCL");
-	static const u8 sText_Hardcore[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}EXTREMO");
+	static const u8 sText_Hardcore[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}KAIZO");
+	static const u8 sText_Off[] 	 = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}NADA");
+	static const u8 sText_NoScroll[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}1 TEXTO");
+	static const u8 sText_NoClose[]  = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}1 CAJA");
+	static const u8 sText_SkipAll[]  = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}TODO");
 #else
 	static const u8 sText_Faster[]   = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}FASTER");
 	static const u8 sText_Instant[]  = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}INSTANT");
@@ -158,10 +169,15 @@ static const u8 *const sOptionMenuItemsNames[MENUITEM_COUNT] =
 	static const u8 sText_Normal[]   = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}NRML");
 	static const u8 sText_Hard[]     = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}HARD");
 	static const u8 sText_Hardcore[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}XTREME");
+	static const u8 sText_Off[] 	 = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}OFF");
+	static const u8 sText_NoScroll[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}SNGL MSG");
+	static const u8 sText_NoClose[]  = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}ALL");
+	static const u8 sText_SkipAll[]  = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}AUTOCLOSE");
 #endif
-static const u8 *const sTextSpeedStrings[] = {gText_TextSpeedSlow, gText_TextSpeedMid, gText_TextSpeedFast, sText_Faster};
-static const u8 *const sShinyOddsStrings[] = {sText_Shiny8k, sText_Shiny4k, sText_Shiny2k, sText_Shiny1k};
+static const u8 *const sTextSpeedStrings[]  = {gText_TextSpeedSlow, gText_TextSpeedMid, gText_TextSpeedFast, sText_Faster};
+static const u8 *const sShinyOddsStrings[]  = {sText_Shiny8k, sText_Shiny4k, sText_Shiny2k, sText_Shiny1k};
 static const u8 *const sDifficultyStrings[] = {sText_Easy, sText_Normal, sText_Hard, sText_Hardcore};
+static const u8 *const sTextSkipStrings[]   = {sText_Off, sText_NoScroll, sText_NoClose, sText_SkipAll};
 
 static const struct WindowTemplate sOptionMenuWinTemplates[] =
 {
@@ -313,11 +329,12 @@ void CB2_InitOptionMenu(void)
 			sOptions->sel[MENUITEM_BATTLESTYLE] = gSaveBlock2Ptr->optionsBattleStyle;
 		}
         sOptions->sel[MENUITEM_SOUND]       = gSaveBlock2Ptr->optionsSound;
-        sOptions->sel[MENUITEM_BUTTONMODE]  = gSaveBlock2Ptr->optionsButtonMode;
+        sOptions->sel[MENUITEM_TRAININGMODE]  = gSaveBlock2Ptr->optionsTrainingMode;
         sOptions->sel[MENUITEM_HP_BAR]      = gSaveBlock2Ptr->optionsHpBarSpeed;
         sOptions->sel[MENUITEM_EXP_BAR]     = gSaveBlock2Ptr->optionsExpBarSpeed;
         sOptions->sel[MENUITEM_UNIT_SYSTEM] = gSaveBlock2Ptr->optionsUnitSystem;
         sOptions->sel[MENUITEM_SHINY_ODDS]  = gSaveBlock2Ptr->optionsShinyOdds;
+        sOptions->sel[MENUITEM_TEXTSKIP]    = gSaveBlock2Ptr->optionsTextSkip;
         sOptions->sel[MENUITEM_DIFFICULTY]  = gSaveBlock2Ptr->optionsDifficulty;
         sOptions->sel[MENUITEM_FRAMETYPE]   = gSaveBlock2Ptr->optionsWindowFrameType;
 
@@ -351,7 +368,7 @@ static void ScrollMenu(int direction)
     FillWindowPixelRect(WIN_OPTIONS, PIXEL_FILL(1), 0, Y_DIFF * pos, 26 * 8, Y_DIFF);
     // Print
     DrawChoices(menuItem, pos * Y_DIFF);
-    AddTextPrinterParameterized(WIN_OPTIONS, 1, sOptionMenuItemsNames[menuItem], 8, (pos * Y_DIFF) + 1, TEXT_SKIP_DRAW, NULL);
+    AddTextPrinterParameterized(WIN_OPTIONS, FONT_NARROW, sOptionMenuItemsNames[menuItem], 8, (pos * Y_DIFF) + 1, TEXT_SKIP_DRAW, NULL);
     CopyWindowToVram(WIN_OPTIONS, COPYWIN_GFX);
 }
 static void ScrollAll(int direction) // to bottom or top
@@ -383,7 +400,7 @@ static void ScrollAll(int direction) // to bottom or top
         else // From bottom to top
             menuItem = i, pos = i;
         DrawChoices(menuItem, pos * Y_DIFF);
-        AddTextPrinterParameterized(WIN_OPTIONS, 1, sOptionMenuItemsNames[menuItem], 8, (pos * Y_DIFF) + 1, TEXT_SKIP_DRAW, NULL);
+        AddTextPrinterParameterized(WIN_OPTIONS, FONT_NARROW, sOptionMenuItemsNames[menuItem], 8, (pos * Y_DIFF) + 1, TEXT_SKIP_DRAW, NULL);
     }
     CopyWindowToVram(WIN_OPTIONS, COPYWIN_GFX);
 }
@@ -479,11 +496,12 @@ static void Task_OptionMenuSave(u8 taskId)
 		gSaveBlock2Ptr->optionsBattleStyle  = sOptions->sel[MENUITEM_BATTLESTYLE];
 	}
     gSaveBlock2Ptr->optionsSound            = sOptions->sel[MENUITEM_SOUND];
-    gSaveBlock2Ptr->optionsButtonMode       = sOptions->sel[MENUITEM_BUTTONMODE];
+    gSaveBlock2Ptr->optionsTrainingMode     = sOptions->sel[MENUITEM_TRAININGMODE];
     gSaveBlock2Ptr->optionsHpBarSpeed       = sOptions->sel[MENUITEM_HP_BAR];
     gSaveBlock2Ptr->optionsExpBarSpeed      = sOptions->sel[MENUITEM_EXP_BAR];
     gSaveBlock2Ptr->optionsUnitSystem       = sOptions->sel[MENUITEM_UNIT_SYSTEM];
     gSaveBlock2Ptr->optionsShinyOdds        = sOptions->sel[MENUITEM_SHINY_ODDS];
+    gSaveBlock2Ptr->optionsTextSkip         = sOptions->sel[MENUITEM_TEXTSKIP];
     gSaveBlock2Ptr->optionsDifficulty       = sOptions->sel[MENUITEM_DIFFICULTY];
     gSaveBlock2Ptr->optionsWindowFrameType  = sOptions->sel[MENUITEM_FRAMETYPE];
 
@@ -564,6 +582,9 @@ static void DrawOptionMenuChoice(const u8 *text, u8 x, u8 y, u8 style)
 {
     u8 dst[16];
     u16 i;
+	u16 fontID = FONT_NARROW;
+	// if (StringLength(text) > 24)
+		// fontID = FONT_NARROWER;
 
     for (i = 0; *text != EOS && i <= 14; i++)
         dst[i] = *(text++);
@@ -575,7 +596,8 @@ static void DrawOptionMenuChoice(const u8 *text, u8 x, u8 y, u8 style)
     }
 
     dst[i] = EOS;
-    AddTextPrinterParameterized(WIN_OPTIONS, FONT_NORMAL, dst, x, y + 1, 0x00, NULL);
+	
+    AddTextPrinterParameterized(WIN_OPTIONS, fontID, dst, x, y + 1, 0x00, NULL);
 }
 
 static void DrawChoices_Options_Four(const u8 *const *const strings, int selection, int y)
@@ -616,6 +638,11 @@ static void DrawChoices_Difficulty(int selection, int y)
     DrawChoices_Options_Four(sDifficultyStrings, selection, y);
 }
 
+static void DrawChoices_TextSkip(int selection, int y)
+{
+    DrawChoices_Options_Four(sTextSkipStrings, selection, y);
+}
+
 static void DrawChoices_BattleStyle(int selection, int y)
 {
     u8 styles[2] = {0};
@@ -623,7 +650,7 @@ static void DrawChoices_BattleStyle(int selection, int y)
     styles[selection] = 1;
 
     DrawOptionMenuChoice(gText_BattleStyleShift, 104, y, styles[0]);
-    DrawOptionMenuChoice(gText_BattleStyleSet, GetStringRightAlignXOffset(FONT_NORMAL, gText_BattleStyleSet, 198), y, styles[1]);
+    DrawOptionMenuChoice(gText_BattleStyleSet, GetStringRightAlignXOffset(FONT_NARROW, gText_BattleStyleSet, 198), y, styles[1]);
 }
 
 static int ProcessInput_BattleStyle(int selection)
@@ -645,7 +672,7 @@ static void DrawChoices_BattleScene(int selection, int y)
     styles[selection] = 1;
 
     DrawOptionMenuChoice(gText_BattleSceneOn, 104, y, styles[0]);
-    DrawOptionMenuChoice(gText_BattleSceneOff, GetStringRightAlignXOffset(FONT_NORMAL, gText_BattleSceneOff, 198), y, styles[1]);
+    DrawOptionMenuChoice(gText_BattleSceneOff, GetStringRightAlignXOffset(FONT_NARROW, gText_BattleSceneOff, 198), y, styles[1]);
 }
 
 static int ProcessInput_Sound(int selection)
@@ -666,7 +693,7 @@ static void DrawChoices_Sound(int selection, int y)
     styles[selection] = 1;
 
     DrawOptionMenuChoice(gText_SoundMono, 104, y, styles[0]);
-    DrawOptionMenuChoice(gText_SoundStereo, GetStringRightAlignXOffset(FONT_NORMAL, gText_SoundStereo, 198), y, styles[1]);
+    DrawOptionMenuChoice(gText_SoundStereo, GetStringRightAlignXOffset(FONT_NARROW, gText_SoundStereo, 198), y, styles[1]);
 }
 
 static int ButtonMode_ProcessInput(int selection)
@@ -694,7 +721,7 @@ static void DrawChoices_ButtonMode(int selection, int y)
 
     styles[selection] = 1;
     DrawOptionMenuChoice(gText_ButtonTypeNormal, 104, y, styles[0]);
-    DrawOptionMenuChoice(gText_ButtonTypeLR, GetStringRightAlignXOffset(FONT_NORMAL, gText_ButtonTypeNormal, 198), y, styles[1]);
+    DrawOptionMenuChoice(gText_ButtonTypeLR, GetStringRightAlignXOffset(FONT_NARROW, gText_ButtonTypeNormal, 198), y, styles[1]);
 }
 
 static void DrawChoices_HpBar(int selection, int y)
@@ -780,7 +807,7 @@ static void DrawChoices_FrameType(int selection, int y)
 static void DrawTextOption(void)
 {
     FillWindowPixelBuffer(WIN_TEXT_OPTION, PIXEL_FILL(1));
-    AddTextPrinterParameterized(WIN_TEXT_OPTION, FONT_NORMAL, gText_Option, 8, 1, TEXT_SKIP_DRAW, NULL);
+    AddTextPrinterParameterized(WIN_TEXT_OPTION, FONT_NARROW, gText_Option, 8, 1, TEXT_SKIP_DRAW, NULL);
     CopyWindowToVram(WIN_TEXT_OPTION, COPYWIN_FULL);
 }
 
@@ -790,7 +817,7 @@ static void DrawOptionMenuTexts(void)
 
     FillWindowPixelBuffer(WIN_OPTIONS, PIXEL_FILL(1));
     for (i = 0; i < MENUITEM_COUNT; i++)
-        AddTextPrinterParameterized(WIN_OPTIONS, FONT_NORMAL, sOptionMenuItemsNames[i], 8, (i * Y_DIFF) + 1, TEXT_SKIP_DRAW, NULL);
+        AddTextPrinterParameterized(WIN_OPTIONS, FONT_NARROW, sOptionMenuItemsNames[i], 8, (i * Y_DIFF) + 1, TEXT_SKIP_DRAW, NULL);
     CopyWindowToVram(WIN_OPTIONS, COPYWIN_FULL);
 }
 

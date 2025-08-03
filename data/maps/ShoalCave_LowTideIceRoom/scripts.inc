@@ -69,7 +69,7 @@ ShoalCave_LowTideIceRoom_MapScriptsOnLoad_1:
 	setvar VAR_TEMP_0, 1
 # 67 "data/maps/ShoalCave_LowTideIceRoom/scripts.pory"
 	releaseall
-	end
+	return
 
 ShoalCave_LowTideIceRoom_MapScriptsOnLoad_2:
 # 33 "data/maps/ShoalCave_LowTideIceRoom/scripts.pory"

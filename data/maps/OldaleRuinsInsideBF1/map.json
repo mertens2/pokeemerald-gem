@@ -53,16 +53,20 @@
       "y": 21,
       "elevation": 0,
       "dest_map": "MAP_OLDALE_RUINS_INSIDE_F1",
-      "dest_warp_id": 1
+      "dest_warp_id": "1"
     },
     {
       "x": 6,
       "y": 6,
       "elevation": 0,
       "dest_map": "MAP_OLDALE_RUINS_INSIDE_F1",
-      "dest_warp_id": 2
+      "dest_warp_id": "2"
     }
   ],
-  "coord_events": [],
-  "bg_events": []
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
 }

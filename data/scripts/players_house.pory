@@ -162,9 +162,12 @@ script EventScript_RunningShoesManualTranslated {
 	
 
 script EventScript_YoureNewNeighbor_Translated {
+	bufferstring (STR_VAR_1, "chico")
+	bufferstring (STR_VAR_2, "chica")
+	bufferstring (STR_VAR_3, "chique")
 	poryswitch(LANGUAGE){
 		ES{
-			msgbox(format("¡AH! ¿¡QUIÉN ERES!?\pAh, tú eres {ELLA} nuev{OA}, ¿no?"))
+			msgbox(format("¡AH! ¿¡QUIÉN ERES!?\pAh, tú eres {ELLA} {GENDER} nuev{OA}, ¿no?"))
 		}
 		EN{
 			msgbox(format("AH! WHO ARE YOU!?\pAh, you're the new kid, right?"))

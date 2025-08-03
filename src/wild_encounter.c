@@ -530,11 +530,11 @@ void CreateWildMon(u16 species, u8 level)
         return;
     }
 	
-	if (gSaveBlock2Ptr->optionsButtonMode == 1 && (Random() % 99) < 5)
+	if (gSaveBlock2Ptr->optionsTrainingMode == OPTIONS_TRAINING_MODE_ON && (Random() % 99) < 5)
 		species = SPECIES_AUDINO;
-	if (gSaveBlock2Ptr->optionsButtonMode == 1 && (Random() % 99) < 5)
+	if (gSaveBlock2Ptr->optionsTrainingMode == OPTIONS_TRAINING_MODE_ON && (Random() % 99) < 5)
 		species = SPECIES_CHANSEY;
-	if (gSaveBlock2Ptr->optionsButtonMode == 1 && (Random() % 99) < 2)
+	if (gSaveBlock2Ptr->optionsTrainingMode == OPTIONS_TRAINING_MODE_ON && (Random() % 99) < 2)
 		species = SPECIES_HAPPINY;
     CreateMonWithNature(&gEnemyParty[0], species, level, USE_RANDOM_IVS, PickWildMonNature());
 }

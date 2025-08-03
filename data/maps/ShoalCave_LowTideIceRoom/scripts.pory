@@ -65,7 +65,7 @@ script ShoalCave_LowTideIceRoom_MapScriptsOnLoad {
 	}
 	setvar(VAR_TEMP_0, 1)
 	releaseall
-	end
+	return
 }
 
 

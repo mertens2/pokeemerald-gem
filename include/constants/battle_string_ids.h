@@ -644,8 +644,18 @@
 #define STRINGID_BAGISFULL                            642
 #define STRINGID_RUNPROMPT                  	      643
 #define STRINGID_PLAYERWHITEOUT3					  644
+#define STRINGID_TURBOTERRAINSTART					  645
+#define STRINGID_TURBOTERRAINBACKUP					  646
+#define STRINGID_TURBOTERRAINENDS					  647
+#define STRINGID_TURN1RAYQUAZABATTLE				  648
+#define STRINGID_TURN2RAYQUAZABATTLE				  649
+#define STRINGID_TURN3RAYQUAZABATTLE				  650
+#define STRINGID_TURN4RAYQUAZABATTLE				  651
+#define STRINGID_TURN5RAYQUAZABATTLE				  652
+#define STRINGID_ENDRAYQUAZABATTLE					  653
 
-#define BATTLESTRINGS_COUNT                           645
+
+#define BATTLESTRINGS_COUNT                           654
 
 // This is the string id that gBattleStringsTable starts with.
 // String ids before this (e.g. STRINGID_INTROMSG) are not in the table,

@@ -38,5 +38,16 @@ u16 GetMetatileIdAt(void);
 u16 CheckForMetatiles(u16 x, u16 y, u16 metatileA);
 bool8 CheckForRegielekiPuzzle(void);
 void CheckSpecies(void);
+void ShakeCamera(void);
+void ShakeCameraScript(u16 horPan, u16 verPan, u16 num, u16 delayShake, u16 shouldPlaySE);
+enum {
+	YELL_NONE = 0,
+	YELL_LIGHT,
+	YELL_NORMAL,
+	YELL_HEAVY,
+	YELL_AGGRESSIVE,
+	YELL_STRENGTH
+};
+
 
 #endif // GUARD_FIELD_SPECIALS_H

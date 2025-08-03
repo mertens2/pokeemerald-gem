@@ -1,25 +1,567 @@
+const LOCALID_ARCHIE = 1
+const LOCALID_MAXIE = 2
+const LOCALID_TABITHA = 3
+const LOCALID_MAGMA_GRUNT_3 = 3
+const LOCALID_MAGMA_GRUNT_4 = 4
+const LOCALID_AQUA_GRUNT_1  = 6
+const LOCALID_AQUA_GRUNT_2  = 7
+const LOCALID_AQUA_GRUNT_3  = 8
+const LOCALID_AQUA_GRUNT_4  = 9
+const LOCALID_MAGMA_GRUNT_2 = 22
+const LOCALID_MAGMA_GRUNT_1 = 29
+const LOCALID_COURTNEY = 31
+const LOCALID_DELTA_1 = 32
+const LOCALID_DELTA_2 = 33
+const LOCALID_GROUDON = 34
+
+mapscripts MtChimney_MapScripts {
+	MAP_SCRIPT_ON_RESUME {
+		setstepcallback (STEP_CB_ASH)
+		return
+	}
+	MAP_SCRIPT_ON_TRANSITION{
+		setvar (VAR_JAGGED_PASS_ASH_WEATHER, 1)
+		switch (var(VAR_MT_CHIMNEY_STATE)) {
+			case 2:
+				call (MtChimney_OnTransition_PrepareTeamMagmaCheating)
+				break
+			case 3:
+				call (MtChimney_OnTransition_PrepareDelta)
+				break
+			case 5:
+				call (MtChimney_OnTransition_PrepareGroudon)
+				break
+			case 10:
+				call (MtChimney_OnTransition_PrepareMaxieFreakOut)
+		}
+	} 
+	MAP_SCRIPT_ON_FRAME_TABLE [
+		VAR_MT_CHIMNEY_STATE, 3  {
+			lockall
+			special (SpawnCameraObject)
+			applymovement (OBJ_EVENT_ID_CAMERA, MtChimney_Movement_CameraPanToDelta)
+			applymovement (OBJ_EVENT_ID_PLAYER, Common_Movement_FaceRight)
+			namebox(Unknown)
+			msgbox(MtChimney_Text_DeltaPlan1)
+			msgbox(MtChimney_Text_DeltaPlan2)
+			waitmovement (0)
+			applymovement (LOCALID_DELTA_2, MtChimney_Movement_DeltaWalkAway3)
+			applymovement (LOCALID_DELTA_1, MtChimney_Movement_DeltaBlockWay)
+			applymovement (OBJ_EVENT_ID_CAMERA, MtChimney_Movement_SortaFollowDelta)
+			closemessage
+			hidenamebox
+			waitmovement(0)
+			setobjectxy (OBJ_EVENT_ID_PLAYER, 26, 39)
+			applymovement (OBJ_EVENT_ID_PLAYER, MtChimney_Movement_PlayerArrive2)
+			delay(48)
+			namebox(Unknown)
+			msgbox(MtChimney_Text_DeltaYouCantPass)
+			waitmovement(0)
+			closemessage
+			hidenamebox
+			addobject (LOCALID_DELTA_2)
+			applymovement(LOCALID_DELTA_2, MtChimney_Movement_DeltaWalkAway2)
+			delay (48)
+			namebox(Unknown)
+			msgbox(MtChimney_Text_DeltaWereDoneHere)
+			waitmovement (LOCALID_DELTA_2)
+			closemessage
+			hidenamebox
+			fadescreen (FADE_TO_BLACK)
+			delay(16)
+			removeobject(LOCALID_DELTA_1)
+			removeobject(LOCALID_DELTA_2)
+			setobjectxyperm(LOCALID_DELTA_1, 40, 0)
+			setobjectxyperm(LOCALID_DELTA_2, 40, 0)
+			setobjectxyperm(LOCALID_MAXIE, 26, 38)
+			setobjectxyperm(LOCALID_MAGMA_GRUNT_1, 25, 38)
+			setobjectxyperm(LOCALID_MAGMA_GRUNT_2, 27, 38)
+			addobject (LOCALID_MAXIE)
+			addobject (LOCALID_MAGMA_GRUNT_1)
+			addobject (LOCALID_MAGMA_GRUNT_2)
+			fadescreen(FADE_FROM_BLACK)
+			delay(16)
+			namebox(Unknown)
+			msgbox(MtChimney_Text_MaxieArrive)
+			delay (8)
+			playse(SE_PIN)
+			applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark)
+			waitmovement(0)
+			playbgm(MUS_ENCOUNTER_MAGMA, FALSE)
+			delay (8)
+			closemessage
+			hidenamebox
+			applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceDown)
+			applymovement(LOCALID_MAXIE, MtChimney_Movement_PlayerArrive)
+			waitmovement(0)
+			namebox(Unknown)
+			msgbox(MtChimney_Text_MaxieWhoAreYou)
+			delay(32)
+			applymovement(LOCALID_MAGMA_GRUNT_1, MtChimney_Movement_PlayerArrive)
+			delay(8)
+			applymovement(LOCALID_MAGMA_GRUNT_2, MtChimney_Movement_PlayerArrive)
+			waitmovement (0)
+			closemessage
+			hidenamebox
+			trainerbattle_no_intro (TRAINER_MAXIE_MT_CHIMNEY, MtChimney_Text_MaxieDefeat)
+			playse (SE_PIN)
+			applymovement (LOCALID_MAXIE, Common_Movement_ExclamationMark)
+			waitmovement (0)
+			applymovement (LOCALID_MAXIE, Common_Movement_FaceAwayPlayer)
+			waitmovement (0)
+			namebox (Magma)
+			applymovement (LOCALID_MAGMA_GRUNT_1, Common_Movement_WalkInPlaceUp)
+			msgbox(MtChimney_Text_MagmaGruntMaxieLost1)
+			waitmovement (0)
+			applymovement (LOCALID_MAGMA_GRUNT_2, Common_Movement_WalkInPlaceUp)
+			msgbox(MtChimney_Text_MagmaGruntMaxieLost2)
+			waitmovement (0)
+			namebox(Maxie)
+			msgbox(MtChimney_Text_MaxieIllSucceedAnyways)
+			delay (24)
+			applymovement(LOCALID_MAXIE, Common_Movement_WalkInPlaceUp)
+			waitmovement (0)
+			closemessage
+			hidenamebox
+			applymovement (LOCALID_MAXIE, MtChimney_Movement_MaxieGoesToMachine)
+			applymovement (OBJ_EVENT_ID_PLAYER, MtChimney_Movement_PlayerGetOut)
+			waitmovement (LOCALID_MAXIE)
+			delay(16)
+			namebox(Maxie)
+			msgbox(MtChimney_Text_MaxieMachineNotWork)
+			setobjectxyperm(LOCALID_ARCHIE, 26, 38)
+			setobjectxyperm(LOCALID_AQUA_GRUNT_1, 25, 39)
+			setobjectxyperm(LOCALID_AQUA_GRUNT_2, 27, 39)
+			addobject (LOCALID_ARCHIE)
+			addobject (LOCALID_AQUA_GRUNT_1)
+			addobject (LOCALID_AQUA_GRUNT_2)
+			namebox(Archie)
+			msgbox(MtChimney_Text_ArchieArrives)
+			hidenamebox
+			closemessage
+			applymovement(LOCALID_ARCHIE, MtChimney_Movement_PlayerArrive)
+			waitmovement(LOCALID_ARCHIE)
+			applymovement(LOCALID_MAXIE, MtChimney_Movement_DeltaWalkAway2)
+			delay(8)
+			applymovement(LOCALID_AQUA_GRUNT_1, MtChimney_Movement_PlayerArrive)
+			delay(4)
+			applymovement(LOCALID_AQUA_GRUNT_2, MtChimney_Movement_PlayerArrive)
+			waitmovement(LOCALID_MAXIE)
+			delay(24)
+			applymovement (OBJ_EVENT_ID_CAMERA, MtChimney_Movement_CameraPanToArchie)
+			namebox(Maxie)
+			msgbox(MtChimney_Text_MaxieWhatDoYouWant, MSGBOX_INTERRUPT)
+			waitmovement(OBJ_EVENT_ID_CAMERA)
+			namebox(Archie)
+			msgbox(MtChimney_Text_ArchieWhoDidThat)
+			namebox(Maxie)
+			msgbox(MtChimney_Text_MaxieWhat)
+			namebox(Archie)
+			msgbox(MtChimney_Text_ArchieSomethingsUp)
+			namebox(Maxie)
+			msgbox(MtChimney_Text_MaxieDelightful)
+			fadescreen (FADE_TO_BLACK)
+			delay (16)
+			applymovement (OBJ_EVENT_ID_CAMERA, MtChimney_Movement_CameraPanToPlayer)
+			waitmovement (0)
+			setobjectxy (LOCALID_ARCHIE, 26, 31)
+			removeobject (LOCALID_MAXIE)
+			removeobject (LOCALID_MAGMA_GRUNT_1)
+			removeobject (LOCALID_MAGMA_GRUNT_2)
+			applymovement (LOCALID_ARCHIE, Common_Movement_FaceDown)
+			waitmovement (0)
+			fadescreen (FADE_FROM_BLACK)
+			delay (16)
+			namebox (Archie)
+			msgbox (MtChimney_Text_OhMaxie)
+			applymovement(LOCALID_ARCHIE, Common_Movement_WalkInPlaceUp)
+			msgbox (MtChimney_Text_ArchieThankYou, MSGBOX_DEFAULT)
+			waitmovement (0)
+			applymovement (LOCALID_ARCHIE, Common_Movement_WalkInPlaceDown)
+			waitmovement(0)
+			applymovement (LOCALID_ARCHIE, MtChimney_Movement_LookAround)
+			msgbox(MtChimney_Text_ArchieTellsGrunts)
+			waitmovement(0)
+			namebox(Aqua)
+			msgbox(MtChimney_Text_WeLoveYouArchie)
+			closemessage
+			hidenamebox
+			fadescreen(FADE_TO_BLACK)
+			delay(16)
+			removeobject (LOCALID_ARCHIE)
+			removeobject (LOCALID_AQUA_GRUNT_1)
+			removeobject (LOCALID_AQUA_GRUNT_2)
+			setflag (FLAG_HIDE_MT_CHIMNEY_TEAM_MAGMA)
+			setflag (FLAG_HIDE_MT_CHIMNEY_TEAM_AQUA)
+			setflag (FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY)
+			clearflag (FLAG_HIDE_FALLARBOR_HOUSE_PROF_COZMO)
+			setflag (FLAG_HIDE_METEOR_FALLS_1F_1R_COZMO)
+			clearflag (FLAG_HIDE_MT_CHIMNEY_LAVA_COOKIE_LADY)
+			addobject(9)
+			setvar(VAR_MT_CHIMNEY_STATE, 4)
+			fadescreen(FADE_FROM_BLACK)
+			releaseall
+			end
+		}
+		VAR_MT_CHIMNEY_STATE, 5 {
+			lockall
+			fadescreen(FADE_FROM_BLACK)
+			special(SpawnCameraObject)
+			applymovement(25, Common_Movement_WalkDown)
+			applymovement(25, Common_Movement_SetInvisible)
+			waitmovement(0)
+			applymovement(9, Common_Movement_FaceUp)
+			applymovement(26, Common_Movement_WalkDown)
+			applymovement(9, Common_Movement_FaceRight)
+			applymovement(26, Common_Movement_WalkDown)
+			waitmovement(0)
+			applymovement (26, Common_Movement_SetInvisible)
+			waitmovement(0)
+			applymovement(9, Common_Movement_FaceUp)
+			applymovement(27, Common_Movement_WalkDown2)
+			applymovement(9, Common_Movement_FaceRight)
+			applymovement(27, Common_Movement_WalkDown)
+			waitmovement(0)
+			applymovement (27, Common_Movement_SetInvisible)
+			waitmovement(0)
+			applymovement(9, Common_Movement_FaceUp)
+			applymovement(28, Common_Movement_WalkLeft)
+			waitmovement(0)
+			applymovement(28, Common_Movement_WalkDown2)
+			applymovement(9, Common_Movement_FaceRight)
+			applymovement(28, Common_Movement_WalkDown)
+			waitmovement(0)
+			applymovement (28, Common_Movement_SetInvisible)
+			waitmovement(0)
+			applymovement(9, Common_Movement_FaceUp)
+			applymovement(29, Common_Movement_WalkLeft2)
+			waitmovement(0)
+			applymovement(29, Common_Movement_WalkDown2)
+			applymovement(9, Common_Movement_FaceRight)
+			applymovement(29, Common_Movement_WalkDown)
+			waitmovement(0)
+			applymovement (29, Common_Movement_SetInvisible)
+			waitmovement(0)
+			applymovement(9, Common_Movement_FaceUp)
+			applymovement (30, MtChimney_Movement_NPCWalkToWarp)
+			applymovement (9, MtChimney_Movement_WatchNPCWalkToWarp)
+			applymovement (OBJ_EVENT_ID_CAMERA, MtChimney_Movement_PanToGroudon)
+			waitmovement (OBJ_EVENT_ID_CAMERA)
+			delay(32)
+			playmoncry(SPECIES_GROUDON, CRY_MODE_NORMAL)
+			msgbox(format("{SHAKE_SCREEN 8 10 3 0}¡GROUUUUUUUDON!")) //PAN, NUM SHAKES, DELAY, PLAYSE
+			waitmoncry
+			clearflag(FLAG_SPAWN_INVISIBLE)
+			setvar(VAR_MT_CHIMNEY_STATE, 6)
+			setvar(VAR_LAVARIDGE_TOWN_STATE, 3)
+			warp(MAP_JAGGED_PASS, 16, 19)
+			releaseall
+			end
+		}
+	]
+}
+
+script MtChimney_OnTransition_PrepareGroudon {
+	setobjectxyperm (25, 21, 40)
+	setobjectmovementtype (25, MOVEMENT_TYPE_FACE_DOWN)
+	setobjectxyperm (26, 21, 39)
+	setobjectmovementtype (26, MOVEMENT_TYPE_FACE_DOWN)
+	setobjectxyperm (27, 21, 38)
+	setobjectmovementtype (27, MOVEMENT_TYPE_FACE_DOWN)
+	setobjectxyperm (28, 22, 38)
+	setobjectmovementtype (28, MOVEMENT_TYPE_FACE_LEFT)
+	setobjectxyperm (29, 23, 38)
+	setobjectmovementtype (29, MOVEMENT_TYPE_FACE_LEFT)
+	setobjectxyperm (9, 20, 40)
+	setobjectxyperm (LOCALID_GROUDON, 20, 6)
+	addobject(9)
+	addobject(25)
+	addobject(26)
+	addobject(27)
+	addobject(28)
+	addobject(29)
+	addobject(30)
+	addobject(LOCALID_GROUDON)
+	return
+}
+
+script MtChimney_OnTransition_PrepareMaxieFreakOut {
+	setobjectxyperm(LOCALID_COURTNEY, 12, 6)
+	setobjectxyperm(LOCALID_TABITHA, 13, 7)
+	setobjectmovementtype(LOCALID_TABITHA, MOVEMENT_TYPE_FACE_UP)
+	addobject(LOCALID_COURTNEY)
+	addobject(LOCALID_TABITHA)
+}
+
+script MtChimney_EventScript_Trigger3 {
+	lockall
+	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceRight)
+	applymovement(LOCALID_MAXIE, Common_Movement_WalkInPlaceDown)
+	waitmovement (0)
+	applymovement(LOCALID_MAXIE, Common_Movement_WalkInPlaceFasterLeft)
+	waitmovement (0)
+	applymovement(LOCALID_MAXIE, Common_Movement_WalkInPlaceDown)
+	waitmovement (0)
+	namebox(Maxie)
+	msgbox(MtChimney_Text_MaxieFreakOut)
+	applymovement(LOCALID_TABITHA, Common_Movement_WalkInPlaceUp)
+	waitmovement (0)
+	namebox(Tabitha)
+	msgbox(MtChimney_Text_TabithaWeDontKnow)
+	applymovement(LOCALID_COURTNEY, Common_Movement_WalkInPlaceRight)
+	waitmovement (0)
+	namebox(Courtney)
+	msgbox(MtChimney_Text_CourtneySolution)
+	applymovement(LOCALID_MAXIE, Common_Movement_WalkInPlaceDown)
+	waitmovement (0)
+	applymovement(LOCALID_MAXIE, Common_Movement_WalkInPlaceFasterLeft)
+	waitmovement (0)
+	applymovement(LOCALID_MAXIE, Common_Movement_WalkInPlaceDown)
+	waitmovement (0)
+	namebox(Maxie)
+	msgbox(MtChimney_Text_MaxieFreakOut2)
+	hidenamebox
+	closemessage
+	namebox(Player)
+	msgbox(Common_Text_Realization)
+	hidenamebox
+	closemessage
+	playse(SE_PIN)
+	applymovement(LOCALID_MAXIE, Common_Movement_ExclamationMark)
+	applymovement(LOCALID_COURTNEY, Common_Movement_ExclamationMark)
+	applymovement(LOCALID_TABITHA, Common_Movement_ExclamationMark)
+	waitmovement (0)
+	applymovement(LOCALID_MAXIE, Common_Movement_WalkInPlaceFasterLeft)
+	applymovement(LOCALID_COURTNEY, Common_Movement_WalkInPlaceFasterLeft)
+	applymovement(LOCALID_TABITHA, Common_Movement_WalkInPlaceFasterLeft)
+	waitmovement (0)
+	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark)
+	waitmovement (0)
+	namebox(Maxie)
+	msgbox(MtChimney_Text_MaxieNoticePlayer)
+	hidenamebox
+	closemessage
+	fadescreen(FADE_TO_WHITE)
+	namebox(Unknown)
+	msgbox(MtChimney_Text_ArchieAsIf)
+	hidenamebox
+	closemessage
+	setobjectxyperm(LOCALID_ARCHIE, 10, 6)
+	setobjectmovementtype(LOCALID_ARCHIE, MOVEMENT_TYPE_FACE_RIGHT)
+	addobject(LOCALID_ARCHIE)
+	delay(16)
+	fadescreen(FADE_FROM_WHITE)
+	namebox(Archie)
+	msgbox(MtChimney_Text_ArchieBattleWithPlayer)
+	call (MtChimney_EventScript_PrepareMultiBattle)
+	multi_fixed_2_vs_1 (TRAINER_MAXIE_MAGMA_HIDEOUT, MtChimney_Text_MaxieDefeat, TRAINER_ARCHIE_ALLY, TRAINER_BACK_PIC_RED)
+	specialvar (VAR_RESULT, GetBattleOutcome)
+    if (var(VAR_RESULT) == B_OUTCOME_LOST){
+		goto (MtChimney_EventScript_LostMaxieMultiBattle)
+	}
+	applymovement (OBJ_EVENT_ID_PLAYER, Common_Movement_FaceUp)
+	applymovement (LOCALID_ARCHIE, Common_Movement_FaceDown)
+	waitmovement (0)
+	namebox(Archie)
+	msgbox(MtChimney_Text_ArchieKnewYouCould)
+	applymovement(LOCALID_ARCHIE, Common_Movement_WalkInPlaceRight)
+	applymovement(LOCALID_MAXIE, Common_Movement_WalkInPlaceLeft)
+	waitmovement(0)
+	namebox(Maxie)
+	msgbox(MtChimney_Text_MaxieWhatDoYouWant, MSGBOX_INTERRUPT)
+	namebox(Archie)
+	msgbox(MtChimney_Text_ArchieWhoDidThat)
+	namebox(Maxie)
+	msgbox(MtChimney_Text_MaxieWhat)
+	namebox(Archie)
+	msgbox(MtChimney_Text_ArchieSomethingsUp)
+	namebox(Maxie)
+	msgbox(MtChimney_Text_MaxieDelightful)
+	fadescreen (FADE_TO_BLACK)
+	delay (16)
+	setobjectxy (LOCALID_ARCHIE, 9, 7)
+	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceDown)
+	waitmovement(0)
+	removeobject (LOCALID_MAXIE)
+	removeobject (LOCALID_MAGMA_GRUNT_1)
+	removeobject (LOCALID_MAGMA_GRUNT_2)
+	applymovement (LOCALID_ARCHIE, Common_Movement_FaceDown)
+	waitmovement (0)
+	fadescreen (FADE_FROM_BLACK)
+	delay (16)
+	namebox (Archie)
+	msgbox (MtChimney_Text_OhMaxie)
+	applymovement(LOCALID_ARCHIE, Common_Movement_WalkInPlaceRight)
+	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceLeft)
+	msgbox (MtChimney_Text_ArchieThankYou, MSGBOX_DEFAULT)
+	waitmovement (0)
+	applymovement (LOCALID_ARCHIE, Common_Movement_WalkInPlaceDown)
+	waitmovement(0)
+	applymovement (LOCALID_ARCHIE, MtChimney_Movement_LookAround)
+	msgbox(MtChimney_Text_ArchieTellsGrunts)
+	waitmovement(0)
+	namebox(Aqua)
+	msgbox(MtChimney_Text_WeLoveYouArchie)
+	closemessage
+	hidenamebox
+	fadescreen(FADE_TO_BLACK)
+	delay(16)
+	removeobject (LOCALID_ARCHIE)
+	removeobject (LOCALID_AQUA_GRUNT_1)
+	removeobject (LOCALID_AQUA_GRUNT_2)
+	setflag (FLAG_HIDE_MT_CHIMNEY_TEAM_MAGMA)
+	setflag (FLAG_HIDE_MT_CHIMNEY_TEAM_AQUA)
+	setflag (FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY)
+	clearflag (FLAG_HIDE_FALLARBOR_HOUSE_PROF_COZMO)
+	setflag (FLAG_HIDE_METEOR_FALLS_1F_1R_COZMO)
+	clearflag (FLAG_HIDE_MT_CHIMNEY_LAVA_COOKIE_LADY)
+	addobject(9)
+	setvar(VAR_MT_CHIMNEY_STATE, 4)
+	fadescreen(FADE_FROM_BLACK)
+	releaseall
+	end
+}
+
+script MtChimney_EventScript_LostMaxieMultiBattle {
+	setvar (VAR_MT_CHIMNEY_STATE, 10)
+	fadescreen (FADE_TO_BLACK)
+	special (SetCB2WhiteOut)
+	releaseall
+	end
+}
+
+movement MtChimney_Movement_PanToGroudon {
+	walk_up*34
+}
+
+movement MtChimney_Movement_NPCWalkToWarp {
+	walk_left*3
+	walk_down*3
+	set_invisible
+}
+movement MtChimney_Movement_WatchNPCWalkToWarp {
+	delay_8*5
+	face_right
+	face_down
+	delay_8
+	face_up
+	delay_16
+	walk_down
+	set_invisible
+}
+
+movement MtChimney_Movement_CameraPanToDelta {
+	walk_diag_northeast * 2
+}
+
+movement MtChimney_Movement_SortaFollowDelta {
+	walk_diag_northeast * 4
+	walk_right * 2
+}
+
+movement MtChimney_Movement_DeltaWalkAway {
+	walk_right * 2
+	walk_up * 10
+	walk_left * 6
+	walk_up * 3
+}
+
+movement MtChimney_Movement_DeltaWalkAway3 {
+	walk_right * 2
+	walk_up * 8
+	walk_left * 6
+	walk_up * 3
+}
+
+movement MtChimney_Movement_DeltaBlockWay {
+	walk_right * 3
+	walk_up * 4
+	walk_in_place_down
+}
+
+movement MtChimney_Movement_PlayerArrive2 {
+	walk_up * 7
+}
+
+movement MtChimney_Movement_PlayerArrive {
+	walk_up * 5
+}
+
+movement MtChimney_Movement_DeltaWalkAway2 {
+	walk_down * 3
+	walk_right * 6
+	walk_down * 5
+}
+
+
+movement MtChimney_Movement_MaxieGoesToMachine {
+	walk_up * 8
+	walk_left * 6
+	walk_up * 3
+}
+
+movement MtChimney_Movement_CameraPanToArchie {
+	walk_right * 2
+	walk_down * 4
+
+}
+movement MtChimney_Movement_CameraPanToPlayer {
+	walk_right
+	walk_up * 3
+}
+
+movement MtChimney_Movement_PlayerGetOut {
+	delay_8
+	lock_facing_direction
+	walk_up
+	unlock_facing_direction
+	face_right
+	lock_facing_direction
+	walk_left
+	unlock_facing_direction
+	walk_in_place_up
+}
+
+movement MtChimney_Movement_LookAround {
+	walk_in_place_left
+	delay_16
+	walk_in_place_down
+	delay_16
+	walk_in_place_right
+	delay_16
+	walk_in_place_down
+}
+
+
 raw `
 .set LOCALID_ARCHIE, 1
 .set LOCALID_MAXIE, 2
 .set LOCALID_TABITHA, 3
+.set LOCALID_MAGMA_GRUNT_3, 3
+.set LOCALID_MAGMA_GRUNT_4, 4
+.set LOCALID_AQUA_GRUNT_1 , 6
+.set LOCALID_AQUA_GRUNT_2 , 7
+.set LOCALID_AQUA_GRUNT_3 , 8
+.set LOCALID_AQUA_GRUNT_4 , 9
 .set LOCALID_MAGMA_GRUNT_2, 22
 .set LOCALID_MAGMA_GRUNT_1, 29
 .set LOCALID_COURTNEY, 31
+.set LOCALID_DELTA_1, 32
+.set LOCALID_DELTA_2, 33
 
 
-MtChimney_MapScripts::
-	map_script MAP_SCRIPT_ON_RESUME, MtChimney_OnResume
-	map_script MAP_SCRIPT_ON_TRANSITION, MtChimney_OnTransition
-	.byte 0
-
-MtChimney_OnTransition:
-	setvar VAR_JAGGED_PASS_ASH_WEATHER, 1
-	call_if_eq VAR_MT_CHIMNEY_STATE, 2, MtChimney_OnTransition_PrepareTeamMagmaCheating
-	end
-
-MtChimney_OnResume:
-	setstepcallback STEP_CB_ASH
-	end
+MtChimney_OnTransition_PrepareDelta::
+	setflag FLAG_HIDE_MT_CHIMNEY_TRAINERS
+	setflag FLAG_HIDE_MT_CHIMNEY_LAVA_COOKIE_LADY
+	setflag FLAG_HIDE_MT_CHIMNEY_TEAM_MAGMA
+	setflag FLAG_HIDE_MT_CHIMNEY_TEAM_AQUA
+	setobjectxyperm LOCALID_DELTA_1, 23, 35
+	setobjectxyperm LOCALID_DELTA_2, 24, 35
+	addobject LOCALID_DELTA_1
+	addobject LOCALID_DELTA_2
+	setobjectmovementtype LOCALID_DELTA_2, MOVEMENT_TYPE_FACE_LEFT
+	setobjectmovementtype LOCALID_DELTA_1, MOVEMENT_TYPE_FACE_RIGHT
+	return
 
 MtChimney_OnTransition_PrepareTeamMagmaCheating::
 	setobjectxyperm 17, 30, 10
@@ -121,6 +663,8 @@ MtChimney_EventScript_Maxie::
 	addobject LOCALID_ARCHIE
 	call_if_eq VAR_FACING, DIR_EAST, MtChimney_EventScript_ArchieApproachPlayerEast
 	call_if_eq VAR_FACING, DIR_NORTH, MtChimney_EventScript_ArchieApproachPlayerNorth
+	call_if_eq VAR_FACING, DIR_SOUTH, MtChimney_EventScript_ArchieMaxieReunion
+	call_if_eq VAR_FACING, DIR_WEST, MtChimney_EventScript_ArchieMaxieReunion
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterLeft
 	waitmovement 0
 	msgbox MtChimney_Text_ArchieThankYou, MSGBOX_DEFAULT
@@ -133,6 +677,7 @@ MtChimney_EventScript_Maxie::
 	clearflag FLAG_HIDE_FALLARBOR_HOUSE_PROF_COZMO
 	setflag FLAG_HIDE_METEOR_FALLS_1F_1R_COZMO
 	clearflag FLAG_HIDE_MT_CHIMNEY_LAVA_COOKIE_LADY
+	setvar VAR_MT_CHIMNEY_STATE, 4
 	releaseall
 	end
 
@@ -200,9 +745,7 @@ MtChimney_Text_MaxieWhatDoYouWant:
 	.string "Porque si es así, debo recordarte qu-{PAUSE 32}$"
 
 MtChimney_Text_ArchieWhoDidThat:
-	.string "No hay tiempo para eso, bacalao. Tú no\n"
-	.string "gastarías una oportunidad así\l"
-	.string "esperando a que alguien te detenga.\l"
+	.string "No hay tiempo para eso, bacalao.\pTú no te dejarías arruinar así.\n"
 	.string "¿Qué le pasó a esa máquina, y quién fue\l"
 	.string "el filibustero que lo hizo?$"
 
@@ -483,6 +1026,7 @@ MtChimney_EventScript_LostMultiBattle::
 	special SetCB2WhiteOut
 	releaseall
 	end
+
 
 MtChimney_EventScript_PrepareMultiBattle::
     lockall
@@ -767,9 +1311,7 @@ MtChimney_Text_MaxieIntro:
 	.string "un examen que se quemará en tu\l"
 	.string "memoria.$"
 
-MtChimney_Text_MaxieDefeat:
-	.string "¡¿Qué?!\p"
-	.string "¡¿Me han derrotado, al gran Maxie!?$"
+
 
 MtChimney_Text_MaxieYouHaventSeenLastOfMagma:
 	.string "¿¡C-cómo!?\n"

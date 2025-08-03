@@ -47,6 +47,7 @@ enum {
 #define PLACEHOLDER_ID_ELELLA   	 0x1F
 #define PLACEHOLDER_ID_EllaEl  		 0x20
 #define PLACEHOLDER_ID_ELLAEL   	 0x21
+#define PLACEHOLDER_ID_GENDERCUSTOM  0x22
 
 //velocidad
 // #define PLACEHOLDER_ID_TEXT_SPEED  	 0x22

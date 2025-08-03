@@ -1766,9 +1766,29 @@ gTilesetPalettes_Nature::
 	.incbin "data/tilesets/primary/nature/palettes/11.gbapal"
 	.incbin "data/tilesets/primary/nature/palettes/12.gbapal"
 
+.align 2
+gTilesetPalettes_NatureAlt::
+	.incbin "data/tilesets/primary/nature_alt/palettes/00.gbapal"
+	.incbin "data/tilesets/primary/nature_alt/palettes/01.gbapal"
+	.incbin "data/tilesets/primary/nature_alt/palettes/02.gbapal"
+	.incbin "data/tilesets/primary/nature_alt/palettes/03.gbapal"
+	.incbin "data/tilesets/primary/nature_alt/palettes/04.gbapal"
+	.incbin "data/tilesets/primary/nature_alt/palettes/05.gbapal"
+	.incbin "data/tilesets/primary/nature_alt/palettes/06.gbapal"
+	.incbin "data/tilesets/primary/nature_alt/palettes/07.gbapal"
+	.incbin "data/tilesets/primary/nature_alt/palettes/08.gbapal"
+	.incbin "data/tilesets/primary/nature_alt/palettes/09.gbapal"
+	.incbin "data/tilesets/primary/nature_alt/palettes/10.gbapal"
+	.incbin "data/tilesets/primary/nature_alt/palettes/11.gbapal"
+	.incbin "data/tilesets/primary/nature_alt/palettes/12.gbapal"
+
 	.align 2
 gTilesetTiles_Nature::
 	.incbin "data/tilesets/primary/nature/tiles.4bpp.lz"
+
+.align 2
+gTilesetTiles_NatureAlt::
+	.incbin "data/tilesets/primary/nature_alt/tiles.4bpp.lz"
 
 	.align 2
 gTilesetPalettes_PetalburgNew::
@@ -1869,3 +1889,43 @@ gTilesetPalettes_SlateportCity::
 	.align 2
 gTilesetTiles_SlateportCity::
 	.incbin "data/tilesets/secondary/slateport_city/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_Route110::
+	.incbin "data/tilesets/secondary/route_110/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/route_110/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/route_110/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/route_110/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/route_110/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/route_110/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/route_110/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/route_110/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/route_110/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/route_110/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/route_110/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/route_110/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/route_110/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_Route110::
+	.incbin "data/tilesets/secondary/route_110/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_FallarborNew::
+	.incbin "data/tilesets/secondary/fallarbor_new/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/fallarbor_new/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/fallarbor_new/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/fallarbor_new/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/fallarbor_new/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/fallarbor_new/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/fallarbor_new/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/fallarbor_new/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/fallarbor_new/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/fallarbor_new/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/fallarbor_new/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/fallarbor_new/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/fallarbor_new/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_FallarborNew::
+	.incbin "data/tilesets/secondary/fallarbor_new/tiles.4bpp.lz"

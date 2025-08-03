@@ -16,24 +16,45 @@ script LavaridgeTown_EventScript_EggWoman {
 	}
 	poryswitch(LANGUAGE){
 		EN {
-			msgbox(format("Eggie?"), MSGBOX_YESNO) 
+			msgbox(format("Hi, young'n. I can see you're a formidable trainer.\pWould you like to take care of one of these Eggs we found at the Daycare? We have one too many..."), MSGBOX_YESNO) 
 		}
 		ES {
 			msgbox(format("Hola, joven... Se ve que eres un{A} Entrenador{A} muy fuerte...\p¿Te gustaría cuidar uno de los Huevos que encontramos en la Guardería?"), MSGBOX_YESNO)
 		}
 	}
 	if (var(VAR_RESULT) == NO){
-		msgbox(format("Como quieras entonces... Podemos cuidarlo mi esposo y yo..."))
+		poryswitch(LANGUAGE){
+			EN {
+				msgbox(format("However you want dear... We can manage..."), MSGBOX_YESNO) 
+			}
+			ES {
+				msgbox(format("Como quieras entonces... Podemos cuidarlo mi esposo y yo..."))
+			}
+		}
 		release
 		end
 	}
 	getpartysize
 	if (var(VAR_RESULT)== PARTY_SIZE){
-		msgbox(format("Oh... No tienes espacio..."))
+		poryswitch(LANGUAGE){
+			EN {
+				msgbox(format("Oh... You don't have room..."), MSGBOX_YESNO) 
+			}
+			ES {
+			msgbox(format("Oh... No tienes espacio..."))
+			}
+		}
 		release
 		end
 	}
-	msgbox(format("Me pregunto...\p¿Qué Pokémon te gustan más?"))
+	poryswitch(LANGUAGE){
+		EN {
+			msgbox(format("Hmmm... I do wonder...\pWhat kind of Pokémon do you like?"), MSGBOX_YESNO) 
+		}
+		ES {
+			msgbox(format("Me pregunto...\p¿Qué Pokémon te gustan más?"))
+		}
+	}
 	random(100)
 	if (var(VAR_RESULT) < 14){
 		setflag(FLAG_SHINY_CREATION)
@@ -41,7 +62,14 @@ script LavaridgeTown_EventScript_EggWoman {
 	else {
 		setflag(FLAG_NO_SHINIES)
 	}
-	dynmultichoice(25, 4, TRUE, 4, 0, DYN_MULTICHOICE_CB_NONE, "Resistentes", "Fríos", "Mágicos", "Fuertes", "Lindos", "¡Todos!")
+	poryswitch(LANGUAGE){
+		EN {
+			dynmultichoice(25, 4, TRUE, 4, 0, DYN_MULTICHOICE_CB_NONE, "Resilient", "Cold", "Magical", "Strong", "Cute", "Any and All!")
+			}
+		ES {
+			dynmultichoice(25, 4, TRUE, 4, 0, DYN_MULTICHOICE_CB_NONE, "Resistentes", "Fríos", "Mágicos", "Fuertes", "Lindos", "¡Todos!")
+		}
+	}
 	if (var(VAR_RESULT) == ALL_OPTION){
 		random(6)
 	}
@@ -178,13 +206,14 @@ script LavaridgeTown_EventScript_EggWoman {
 				break
 				case 1:
 					giveegg(SPECIES_WYNAUT)
-					setmonmove(8, 0,MOVE_COPYCAT)
+					setmonmove(8, 1,MOVE_COPYCAT)
 				break
 				case 2:
 					giveegg(SPECIES_BUDEW)
 				break
 				case 3:
-					giveegg(SPECIES_CHINGLING)	
+					giveegg(SPECIES_CHINGLING)
+					// setmonmove(8, 1,MOVE_A)					
 				break
 				case 4:
 					giveegg(SPECIES_HAPPINY)	

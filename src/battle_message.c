@@ -1238,6 +1238,22 @@ static const u8 sText_Trainer2LoseText[];
 	static const u8 sText_PkmnDroppedItem[] = _("¡{B_SCR_ACTIVE_NAME_WITH_PREFIX} dejó caer\nsu {B_LAST_ITEM}!{WAIT_SE}\p");
 	static const u8 sText_BagIsFullBattle[] = _("¡{B_SCR_ACTIVE_NAME_WITH_PREFIX} dejó caer\nsu {B_LAST_ITEM}!{WAIT_SE}\p¡Pero tu Mochila estaba llena!\p");
 	static const u8 sText_RunPrompt[] = _("¿Quieres escapar?");
+	// turbo terrain is a permanent electric terrain that also activates Motor Drive and Lightning Rod every turn. However, those
+	// stat buffs will dissapear the moment the terrain is replaced by another
+	// once that different terrain expires, it activates again, but doesn't grant the old buffs back
+	// good pokemon for a fight like this are Rillaboom's family as it has grassy surge as an available ability
+	// and are found nearby or can be bought at the casino with hidden ability
+	static const u8 sText_ExplanationTurboTerrain[] = _("¡Campo Turbo activado!\pHabilidades como Pararrayos\nse activan cada turno, pero los efectos\pdesaparecen si el campo termina!\p¡Activa Campos para ganar!");
+	static const u8 sText_TurboTerrainBackUp[] = _("¡Campo Turbo vuelve a circular!");
+	static const u8 sText_TurboTerrainDisabled[] = _("¡Campo Turbo desapareció!\p¡Y sus efectos en las\nEstadísticas, también!");
+	static const u8 sText_Turn1RayquazaBattle[] = _("Sientes el peso\nde tus decisiones.");
+	static const u8 sText_Turn3RayquazaBattle[] = _("Algo está mal.");
+	static const u8 sText_Turn6RayquazaBattle[] = _("Algo cambió.");
+	static const u8 sText_Turn9RayquazaBattle[] = _("Y llega el final.");
+	static const u8 sText_Turn11RayquazaBattle[] = _("Rayquaza\nse cansó.");
+	static const u8 sText_RayquazaBattleEnding[] = _("¿Qué harás TÚ?");
+	// static const u8 sText_RayquazaBattleEnding[] = _("Help");
+	// static const u8 sText_RayquazaBattleEnding[] = _("Put out of misery");
 #else
 	static const s8 sText_EnduredViaSturdy[] = _("{B_DEF_NAME_WITH_PREFIX} endured\nthe hit using {B_DEF_ABILITY}!");
 	static const s8 sText_PowerHerbActivation[] = _("{B_ATK_NAME_WITH_PREFIX} became fully charged\ndue to its {B_LAST_ITEM}!");
@@ -1488,6 +1504,27 @@ static const u8 sText_Trainer2LoseText[];
 	static const u8 sText_PkmnDroppedItem[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} lost its\n{B_LAST_ITEM}! You took it.{WAIT_SE}\p");
 	static const u8 sText_BagIsFullBattle[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} lost its\n{B_LAST_ITEM}!{WAIT_SE}\pYou tried to take it...\nBut your Bag was full!\p");
 	static const u8 sText_RunPrompt[] = _("Run away?");
+	// turbo terrain is a permanent electric terrain that also activates Motor Drive and Lightning Rod every turn. However, those
+	// stat buffs will dissapear the moment the terrain is replaced by another
+	// once that different terrain expires, it activates again, but doesn't grant the old buffs back
+	// good pokemon for a fight like this are Rillaboom's family as it has grassy surge as an available ability
+	// and are found nearby or can be bought at the casino with hidden ability
+	static const u8 sText_ExplanationTurboTerrain[] = _("A Turbo-Terrain is activated!\pAbilities triggered by Electricity\nactivate every turn, but effects\ngo away if it's no longer up!\pSet up other Terrains to disable\nit and gain advantage!");
+	static const u8 sText_TurboTerrainBackUp[] = _("Turbo-Terrain is back up!");
+	static const u8 sText_TurboTerrainDisabled[] = _("Turbo-Terrain was disabled!\pIts effects on Stat-stages\nwere reversed!");
+	// idea for rayquaza battle is as follows:
+	// utdr inspired: unique attacks and behavior
+	// new battle system: Trainer + Pokémon "Act Battles". Instead of FIGHT, you can ACT. Acting allows for "two turns in one".
+	// both trainer and pokemon can use a move. trainer's moves will either buff their pokemon or
+	// try to advance the battle in a different way. trainer doesn't take damage but is visible? no double ACT Battles with this in mind.
+	static const u8 sText_Turn1RayquazaBattle[] = _("You feel the weight\nof your choices.");
+	static const u8 sText_Turn3RayquazaBattle[] = _("Something's wrong.");
+	static const u8 sText_Turn6RayquazaBattle[] = _("Something's\ndifferent.");
+	static const u8 sText_Turn9RayquazaBattle[] = _("The finale\napproaches.");
+	static const u8 sText_Turn11RayquazaBattle[] = _("Rayquaza\nis tired.");
+	static const u8 sText_RayquazaBattleEnding[] = _("What should YOU do?");
+	// static const u8 sText_RayquazaBattleEnding[] = _("Help");
+	// static const u8 sText_RayquazaBattleEnding[] = _("Put out of misery");
 #endif
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
@@ -2125,6 +2162,15 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 	[STRINGID_SCREENCLEANERREFLECTENTERS - BATTLESTRINGS_TABLE_START] = sText_ScreenCleanerReflectActivates,
 	[STRINGID_BAGISFULL - BATTLESTRINGS_TABLE_START] = sText_BagIsFullBattle,
     [STRINGID_PKMNDROPPEDITEM - BATTLESTRINGS_TABLE_START] = sText_PkmnDroppedItem,
+	[STRINGID_TURBOTERRAINSTART - BATTLESTRINGS_TABLE_START] = sText_ExplanationTurboTerrain,
+	[STRINGID_TURBOTERRAINBACKUP - BATTLESTRINGS_TABLE_START] = sText_TurboTerrainBackUp,
+	[STRINGID_TURBOTERRAINENDS - BATTLESTRINGS_TABLE_START] = sText_TurboTerrainDisabled,
+	[STRINGID_TURN1RAYQUAZABATTLE - BATTLESTRINGS_TABLE_START] = sText_Turn1RayquazaBattle,
+	[STRINGID_TURN2RAYQUAZABATTLE - BATTLESTRINGS_TABLE_START] = sText_Turn3RayquazaBattle,
+	[STRINGID_TURN3RAYQUAZABATTLE - BATTLESTRINGS_TABLE_START] = sText_Turn6RayquazaBattle,
+	[STRINGID_TURN4RAYQUAZABATTLE - BATTLESTRINGS_TABLE_START] = sText_Turn9RayquazaBattle,
+	[STRINGID_TURN5RAYQUAZABATTLE - BATTLESTRINGS_TABLE_START] = sText_Turn11RayquazaBattle,
+	[STRINGID_ENDRAYQUAZABATTLE - BATTLESTRINGS_TABLE_START] = sText_RayquazaBattleEnding,
 };
 
 const u16 gItemDroppedStringIds[] =

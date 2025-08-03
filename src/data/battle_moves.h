@@ -633,9 +633,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
     [MOVE_TAKE_DOWN] =
     {
         .effect = EFFECT_RECOIL_25,
-        .power = 90,
+        .power = 100,
         .type = TYPE_NORMAL,
-        .accuracy = 85,
+        .accuracy = 100,
         .pp = 20,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
@@ -1138,7 +1138,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
     [MOVE_PECK] =
     {
         .effect = EFFECT_HIT,
-        .power = 35,
+        .power = 40,
         .type = TYPE_FLYING,
         .accuracy = 100,
         .pp = 35,

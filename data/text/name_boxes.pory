@@ -69,18 +69,18 @@ text Archie {
 }
 text Aqua {
 	poryswitch(LANGUAGE){
-		ES:format("{SHADOW BLUE}Recluta Aqua")
-		EN:format("{SHADOW BLUE}Aqua Grunt")
+		ES:format("{COLOR BLUE}Recluta Aqua")
+		EN:format("{COLOR BLUE}Aqua Grunt")
 	}
 }
 text Magma {
 	poryswitch(LANGUAGE){
-		ES:format("{SHADOW RED}Recluta Magma")
-		EN:format("{SHADOW RED}Magma Grunt")
+		ES:format("{COLOR RED}Recluta Magma")
+		EN:format("{COLOR RED}Magma Grunt")
 	}
 }
 text Maxie {
-	format("{COLOR LIGHT_RED}{SHADOW RED}Maxie")
+	format("{COLOR LIGHT_BLUE}{SHADOW BLUE}Maxie")
 }
 text Shelly {
 	format("{COLOR LIGHT_RED}{SHADOW RED}Shelly")

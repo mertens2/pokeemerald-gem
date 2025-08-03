@@ -27,6 +27,11 @@
       "map": "MAP_ROUTE123",
       "offset": 0,
       "direction": "right"
+    },
+    {
+      "map": "MAP_MAUVILLE_CITY_F1",
+      "offset": 0,
+      "direction": "left"
     }
   ],
   "object_events": [
@@ -310,14 +315,14 @@
       "y": 4,
       "elevation": 0,
       "dest_map": "MAP_TERRA_CAVE_ENTRANCE",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     },
     {
       "x": 9,
       "y": 6,
       "elevation": 0,
       "dest_map": "MAP_TERRA_CAVE_ENTRANCE",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [

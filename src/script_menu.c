@@ -451,6 +451,11 @@ static void DrawMultichoiceMenu(u8 left, u8 top, u8 multichoiceId, u8 ignoreBPre
     DrawMultichoiceMenuCustom(left, top, multichoiceId, ignoreBPress, cursorPos, sMultichoiceLists[multichoiceId].list, sMultichoiceLists[multichoiceId].count);
 }
 
+void DrawMultichoiceMenuScript(u8 left, u8 top, u8 multichoiceId, u8 ignoreBPress, u8 cursorPos)
+{
+    DrawMultichoiceMenuCustom(left, top, multichoiceId, ignoreBPress, cursorPos, sMultichoiceLists[multichoiceId].list, sMultichoiceLists[multichoiceId].count);
+}
+
 void TryDrawRepelMenu(void)
 {
     static const u16 repelItems[] = {ITEM_REPEL, ITEM_SUPER_REPEL, ITEM_MAX_REPEL};

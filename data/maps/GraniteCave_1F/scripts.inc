@@ -1011,11 +1011,11 @@ GraniteCave_1F_Movement_PlayerEscapes:
 # 856 "data/maps/GraniteCave_1F/scripts.pory"
 	unlock_facing_direction
 # 857 "data/maps/GraniteCave_1F/scripts.pory"
-	walk_fast_right
+	player_run_left
 # 857 "data/maps/GraniteCave_1F/scripts.pory"
-	walk_fast_right
+	player_run_left
 # 858 "data/maps/GraniteCave_1F/scripts.pory"
-	walk_fast_down
+	player_run_down
 	step_end
 
 # 861 "data/maps/GraniteCave_1F/scripts.pory"

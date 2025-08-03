@@ -98,11 +98,12 @@ static void SetDefaultOptions(void)
     gSaveBlock2Ptr->optionsBattleStyle = OPTIONS_BATTLE_STYLE_SHIFT;
     gSaveBlock2Ptr->optionsBattleSceneOff = FALSE;
     gSaveBlock2Ptr->regionMapZoom = FALSE;
-	gSaveBlock2Ptr->optionsButtonMode = OPTIONS_BUTTON_MODE_NORMAL;
+	gSaveBlock2Ptr->optionsTrainingMode = OPTIONS_TRAINING_MODE_ON;
     gSaveBlock2Ptr->optionsUnitSystem = 1;  //tx_optionsPlus
     gSaveBlock2Ptr->optionsHpBarSpeed = 0;  //tx_optionsPlus
     gSaveBlock2Ptr->optionsExpBarSpeed = 0; //tx_optionsPlus
     gSaveBlock2Ptr->optionsShinyOdds = 1; //tx_optionsPlus
+    gSaveBlock2Ptr->optionsTextSkip = 1; //tx_optionsPlus
     gSaveBlock2Ptr->optionsDifficulty = DIFFICULTY_NORMAL; //tx_optionsPlus
 }
 
@@ -159,7 +160,9 @@ void NewGameInitData(void)
     if (gSaveFileStatus == SAVE_STATUS_EMPTY || gSaveFileStatus == SAVE_STATUS_CORRUPT)
         RtcReset();
 
-    gDifferentSaveFile = TRUE;
+    gSaveBlock2Ptr->_saveSentinel = 0xFF;
+    gSaveBlock2Ptr->saveVersion = SAVE_VERSION;
+	gDifferentSaveFile = TRUE;
     gSaveBlock2Ptr->encryptionKey = 0;
     ZeroPlayerPartyMons();
     ZeroEnemyPartyMons();

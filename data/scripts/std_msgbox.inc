@@ -47,3 +47,16 @@ Common_EventScript_SaveGame::
 	special SaveGame
 	waitstate
 	return
+
+Std_MsgboxAutoclose::
+	message NULL
+	waitmessage
+	waitbuttonpress
+	release
+	return
+
+Std_MsgboxInterrupt::
+	message NULL
+	waitmessage
+	release
+	return

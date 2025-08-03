@@ -574,6 +574,14 @@ gMetatiles_Nature::
 gMetatileAttributes_Nature::
 	.incbin "data/tilesets/primary/nature/metatile_attributes.bin"
 
+.align 1
+gMetatiles_NatureAlt::
+	.incbin "data/tilesets/primary/nature_alt/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_NatureAlt::
+	.incbin "data/tilesets/primary/nature_alt/metatile_attributes.bin"
+
 	.align 1
 gMetatiles_PetalburgNew::
 	.incbin "data/tilesets/secondary/petalburg_new/metatiles.bin"
@@ -613,3 +621,19 @@ gMetatiles_SlateportCity::
 	.align 1
 gMetatileAttributes_SlateportCity::
 	.incbin "data/tilesets/secondary/slateport_city/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_Route110::
+	.incbin "data/tilesets/secondary/route_110/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_Route110::
+	.incbin "data/tilesets/secondary/route_110/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_FallarborNew::
+	.incbin "data/tilesets/secondary/fallarbor_new/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_FallarborNew::
+	.incbin "data/tilesets/secondary/fallarbor_new/metatile_attributes.bin"

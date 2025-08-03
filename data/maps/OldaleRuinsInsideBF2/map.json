@@ -53,9 +53,13 @@
       "y": 1,
       "elevation": 0,
       "dest_map": "MAP_OLDALE_RUINS_INSIDE_BF2",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     }
   ],
-  "coord_events": [],
-  "bg_events": []
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
 }

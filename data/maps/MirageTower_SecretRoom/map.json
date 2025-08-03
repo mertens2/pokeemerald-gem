@@ -20,14 +20,14 @@
       "y": 12,
       "elevation": 0,
       "dest_map": "MAP_MIRAGE_TOWER_SECRET_ROOM_REGIELEKI",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     },
     {
       "x": 5,
       "y": 2,
       "elevation": 0,
       "dest_map": "MAP_MIRAGE_TOWER_1F",
-      "dest_warp_id": 2
+      "dest_warp_id": "2"
     }
   ],
   "coord_events": [],

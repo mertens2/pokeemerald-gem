@@ -681,19 +681,19 @@ DewfordTown_Movement_GruntEscapes:
 # 666 "data/maps/DewfordTown/scripts.pory"
 DewfordTown_Movement_PlayerApproach2:
 # 667 "data/maps/DewfordTown/scripts.pory"
-	walk_faster_left
+	player_run_left
 # 668 "data/maps/DewfordTown/scripts.pory"
-	walk_faster_left
+	player_run_left
 # 669 "data/maps/DewfordTown/scripts.pory"
-	walk_faster_up
+	player_run_up
 # 670 "data/maps/DewfordTown/scripts.pory"
-	walk_faster_up
+	player_run_up
 # 671 "data/maps/DewfordTown/scripts.pory"
-	walk_faster_up
+	player_run_up
 # 672 "data/maps/DewfordTown/scripts.pory"
-	walk_faster_up
+	player_run_up
 # 673 "data/maps/DewfordTown/scripts.pory"
-	walk_faster_up
+	player_run_up
 # 674 "data/maps/DewfordTown/scripts.pory"
 	step_end
 # 675 "data/maps/DewfordTown/scripts.pory"

@@ -853,6 +853,17 @@ gTileset_Nature::
 	.4byte gMetatileAttributes_Nature
 	.4byte NULL @ animation callback
 
+.align 2
+gTileset_NatureAlt::
+	.byte TRUE @ is compressed
+	.byte FALSE @ is secondary
+	.2byte 0 @ padding
+	.4byte gTilesetTiles_NatureAlt
+	.4byte gTilesetPalettes_NatureAlt
+	.4byte gMetatiles_NatureAlt
+	.4byte gMetatileAttributes_NatureAlt
+	.4byte NULL @ animation callback
+
 	.align 2
 gTileset_PetalburgNew::
 	.byte TRUE @ is compressed
@@ -906,4 +917,26 @@ gTileset_SlateportCity::
 	.4byte gTilesetPalettes_SlateportCity
 	.4byte gMetatiles_SlateportCity
 	.4byte gMetatileAttributes_SlateportCity
+	.4byte NULL @ animation callback
+
+	.align 2
+gTileset_Route110::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0 @ padding
+	.4byte gTilesetTiles_Route110
+	.4byte gTilesetPalettes_Route110
+	.4byte gMetatiles_Route110
+	.4byte gMetatileAttributes_Route110
+	.4byte NULL @ animation callback
+
+	.align 2
+gTileset_FallarborNew::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0 @ padding
+	.4byte gTilesetTiles_FallarborNew
+	.4byte gTilesetPalettes_FallarborNew
+	.4byte gMetatiles_FallarborNew
+	.4byte gMetatileAttributes_FallarborNew
 	.4byte NULL @ animation callback

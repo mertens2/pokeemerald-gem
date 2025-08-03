@@ -1,3 +1,4 @@
+#include "constants/abilities.h"
 #if GAME_LANGUAGE == LANGUAGE_SPANISH
 static const u8 sNoneDescription[] = _("Sin habilidad especial.");
 static const u8 sStenchDescription[] = _("Su peste puede hacer al\nrival retroceder.");
