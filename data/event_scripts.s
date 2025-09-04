@@ -1192,3 +1192,11 @@ Decline:
 	.include "data/maps/SafariZone_SpecialArea/scripts.inc"
 
 	.include "data/maps/MauvilleCity_F1/scripts.inc"
+
+	.include "data/maps/MauvilleCity_Inside/scripts.inc"
+
+	.include "data/maps/MauvilleCity_InverseBattle/scripts.inc"
+
+	.include "data/maps/MauvilleCity_BattleCafe/scripts.inc"
+
+	.include "data/maps/MauvilleCity_Middle/scripts.inc"

@@ -6282,6 +6282,21 @@ const struct MonCoords gMonFrontPicCoords[] =
         .size = MON_COORDS_SIZE(32, 40),
         .y_offset = 12,
     },
+	[SPECIES_HAWLUCHA_MEGA] =
+    {
+        .size = MON_COORDS_SIZE(64, 64),
+        .y_offset = 0,
+    },
+	[SPECIES_DRAGONITE_MEGA] =
+    {
+        .size = MON_COORDS_SIZE(64, 64),
+        .y_offset = 0,
+    },
+	[SPECIES_VICTREEBEL_MEGA] =
+    {
+        .size = MON_COORDS_SIZE(64, 64),
+        .y_offset = 0,
+    },
     // Egg
     [SPECIES_EGG] =
     {

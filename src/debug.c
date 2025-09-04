@@ -399,7 +399,7 @@ static void DebugAction_Sound_MUS_SelectId(u8 taskId);
 extern u8 Debug_Script_1[];
 extern u8 Debug_Script_2[];
 extern u8 Debug_Script_3[];
-extern u8 Debug_Script_4[];
+extern u8 Debug_Script_GiveAllDecor[];
 extern u8 Debug_Script_5[];
 extern u8 Debug_Script_6[];
 extern u8 Debug_Script_7[];
@@ -444,8 +444,8 @@ static const u8 sDebugText_Cancel[] =           _("Cancel");
 // Script menu
 static const u8 sDebugText_Util_Script_1[] =               _("Script 1");
 static const u8 sDebugText_Util_Script_2[] =               _("Script 2");
-static const u8 sDebugText_Util_Script_3[] =               _("Script 3");
-static const u8 sDebugText_Util_Script_4[] =               _("Script 4");
+static const u8 sDebugText_Util_Script_3[] =               _("Cambiar Ropa");
+static const u8 sDebugText_Util_Script_4[] =               _("Llenar Decor");
 static const u8 sDebugText_Util_Script_5[] =               _("Script 5");
 static const u8 sDebugText_Util_Script_6[] =               _("Script 6");
 static const u8 sDebugText_Util_Script_7[] =               _("Script 7");
@@ -2095,7 +2095,7 @@ static void DebugAction_Util_Script_4(u8 taskId)
 {
     Debug_DestroyMenu_Full(taskId);
     LockPlayerFieldControls();
-    ScriptContext_SetupScript(Debug_Script_4);
+    ScriptContext_SetupScript(Debug_Script_GiveAllDecor);
 }
 static void DebugAction_Util_Script_5(u8 taskId)
 {

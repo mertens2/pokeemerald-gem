@@ -1308,8 +1308,20 @@ const struct CompressedSpriteSheet gMonBackPicTable[] =
     SPECIES_SPRITE(CALYREX_ICE_RIDER, gMonBackPic_CalyrexIceRider),
     SPECIES_SPRITE(CALYREX_SHADOW_RIDER, gMonBackPic_CalyrexShadowRider),
 	SPECIES_SPRITE(ROWLET_ASH, gMonBackPic_RowletAsh),
+	
+	SPECIES_SPRITE(DRAGONITE_MEGA, gMonBackPic_DragoniteMega),
+	SPECIES_SPRITE(VICTREEBEL_MEGA, gMonBackPic_VictreebelMega),
+	SPECIES_SPRITE(HAWLUCHA_MEGA, gMonBackPic_HawluchaMega),
 
     SPECIES_SPRITE(EGG, gMonFrontPic_Egg),
+};
+
+const struct CompressedSpriteSheet gMonBackPicTableShiny[] = {
+	SPECIES_SPRITE(HAWLUCHA_MEGA, gMonBackPicShiny_HawluchaMega),
+};
+
+const struct CompressedSpriteSheet gMonBackPicTableFemaleShiny[] = {
+	SPECIES_SPRITE(HAWLUCHA_MEGA, gMonBackPicShiny_HawluchaMega),
 };
 
 const struct CompressedSpriteSheet gMonBackPicTableFemale[] =

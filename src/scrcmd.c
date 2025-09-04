@@ -31,6 +31,7 @@
 #include "palette.h"
 #include "party_menu.h"
 #include "pokemon_storage_system.h"
+#include "fldeff_misc.h"
 #include "random.h"
 #include "overworld.h"
 #include "rotating_tile_puzzle.h"
@@ -100,6 +101,9 @@ static u8 *const sScriptStringVars[] =
     gStringVar2,
     gStringVar3,
 };
+
+
+
 
 static bool8 AAndBCanSkip(u8 mode){
 	if (gSaveBlock2Ptr->optionsTextSkip >= mode){
@@ -1117,6 +1121,17 @@ bool8 ScrCmd_setobjectxyperm(struct ScriptContext *ctx)
     u16 y = VarGet(ScriptReadHalfword(ctx));
 
     SetObjEventTemplateCoords(localId, x, y);
+    return FALSE;
+}
+
+bool8 ScrCmd_setgetobjectflags(struct ScriptContext *ctx)
+{
+    u16 localId  = VarGet(ScriptReadHalfword(ctx));
+    u8 flagIndex = ScriptReadByte(ctx);
+    u8 value 	 = ScriptReadByte(ctx);
+    u8 getOrSet  = ScriptReadByte(ctx);
+	
+	SetGetObjEventTemplateFlagData(localId, flagIndex, value, getOrSet);
     return FALSE;
 }
 
@@ -2678,4 +2693,10 @@ bool8 ScrCmd_setmonmovevar(struct ScriptContext *ctx)
     ScriptSetMonMoveSlot(partyIndex, VarGet(move), slot);
     return FALSE;
 }
+
+// bool8 ScrCmd_dopoisoneffect(struct ScriptContext *ctx) // por hacer wip
+// {
+    // /
+// }
+
 

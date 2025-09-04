@@ -28,7 +28,7 @@ enum { // customization
 	CUSTOMIZATION_CLOTHES_PINK,
 	
 	// misc start?
-	// CUSTOMIZATION_CRYSTAL_BLUE, new clothing items need to be added here // nuevos colores deben ser añadidos aqui
+	CUSTOMIZATION_CRYSTAL_BLUE, //new clothing items need to be added here // nuevos colores deben ser añadidos aqui
 };
 
 enum {
@@ -39,22 +39,10 @@ enum {
 
 struct ClothingInfo {
 	u8 name[14]; // name. duh // el nombre. obvio
-	s8 r; // base color, lightest // color base, el más claro // valor 0 - 31
-	s8 g;
-	s8 b;
-	
-	s8 darkR; // base shadow color. last needed color for code to work // color sombra base. el ultimo color necesario para el codigo // valor 0 - 31
-	s8 darkG;
-	s8 darkB;
-	
-	s8 darkerR; // not necesasry. useful if you want to set up your own dark tones, minimum value for code to read it is 1. 
-	s8 darkerG; // no necesario. útil si quieres crear tus propias sombras, valor mínimo para que el codigo lo lea es 1
-	s8 darkerB;
-	
-	s8 darkestR; // not necesasry. useful if you want to set up your own dark tones, minimum value for code to read it is 1. 
-	s8 darkestG; // no necesario. útil si quieres crear tus propias sombras, valor mínimo para que el codigo lo lea es 1
-	s8 darkestB;
-	
+	u16 light;
+	u16 medium;
+	u16 dark;
+	u16 darkest;
 };
 
 extern const struct ClothingInfo gClothingItems[];

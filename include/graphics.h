@@ -1255,6 +1255,10 @@ extern const u32 gMonFrontPic_UrshifuRapidStrikeStyle[];
 extern const u32 gMonFrontPic_ZarudeDada[];
 extern const u32 gMonFrontPic_CalyrexIceRider[];
 extern const u32 gMonFrontPic_CalyrexShadowRider[];
+extern const u32 gMonFrontPic_HawluchaMega[];
+extern const u32 gMonFrontPicShiny_HawluchaMega[];
+extern const u32 gMonFrontPic_DragoniteMega[];
+extern const u32 gMonFrontPic_VictreebelMega[];
 #endif
 extern const u32 gMonFrontPic_Egg[];
 
@@ -2447,6 +2451,10 @@ extern const u32 gMonBackPic_UrshifuRapidStrikeStyle[];
 extern const u32 gMonBackPic_ZarudeDada[];
 extern const u32 gMonBackPic_CalyrexIceRider[];
 extern const u32 gMonBackPic_CalyrexShadowRider[];
+extern const u32 gMonBackPic_HawluchaMega[];
+extern const u32 gMonBackPicShiny_HawluchaMega[];
+extern const u32 gMonBackPic_DragoniteMega[];
+extern const u32 gMonBackPic_VictreebelMega[];
 #endif
 
 extern const u32 gMonPalette_CircledQuestionMark[];
@@ -3162,6 +3170,9 @@ extern const u32 gMonPalette_Amaura[];
 extern const u32 gMonPalette_Aurorus[];
 extern const u32 gMonPalette_Sylveon[];
 extern const u32 gMonPalette_Hawlucha[];
+extern const u32 gMonPalette_HawluchaMega[];
+extern const u32 gMonPalette_DragoniteMega[];
+extern const u32 gMonPalette_VictreebelMega[];
 extern const u32 gMonPalette_Dedenne[];
 extern const u32 gMonPalette_Carbink[];
 extern const u32 gMonPalette_Goomy[];
@@ -3657,6 +3668,9 @@ extern const u32 gMonPalette_UrshifuRapidStrikeStyle[];
 extern const u32 gMonPalette_ZarudeDada[];
 extern const u32 gMonPalette_CalyrexIceRider[];
 extern const u32 gMonPalette_CalyrexShadowRider[];
+extern const u32 gMonPalette__HawluchaMega[];
+extern const u32 gMonPalette__DragoniteMega[];
+extern const u32 gMonPalette__VictreebelMega[];
 #endif
 extern const u32 gMonPalette_Egg[];
 extern const u32 gMonPalette_EggShiny[];
@@ -4865,6 +4879,9 @@ extern const u32 gMonShinyPalette_UrshifuRapidStrikeStyle[];
 extern const u32 gMonShinyPalette_ZarudeDada[];
 extern const u32 gMonShinyPalette_CalyrexIceRider[];
 extern const u32 gMonShinyPalette_CalyrexShadowRider[];
+extern const u32 gMonShinyPalette_HawluchaMega[];
+extern const u32 gMonShinyPalette_DragoniteMega[];
+extern const u32 gMonShinyPalette_VictreebelMega[];
 #endif
 
 extern const u8 gMonIcon_QuestionMark[];
@@ -6056,6 +6073,9 @@ extern const u8 gMonIcon_EternatusEternamax[];
 extern const u8 gMonIcon_ZarudeDada[];
 extern const u8 gMonIcon_CalyrexIceRider[];
 extern const u8 gMonIcon_CalyrexShadowRider[];
+extern const u32 gMonIcon_HawluchaMega[];
+extern const u32 gMonIcon_DragoniteMega[];
+extern const u32 gMonIcon_VictreebelMega[];
 #endif
 extern const u8 gMonIcon_Egg[];
 

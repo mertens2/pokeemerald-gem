@@ -7,7 +7,7 @@
 #include "task.h"
 #include "constants/rgb.h"
 
-#define RGB8_TO_RGB5(r) ( r*31/255 )
+
 #define MALE_SKINTONE_START         1
 #define MALE_SKINTONE_END           4
 #define MALE_MAIN_CLOTHES_START     5	
@@ -46,7 +46,7 @@ const struct OutfitInfo gFemaleOutfitItems[] = {
 	[CUSTOMIZATION_OUTFIT_EMERALD] = {
 		.name = _("Esmeralda"),
 		// .graphicsId = ;
-		.skintone = {1,3},
+		.skintone = {1,2},
 		.main = {12,13},
 		.highlight1 = {8,10},
 		.highlight2 = {4,6},
@@ -57,27 +57,19 @@ const struct OutfitInfo gFemaleOutfitItems[] = {
 const struct ClothingInfo gClothingItems[] = {
 	// ejemplo
 
-	// [CUSTOMIZATION_CRYSTAL_BLUE] = 
-	// {
-		// .name = _("Cristal Azul"),
-		// .r = 30,
-		// .g = 120,
-		// .b = 165,
-		// // as we want it to be crystal-like, shadows will be lighter
-		// // como queremos que sea cristal, la sombra será mas clara
-		// .darkR = 60,
-		// .darkG = 175,
-		// .darkB = 215,
-		// // we will set up the darker tones so the outline and darker shadows match and have a hue shift
-		// // agregaremos los tonos oscuros para que el contorno y sombra mas oscura combinen y tengan un "hue shift"
-		// .darkerR = 25,
-		// .darkerG = 220,
-		// .darkerB = 220,
-		// // darkest is outline, mostly // darkest es mayormente el contorno
-		// .darkestR = 140,
-		// .darkestG = 220,
-		// .darkestB = 220,
-	// },
+	[CUSTOMIZATION_CRYSTAL_BLUE] = 
+	{
+		.name = _("Cristal Azul"),
+		.light = RGB2GBA(30,120,165),
+		// as we want it to be crystal-like, shadows will be lighter
+		// como queremos que sea cristal, la sombra será mas clara
+		.medium = RGB2GBA(60,175,215),
+		// we will set up the darker tones so the outline and darker shadows match and have a hue shift
+		// agregaremos los tonos oscuros para que el contorno y sombra mas oscura combinen y tengan un "hue shift"
+		.dark = RGB2GBA(25,220,220),
+		// darkest is outline, mostly // darkest es mayormente el contorno
+		.darkest = RGB2GBA(140,220,220),
+	},
 	
 
 	
@@ -85,143 +77,117 @@ const struct ClothingInfo gClothingItems[] = {
 	[CUSTOMIZATION_SKINTONE_PALE_SKIN] = 
 	{
 		.name = _("Blanca"),
-		.r = 220,
-		.g = 160,
-		.b = 150,
-		.darkR = 200,
-		.darkG = 140,
-		.darkB = 120,
+		.light = RGB2GBA(255,220,205),
+		.medium = RGB2GBA(220,160,150),
+		.dark = RGB2GBA(205,130,115),
+		.darkest = RGB2GBA(123,65,65),
 	},
 	[CUSTOMIZATION_SKINTONE_LIGHT_SKIN] = 
 	{
 		.name = _("Clara"),
-		.r = 230,
-		.g = 160,
-		.b = 140,
-		.darkR = 195,
-		.darkG = 120,
-		.darkB = 110,
+		.light = RGB2GBA(230,160,140),
+		.medium = RGB2GBA(220,160,150),
+		.dark = RGB2GBA(180,105,95),
+		.darkest = RGB2GBA(115,60,60),
 	},
 	[CUSTOMIZATION_SKINTONE_MEDIUM_SKIN] = 
 	{
 		.name = _("Media"),
-		.r = 200,
-		.g = 115,
-		.b = 85,
-		.darkR = 150,
-		.darkG = 75,
-		.darkB = 55,
+		.light = RGB2GBA(200,115,85),
+		.medium = RGB2GBA(165,90,80),
+		.dark = RGB2GBA(150,75,55),
+		.darkest = RGB2GBA(105,50,50),
 	},
 	[CUSTOMIZATION_SKINTONE_BROWN_SKIN] = 
 	{
 		.name = _("Media Oscura"),
-		.r = 165,
-		.g = 75,
-		.b = 50,
-		.darkR = 135,
-		.darkG = 55,
-		.darkB = 35,
+		.light = RGB2GBA(175,85,60),
+		.medium = RGB2GBA(165,90,80),
+		.dark = RGB2GBA(150,75,55),
+		.darkest = RGB2GBA(95,45,45),
 	},
 	[CUSTOMIZATION_SKINTONE_DARK_SKIN] = 
 	{
 		.name = _("Oscura"),
-		.r = 135,
-		.g = 65,
-		.b = 45,
-		.darkR = 110,
-		.darkG = 45,
-		.darkB = 30,
+		.light = RGB2GBA(135,65,45),
+		.medium = RGB2GBA(110,45,30),
+		.dark = RGB2GBA(90,35,20),
+		.darkest = RGB2GBA(60,20,20),
 	},
 	// clothes start
 	[CUSTOMIZATION_CLOTHES_RED] = 
 	{
 		.name = _("Roja"), // no funciona
-		.r = 235,
-		.g = 60,
-		.b = 70,
-		.darkR = 185,
-		.darkG = 35,
-		.darkB = 50,
+		.light = RGB2GBA(240,60,70),
+		.medium = RGB2GBA(185,35,50),
+		.dark = RGB2GBA(165,20,35),
+		.darkest = RGB2GBA(125,10,20),
 	},
 	[CUSTOMIZATION_CLOTHES_ORANGE] = 
 	{
 		.name = _("Naranja"), // no funciona
-		.r = 235,
-		.g = 100,
-		.b = 50,
-		.darkR = 185,
-		.darkG = 60,
-		.darkB = 40,
+		.light = RGB2GBA(230,85,50),
+		.medium = RGB2GBA(190,55,20),
+		.dark = RGB2GBA(170,45,10),
+		.darkest = RGB2GBA(160,35,0),
 	},
 	[CUSTOMIZATION_CLOTHES_YELLOW] = 
 	{
 		.name = _("Amarilla"), // no funciona
-		.r = 230,
-		.g = 180,
-		.b = 45,
-		.darkR = 190,
-		.darkG = 120,
-		.darkB = 30,
+		.light = RGB2GBA(230,180,45),
+		.medium = RGB2GBA(190,120,30),
+		.dark = RGB2GBA(130,75,15),
+		.darkest = RGB2GBA(110,50,5),
 	},
 	[CUSTOMIZATION_CLOTHES_GREEN] = 
 	{
 		.name = _("Verde"),
-		.r = 120,
-		.g = 215,
-		.b = 95,
-		.darkR = 60,
-		.darkG = 160,
-		.darkB = 70,
+		.light = RGB2GBA(115,205,115),
+		.medium = RGB2GBA(75,150,85),
+		.dark = RGB2GBA(50,120,60),
+		.darkest = RGB2GBA(30,90,50),
 	},
 	[CUSTOMIZATION_CLOTHES_CYAN] = 
 	{
 		.name = _("Cyan"),
-		.r = 95,
-		.g = 215,
-		.b = 175,
-		.darkR = 55,
-		.darkG = 150,
-		.darkB = 145,
+		.light = RGB2GBA(95,215,175),
+		.medium = RGB2GBA(55,150,145),
+		.dark = RGB2GBA(25,95,90),
+		.darkest = RGB2GBA(15,75,70),
 	},
 	[CUSTOMIZATION_CLOTHES_BLUE] = 
 	{
 		.name = _("Azul"),
-		.r = 40,
-		.g = 95,
-		.b = 200,
-		.darkR = 25,
-		.darkG = 70,
-		.darkB = 160,
+		.light = RGB2GBA(40,95,200),
+		.medium = RGB2GBA(25,70,160),
+		.dark = RGB2GBA(5,55,120),
+		.darkest = RGB2GBA(20,30,90),
 	},
 	[CUSTOMIZATION_CLOTHES_PURPLE] = 
 	{
 		.name = _("Violeta"),
-		.r = 120,
-		.g = 75,
-		.b = 195,
-		.darkR = 80,
-		.darkG = 45,
-		.darkB = 140,
+		.light = RGB2GBA(120,75,195),
+		.medium = RGB2GBA(80,45,140),
+		.dark = RGB2GBA(60,30,115),
+		.darkest = RGB2GBA(20,30,90),
 	},
 	[CUSTOMIZATION_CLOTHES_PINK] = 
 	{
 		.name = _("Rosa"),
-		.r = 235,
-		.g = 90,
-		.b = 230,
-		.darkR = 185,
-		.darkG = 55,
-		.darkB = 180,
+		.light = RGB2GBA(235,90,230),
+		.medium = RGB2GBA(185,55,180),
+		.dark = RGB2GBA(125,30,140),
+		.darkest = RGB2GBA(20,30,90),
 	}
 	
 };
 
 static bool8 ClothingItemHasDarkerColor(u8 item) {
-	return (gClothingItems[item].darkerR >= 1 && gClothingItems[item].darkerG >= 1 && gClothingItems[item].darkerB >= 1);
+	return (gClothingItems[item].dark >= 1);
 }
 
 static bool8 ClothingItemHasDarkestColor(u8 item) {
-	return (gClothingItems[item].darkestR >= 1 && gClothingItems[item].darkestG >= 1 && gClothingItems[item].darkestB >= 1);
+	return (gClothingItems[item].darkest >= 1);
 }
 
 
@@ -249,43 +215,31 @@ static u16 GetCustomizedColor(u8 item, u8 i, u8 x) {
 	s8 shadowR, shadowG, shadowB, lightR, lightG, lightB, rx, bx, gx;
 	u8 clothing = gSaveBlock2Ptr->customization[item];
 	
-	shadowR = gClothingItems[clothing].darkR;
-	shadowG = gClothingItems[clothing].darkG;
-	shadowB = gClothingItems[clothing].darkB;
-	lightR  = gClothingItems[clothing].r;
-	lightG  = gClothingItems[clothing].g;
-	lightB  = gClothingItems[clothing].b;
+	shadowR = GET_R(gClothingItems[clothing].medium);
+	shadowG = GET_G(gClothingItems[clothing].medium);
+	shadowB = GET_B(gClothingItems[clothing].medium);
+	lightR  = GET_R(gClothingItems[clothing].light);
+	lightG  = GET_G(gClothingItems[clothing].light);
+	lightB  = GET_B(gClothingItems[clothing].light);
 	
 	
 	rx = DarkenColorByMargin(lightR, shadowR, i - x);
 	gx = DarkenColorByMargin(lightG, shadowG, i - x);
 	bx = DarkenColorByMargin(lightB, shadowB, i - x);
-	if ((clothing == CUSTOMIZATION_SKINTONE_PALE_SKIN || clothing == CUSTOMIZATION_SKINTONE_LIGHT_SKIN) && item == 0){ // lighter skintones hue shift too much. 
-																													   //force it to use colors of darker skintones instead.
-		if (i == 3){
-			rx = gClothingItems[clothing+2].darkR;
-			gx = gClothingItems[clothing+2].darkG;
-			bx = gClothingItems[clothing+2].darkB;
-		}
-		else if (i == 4){
-			rx = gClothingItems[clothing+3].darkR;
-			gx = gClothingItems[clothing+3].darkG;
-			bx = gClothingItems[clothing+3].darkB;
-		}
-	}
+	
 	if (i-x == 2 && ClothingItemHasDarkerColor(clothing)){ // if color has darker tone, use that instead.
-		rx = gClothingItems[clothing].darkerR;
-		gx = gClothingItems[clothing].darkerG;
-		bx = gClothingItems[clothing].darkerB;
+		rx = GET_R(gClothingItems[clothing].dark);
+		gx = GET_G(gClothingItems[clothing].dark);
+		bx = GET_B(gClothingItems[clothing].dark);
 	}
 	else if (i-x == 3 && ClothingItemHasDarkestColor(clothing)){ // if color has darkest tone, use that instead.
-		rx = gClothingItems[clothing].darkestR;
-		gx = gClothingItems[clothing].darkestG;
-		bx = gClothingItems[clothing].darkestB;
+		rx = GET_R(gClothingItems[clothing].darkest);
+		gx = GET_G(gClothingItems[clothing].darkest);
+		bx = GET_B(gClothingItems[clothing].darkest);
 	}
-	rx = RGB8_TO_RGB5(rx);
-	gx = RGB8_TO_RGB5(gx);
-	bx = RGB8_TO_RGB5(bx);
+	// rx = RGB8_TO_RGB5(rx);
+	// gx = RGB8_TO_RGB5(gx);
+	// bx = RGB8_TO_RGB5(bx);
 	if (rx>31)
 		rx = 31;
 	if (gx>31)

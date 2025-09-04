@@ -4100,7 +4100,7 @@ static const struct TrainerMon sParty_Roxanne1[] = {
     .heldItem = ITEM_NONE,
 	.build = TRAINER_MON_HP_SPDEF,
 	.ball = ITEM_POKE_BALL,
-    .moves = {MOVE_ICY_WIND, MOVE_INGRAIN, MOVE_ABSORB, MOVE_SMACK_DOWN}
+    .moves = {MOVE_POWDER_SNOW, MOVE_INGRAIN, MOVE_ABSORB, MOVE_SMACK_DOWN}
     },
     {
     //.iv = 100,
@@ -4108,9 +4108,9 @@ static const struct TrainerMon sParty_Roxanne1[] = {
     .species = SPECIES_ARCHEN,
 	.ability = ABILITY_HIDDEN,
     .heldItem = ITEM_ORAN_BERRY,
-	.build = TRAINER_MON_SPEED_PHYS,
+	.build = 0,
 	.ball = ITEM_LUXURY_BALL,
-    .moves = {MOVE_BULLDOZE, MOVE_METAL_CLAW, MOVE_SMACK_DOWN, MOVE_ROOST}
+    .moves = {MOVE_MUD_SLAP, MOVE_METAL_CLAW, MOVE_SMACK_DOWN, MOVE_ROOST}
     },
     {
     //.iv = 200,
@@ -4393,7 +4393,7 @@ static const struct TrainerMon sParty_Wattson1[] = {
     .lvl = 20,
     .species = SPECIES_VOLTORB_HISUIAN,
 	.ability = ABILITY_HIDDEN,
-    .heldItem = ITEM_NORMAL_GEM,
+    // .heldItem = ITEM_NORMAL_GEM,
 	.build = TRAINER_MON_SPEED_PHYS,
 	.difficulty = TRAINER_HARD,
 	.ball = ITEM_LUXURY_BALL,
@@ -4419,7 +4419,7 @@ static const struct TrainerMon sParty_Wattson1[] = {
 	.build = TRAINER_MON_HP_SPDEF,
 	.difficulty = TRAINER_HARD,
 	.ball = ITEM_ULTRA_BALL,
-    .moves = {MOVE_LIGHT_SCREEN, MOVE_SHOCK_WAVE, MOVE_RECOVER, MOVE_MIRROR_SHOT}
+    .moves = {MOVE_LIGHT_SCREEN, MOVE_SHOCK_WAVE, MOVE_RECOVER, MOVE_GYRO_BALL}
     },
     {
     //.iv = 250,
@@ -4492,12 +4492,12 @@ static const struct TrainerMon sParty_Norman1[] = {
     //.iv = 200,
     .lvl = 31,
     .species = SPECIES_DUDUNSPARCE,
-	.ability = ABILITY_SLOT_2,
+	.ability = ABILITY_SLOT_1,
     .heldItem = ITEM_SITRUS_BERRY,
 	.build = TRAINER_MON_PHYS,
 	.difficulty = TRAINER_HARDEST,
 	.ball = ITEM_DUSK_BALL,
-    .moves = {MOVE_LUNGE, MOVE_FACADE, MOVE_COIL, MOVE_ROOST}
+    .moves = {MOVE_LUNGE, MOVE_FACADE, MOVE_IRON_HEAD, MOVE_ROOST}
     },
     {
     //.iv = 200,

@@ -55,17 +55,17 @@ bool16 ResetAllPicSprites(void)
     return FALSE;
 }
 
-static bool16 DecompressPic(u16 species, u32 personality, bool8 isFrontPic, u8 *dest, bool8 isTrainer)
+static bool16 DecompressPic(u16 species, u32 personality, bool8 isFrontPic, u8 *dest, bool8 isTrainer, u32 otId)
 {
     if (!isTrainer)
     {
         if (isFrontPic)
         {
-            LoadSpecialPokePic(dest, species, personality, isFrontPic);
+            LoadSpecialPokePic(dest, species, personality, isFrontPic, otId);
         }
         else
         {
-            LoadSpecialPokePic(dest, species, personality, isFrontPic);
+            LoadSpecialPokePic(dest, species, personality, isFrontPic, otId);
         }
     }
     else
@@ -155,7 +155,7 @@ static u16 CreatePicSprite(u16 species, u32 otId, u32 personality, bool8 isFront
         Free(framePics);
         return 0xFFFF;
     }
-    if (DecompressPic(species, personality, isFrontPic, framePics, isTrainer))
+    if (DecompressPic(species, personality, isFrontPic, framePics, isTrainer, otId))
     {
         // debug trap?
         return 0xFFFF;
@@ -219,7 +219,7 @@ u16 CreateMonPicSprite_Affine(u16 species, u32 otId, u32 personality, u8 flags, 
         Free(framePics);
         return 0xFFFF;
     }
-    if (DecompressPic(species, personality, flags, framePics, FALSE))
+    if (DecompressPic(species, personality, flags, framePics, FALSE, otId))
     {
         // debug trap?
         return 0xFFFF;
@@ -287,7 +287,7 @@ static u16 FreeAndDestroyPicSpriteInternal(u16 spriteId)
 
 static u16 LoadPicSpriteInWindow(u16 species, u32 otId, u32 personality, bool8 isFrontPic, u8 paletteSlot, u8 windowId, bool8 isTrainer)
 {
-    if (DecompressPic(species, personality, isFrontPic, (u8 *)GetWindowAttribute(windowId, WINDOW_TILE_DATA), FALSE))
+    if (DecompressPic(species, personality, isFrontPic, (u8 *)GetWindowAttribute(windowId, WINDOW_TILE_DATA), FALSE, otId))
         return 0xFFFF;
 
     LoadPicPaletteBySlot(species, otId, personality, paletteSlot, isTrainer);
@@ -299,7 +299,7 @@ static u16 CreateTrainerCardSprite(u16 species, u32 otId, u32 personality, bool8
     u8 *framePics;
 
     framePics = Alloc(4 * 0x800);
-    if (framePics && !DecompressPic(species, personality, isFrontPic, framePics, isTrainer))
+    if (framePics && !DecompressPic(species, personality, isFrontPic, framePics, isTrainer, otId))
     {
         BlitBitmapRectToWindow(windowId, framePics, 0, 0, 0x40, 0x40, destX, destY, 0x40, 0x40);
         LoadPicPaletteBySlot(species, otId, personality, paletteSlot, isTrainer);

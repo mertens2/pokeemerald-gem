@@ -593,13 +593,13 @@ static void BattleLoadMonSpriteGfx(struct Pokemon *mon, u32 battlerId, bool32 op
     {
         HandleLoadSpecialPokePic(TRUE,
                                  gMonSpritesGfxPtr->sprites.ptr[position],
-                                 species, currentPersonality);
+                                 species, currentPersonality, otId);
     }
     else
     {
         HandleLoadSpecialPokePic(FALSE,
                                  gMonSpritesGfxPtr->sprites.ptr[position],
-                                 species, currentPersonality);
+                                 species, currentPersonality, otId);
     }
 
     paletteOffset = 0x100 + battlerId * 16;
@@ -889,7 +889,7 @@ void HandleSpeciesGfxDataChange(u8 battlerAtk, u8 battlerDef, bool8 castform, bo
         HandleLoadSpecialPokePic(FALSE,
                                  gMonSpritesGfxPtr->sprites.ptr[position],
                                  targetSpecies,
-                                 gContestResources->moveAnim->targetPersonality);
+                                 gContestResources->moveAnim->targetPersonality, otId);
     }
     else
     {
@@ -908,7 +908,7 @@ void HandleSpeciesGfxDataChange(u8 battlerAtk, u8 battlerDef, bool8 castform, bo
             HandleLoadSpecialPokePic(FALSE,
                                      gMonSpritesGfxPtr->sprites.ptr[position],
                                      targetSpecies,
-                                     gTransformedPersonalities[battlerAtk]);
+                                     personalityValue, otId);
         }
         else
         {
@@ -918,7 +918,7 @@ void HandleSpeciesGfxDataChange(u8 battlerAtk, u8 battlerDef, bool8 castform, bo
             HandleLoadSpecialPokePic(TRUE,
                                      gMonSpritesGfxPtr->sprites.ptr[position],
                                      targetSpecies,
-                                     gTransformedPersonalities[battlerAtk]);
+                                     personalityValue, otId);
         }
     }
 

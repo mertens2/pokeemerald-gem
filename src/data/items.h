@@ -4871,7 +4871,21 @@ const struct Item gItems[ITEMS_COUNT] =
         .iconPalette = gItemIconPalette_Audinite,
     },
 
-    [ITEM_DIANCITE] =
+    [ITEM_HAWLUCHITE] =
+    {
+        .name = _("Hawluchita"),
+        .itemId = ITEM_HAWLUCHITE,
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = sHawluchiteDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .flingPower = 90,
+        .iconSprite = gItemIcon_Blazikenite,
+        .iconPalette = gItemIcon_Blazikenite,
+    },
+	[ITEM_DIANCITE] =
     {
         .name = _("Diancite"),
         .itemId = ITEM_DIANCITE,
@@ -16235,7 +16249,22 @@ const struct Item gItems[] =
         .iconSprite = gItemIcon_Audinite,
         .iconPalette = gItemIconPalette_Audinite,
     },
-
+	
+	[ITEM_HAWLUCHITE] =
+    {
+        .name = _("Hawluchite"),
+        .itemId = ITEM_HAWLUCHITE,
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = sHawluchiteDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .flingPower = 90,
+        .iconSprite = gItemIcon_Blazikenite,
+        .iconPalette = gItemIcon_Blazikenite,
+    },
+	
     [ITEM_DIANCITE] =
     {
         .name = _("Diancite"),

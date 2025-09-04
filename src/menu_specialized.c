@@ -31,6 +31,9 @@
 #include "gba/io_reg.h"
 
 extern const struct CompressedSpriteSheet gMonFrontPicTable[];
+extern const struct CompressedSpriteSheet gMonFrontPicTableFemale[];
+extern const struct CompressedSpriteSheet gMonFrontPicTableFemaleShiny[];
+extern const struct CompressedSpriteSheet gMonFrontPicTableShiny[];
 
 EWRAM_DATA static u8 sMailboxWindowIds[MAILBOXWIN_COUNT] = {0};
 EWRAM_DATA static struct ListMenuItem *sMailboxList = NULL;
@@ -1114,7 +1117,7 @@ void GetConditionMenuMonGfx(void *tilesDst, void *palDst, u16 boxId, u16 monId, 
         u32 trainerId = GetBoxOrPartyMonData(boxId, monId, MON_DATA_OT_ID, NULL);
         u32 personality = GetBoxOrPartyMonData(boxId, monId, MON_DATA_PERSONALITY, NULL);
 
-        LoadSpecialPokePic(tilesDst, species, personality, TRUE);
+        LoadSpecialPokePic(tilesDst, species, personality, TRUE, trainerId);
         LZ77UnCompWram(GetMonSpritePalFromSpeciesAndPersonality(species, trainerId, personality), palDst);
     }
 }

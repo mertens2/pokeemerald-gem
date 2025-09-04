@@ -1189,6 +1189,12 @@ const u32 gMonFrontPic_UrshifuRapidStrikeStyle[] = INCBIN_U32("graphics/pokemon/
 const u32 gMonFrontPic_ZarudeDada[] = INCBIN_U32("graphics/pokemon/zarude/dada/front.4bpp.lz");
 const u32 gMonFrontPic_CalyrexIceRider[] = INCBIN_U32("graphics/pokemon/calyrex/ice_rider/front.4bpp.lz");
 const u32 gMonFrontPic_CalyrexShadowRider[] = INCBIN_U32("graphics/pokemon/calyrex/shadow_rider/front.4bpp.lz");
+// const u32 gMonFrontPic_CalyrexShadowRider[] = INCBIN_U32("graphics/pokemon/calyrex/shadow_rider/front.4bpp.lz");
+const u32 gMonFrontPic_HawluchaMega[] = INCBIN_U32("graphics/pokemon/hawlucha/mega/anim_front.4bpp.lz");
+const u32 gMonFrontPicShiny_HawluchaMega[] = INCBIN_U32("graphics/pokemon/hawlucha/mega/anim_front_shiny.4bpp.lz");
+const u32 gMonFrontPic_DragoniteMega[] = INCBIN_U32("graphics/pokemon/egg/anim_front.4bpp.lz");
+const u32 gMonFrontPic_VictreebelMega[] = INCBIN_U32("graphics/pokemon/egg/anim_front.4bpp.lz");
+
 #endif
 const u32 gMonFrontPic_Egg[] = INCBIN_U32("graphics/pokemon/egg/anim_front.4bpp.lz");
 
@@ -2381,6 +2387,10 @@ const u32 gMonBackPic_UrshifuRapidStrikeStyle[] = INCBIN_U32("graphics/pokemon/u
 const u32 gMonBackPic_ZarudeDada[] = INCBIN_U32("graphics/pokemon/zarude/dada/back.4bpp.lz");
 const u32 gMonBackPic_CalyrexIceRider[] = INCBIN_U32("graphics/pokemon/calyrex/ice_rider/back.4bpp.lz");
 const u32 gMonBackPic_CalyrexShadowRider[] = INCBIN_U32("graphics/pokemon/calyrex/shadow_rider/back.4bpp.lz");
+const u32 gMonBackPic_HawluchaMega[] = INCBIN_U32("graphics/pokemon/hawlucha/mega/back.4bpp.lz");
+const u32 gMonBackPicShiny_HawluchaMega[] = INCBIN_U32("graphics/pokemon/hawlucha/mega/back_shiny.4bpp.lz");
+const u32 gMonBackPic_DragoniteMega[] = INCBIN_U32("graphics/pokemon/egg/anim_front.4bpp.lz");
+const u32 gMonBackPic_VictreebelMega[] = INCBIN_U32("graphics/pokemon/egg/anim_front.4bpp.lz");
 #endif
 
 const u32 gMonPalette_CircledQuestionMark[] = INCBIN_U32("graphics/pokemon/question_mark/circled/normal.gbapal.lz");
@@ -3591,6 +3601,9 @@ const u32 gMonPalette_UrshifuRapidStrikeStyle[] = INCBIN_U32("graphics/pokemon/u
 const u32 gMonPalette_ZarudeDada[] = INCBIN_U32("graphics/pokemon/zarude/dada/normal.gbapal.lz");
 const u32 gMonPalette_CalyrexIceRider[] = INCBIN_U32("graphics/pokemon/calyrex/ice_rider/normal.gbapal.lz");
 const u32 gMonPalette_CalyrexShadowRider[] = INCBIN_U32("graphics/pokemon/calyrex/shadow_rider/normal.gbapal.lz");
+const u32 gMonPalette_HawluchaMega[] = INCBIN_U32("graphics/pokemon/hawlucha/mega/normal.gbapal.lz");
+const u32 gMonPalette_DragoniteMega[] = INCBIN_U32("graphics/pokemon/egg/normal.gbapal.lz");
+const u32 gMonPalette_VictreebelMega[] = INCBIN_U32("graphics/pokemon/egg/normal.gbapal.lz");
 #endif
 const u32 gMonPalette_Egg[] = INCBIN_U32("graphics/pokemon/egg/normal.gbapal.lz");
 const u32 gMonPalette_EggShiny[] = INCBIN_U32("graphics/pokemon/egg/normalshiny.gbapal.lz");
@@ -4798,6 +4811,9 @@ const u32 gMonShinyPalette_UrshifuRapidStrikeStyle[] = INCBIN_U32("graphics/poke
 const u32 gMonShinyPalette_ZarudeDada[] = INCBIN_U32("graphics/pokemon/zarude/dada/shiny.gbapal.lz");
 const u32 gMonShinyPalette_CalyrexIceRider[] = INCBIN_U32("graphics/pokemon/calyrex/ice_rider/shiny.gbapal.lz");
 const u32 gMonShinyPalette_CalyrexShadowRider[] = INCBIN_U32("graphics/pokemon/calyrex/shadow_rider/shiny.gbapal.lz");
+const u32 gMonShinyPalette_HawluchaMega[] = INCBIN_U32("graphics/pokemon/hawlucha/mega/shiny.gbapal.lz");
+const u32 gMonShinyPalette_DragoniteMega[] = INCBIN_U32("graphics/pokemon/egg/normal.gbapal.lz");
+const u32 gMonShinyPalette_VictreebelMega[] = INCBIN_U32("graphics/pokemon/egg/normal.gbapal.lz");
 #endif
 
 const u8 gMonIcon_QuestionMark[] = INCBIN_U8("graphics/pokemon/question_mark/icon.4bpp");
@@ -5989,6 +6005,9 @@ const u8 gMonIcon_EternatusEternamax[] = INCBIN_U8("graphics/pokemon/eternatus/e
 const u8 gMonIcon_ZarudeDada[] = INCBIN_U8("graphics/pokemon/zarude/dada/icon.4bpp");
 const u8 gMonIcon_CalyrexIceRider[] = INCBIN_U8("graphics/pokemon/calyrex/ice_rider/icon.4bpp");
 const u8 gMonIcon_CalyrexShadowRider[] = INCBIN_U8("graphics/pokemon/calyrex/shadow_rider/icon.4bpp");
+const u8 gMonIcon_HawluchaMega[] = INCBIN_U8("graphics/pokemon/hawlucha/mega/icon.4bpp.lz");
+const u8 gMonIcon_DragoniteMega[] = INCBIN_U8("graphics/pokemon/egg/icon.4bpp.lz");
+const u8 gMonIcon_VictreebelMega[] = INCBIN_U8("graphics/pokemon/egg/icon.4bpp.lz");
 #endif
 const u8 gMonIcon_Egg[] = INCBIN_U8("graphics/pokemon/egg/icon.4bpp");
 

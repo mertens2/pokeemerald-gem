@@ -71,10 +71,10 @@ text gText_Birch_WhatsYourName {
 text gText_Birch_SoItsPlayer {
 	poryswitch(LANGUAGE){
 		ES {
-			"¿{PLAYER}{KUN}?"
+			"¿{PLAYER}?"
 		}
 		EN {
-			"{PLAYER}{KUN}?"
+			"{PLAYER}?"
 		}
 	}
 	
@@ -105,21 +105,59 @@ text gText_Birch_AreYouReady {
 }
 
 text gText_Birch_YouCantBirch {
-	"N-no…\pEse… Ese es MI nombre…\pElige otro nombre."
+	poryswitch(LANGUAGE){
+		ES {
+			format("N-no…\pEse… Ese es MI nombre…\pElige otro nombre.")
+		}
+		EN {
+			format("N-no…\pThat… That's MY name…\pGet your own name.")
+		}
+	}
 }
 
 text gText_Birch_WaitYoureG {
-	"E-eres… ¿{PLAYER}?\p¡Genial, yo soy bi!\pPero ahora, por favor, escribe un nombre…\pA menos que quieras que te digan así.\p¿Quieres llamarte {PLAYER}?"
+	poryswitch(LANGUAGE){
+		ES {
+			format("E-eres… ¿{PLAYER}?\p¡Genial, yo soy bi!\pPero ahora, por favor, escribe un nombre…\p"
+			"A menos que quieras que te digan así.\p¿Quieres llamarte {PLAYER}?")
+		}
+		EN {
+			format("Y-{PAUSE 8}you're… {PLAYER}?\pThat's great! I'm bi!\pReally though, choose an ACTUAL name…\p"
+			"Unless you want everyone to call you that.\pYou want your name to be {PLAYER}?")
+		}
+	}
+		
 }
 
 text gText_Birch_TheSameAsDaughter {
-	"¡Ah, igual que mi hija entonces!\pEspero no confunda…\n¿{PLAYER} te parece bien?"
+	poryswitch(LANGUAGE){
+		ES {
+			format("¡Ah, igual que mi hija entonces!\pEspero no confunda…\n¿{PLAYER} te parece bien?")
+		}
+		EN {
+			format("Ah, just like my daughter, then!\pHope it's not too confusing…\nIs {PLAYER} alright?")
+		}
+	}
 }
 
 text gText_Birch_TheSameAsSon {
-	"¡Ah, igual que mi hijo entonces!\pEspero no confunda…\n¿{PLAYER} te parece bien?"
+	poryswitch(LANGUAGE){
+		ES {
+			format("¡Ah, igual que mi hijo entonces!\pEspero no confunda…\n¿{PLAYER} te parece bien?")
+		}
+		EN {
+			format("Ah, just like my son, then!\pHope it's not too confusing…\nIs {PLAYER} alright?")
+		}
+	}
 }
 
 text gText_Birch_NotVeryOriginal {
-	"Ah, ¡{PLAYER}, entonces!\pUn nombre muy popular.\p¿{PLAYER} te parece bien?"
+	poryswitch(LANGUAGE){
+		ES {
+			format("Ah, ¡{PLAYER}, entonces!\p¿No estamos muy originales hoy, eh?\p¿{PLAYER} te parece bien?")
+		}
+		EN {
+			format("Ah, {PLAYER}, then!\pNot very original, are we?\pSo, is {PLAYER} alright?")
+		}
+	}
 }

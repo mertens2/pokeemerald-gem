@@ -2712,7 +2712,7 @@ static void LoadTradeMonPic(u8 whichParty, u8 state)
         species = GetMonData(mon, MON_DATA_SPECIES2);
         personality = GetMonData(mon, MON_DATA_PERSONALITY);
 
-        HandleLoadSpecialPokePic(TRUE, gMonSpritesGfxPtr->sprites.ptr[whichParty * 2 + B_POSITION_OPPONENT_LEFT], species, personality);
+        HandleLoadSpecialPokePic(TRUE, gMonSpritesGfxPtr->sprites.ptr[whichParty * 2 + B_POSITION_OPPONENT_LEFT], species, personality, GetMonData(mon, MON_DATA_OT_ID));
 
         LoadCompressedSpritePalette(GetMonSpritePalStruct(mon));
         sTradeData->monSpecies[whichParty] = species;
@@ -3706,7 +3706,7 @@ static bool8 AnimateTradeSequenceCable(void)
     case TS_STATE_POKEBALL_ARRIVE_WAIT:
         if (gSprites[sTradeData->bouncingPokeballSpriteId].callback == SpriteCallbackDummy)
         {
-            HandleLoadSpecialPokePic(TRUE, gMonSpritesGfxPtr->sprites.ptr[B_POSITION_OPPONENT_RIGHT], sTradeData->monSpecies[TRADE_PARTNER], sTradeData->monPersonalities[TRADE_PARTNER]);
+            HandleLoadSpecialPokePic(TRUE, gMonSpritesGfxPtr->sprites.ptr[B_POSITION_OPPONENT_RIGHT], sTradeData->monSpecies[TRADE_PARTNER], sTradeData->monPersonalities[TRADE_PARTNER], 0);
             sTradeData->state++;
         }
         break;
@@ -4206,7 +4206,8 @@ static bool8 AnimateTradeSequenceWireless(void)
             HandleLoadSpecialPokePic(TRUE,
                                       gMonSpritesGfxPtr->sprites.ptr[B_POSITION_OPPONENT_RIGHT],
                                       sTradeData->monSpecies[TRADE_PARTNER],
-                                      sTradeData->monPersonalities[TRADE_PARTNER]);
+                                      sTradeData->monPersonalities[TRADE_PARTNER],
+									  0);
             sTradeData->state++;
         }
         break;

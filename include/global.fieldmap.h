@@ -68,7 +68,7 @@ struct BackupMapLayout
 struct ObjectEventTemplate
 {
     /*0x00*/ u8 localId;
-			 u8 kind;
+			 u8 eventFlags; // 8 different temp flags for each event in the map
     /*0x01*/ u16 graphicsId;
     /*0x04*/ s16 x;
     /*0x06*/ s16 y;

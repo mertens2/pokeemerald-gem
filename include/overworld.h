@@ -66,6 +66,7 @@ void ApplyNewEncryptionKeyToGameStats(u32 newKey);
 void LoadObjEventTemplatesFromHeader(void);
 void LoadSaveblockObjEventScripts(void);
 void SetObjEventTemplateCoords(u8 localId, s16 x, s16 y);
+void SetGetObjEventTemplateFlagData(u8 localId, u8 flagIndex, u8 value, u8 getOrSet);
 void SetObjEventTemplateMovementType(u8 localId, u8 movementType);
 const struct MapLayout *GetMapLayout(void);
 void ApplyCurrentWarp(void);

@@ -471,14 +471,14 @@ struct PokemonStorageSystemData
     s16 iconScrollSpeed;
     u16 iconScrollNumIncoming;
     u8 iconScrollCurColumn;
-    s8 iconScrollDirection; // Unnecessary duplicate of scrollDirection
+    // s8 iconScrollDirection; // Unnecessary duplicate of scrollDirection
     u8 iconScrollState;
-    u8 iconScrollToBoxId; // Unused duplicate of scrollToBoxId
+    // u8 iconScrollToBoxId; // Unused duplicate of scrollToBoxId
     struct WindowTemplate menuWindow;
     struct StorageMenu menuItems[7];
     u8 menuItemsCount;
     u8 menuWidth;
-    u8 menuUnusedField; // Never read.
+    // u8 menuUnusedField; // Never read.
     u16 menuWindowId;
     struct Sprite *cursorSprite;
     struct Sprite *cursorShadowSprite;
@@ -510,6 +510,7 @@ struct PokemonStorageSystemData
     u8 displayMonSpeciesName[36];
     u8 displayMonGenderLvlText[36];
     u8 displayMonItemName[36];
+	u32 displayMonOtID;
     bool8 (*monPlaceChangeFunc)(void);
     u8 monPlaceChangeState;
     u8 shiftBoxId;
@@ -856,7 +857,7 @@ static bool8 IsDisplayMosaicActive(void);
 static void ShowYesNoWindow(s8);
 static void UpdateCloseBoxButtonTilemap(bool8);
 static void PrintMessage(u8 id);
-static void LoadDisplayMonGfx(u16, u32);
+static void LoadDisplayMonGfx(u16, u32, u32);
 static void SpriteCB_DisplayMonMosaic(struct Sprite *);
 static void SetPartySlotTilemap(u8, bool8);
 
@@ -3910,7 +3911,7 @@ static void CreateWaveformSprites(void)
 
 static void RefreshDisplayMonData(void)
 {
-    LoadDisplayMonGfx(sStorage->displayMonSpecies, sStorage->displayMonPersonality);
+    LoadDisplayMonGfx(sStorage->displayMonSpecies, sStorage->displayMonPersonality, sStorage->displayMonOtID);
     PrintDisplayMonInfo();
     UpdateWaveformAnimation();
     ScheduleBgCopyTilemapToVram(0);
@@ -3990,14 +3991,14 @@ static void CreateDisplayMonSprite(void)
     }
 }
 
-static void LoadDisplayMonGfx(u16 species, u32 pid)
+static void LoadDisplayMonGfx(u16 species, u32 pid, u32 otId)
 {
     if (sStorage->displayMonSprite == NULL)
         return;
 
     if (species != SPECIES_NONE)
     {
-        LoadSpecialPokePic(sStorage->tileBuffer, species, pid, TRUE);
+        LoadSpecialPokePic(sStorage->tileBuffer, species, pid, TRUE, otId);
         LZ77UnCompWram(sStorage->displayMonPalette, sStorage->displayMonPalBuffer);
         CpuCopy32(sStorage->tileBuffer, sStorage->displayMonTilePtr, MON_PIC_SIZE);
         LoadPalette(sStorage->displayMonPalBuffer, sStorage->displayMonPalOffset, 0x20);
@@ -4660,8 +4661,8 @@ static u8 CreateBoxMonIconsInColumn(u8 column, u16 distance, s16 speed)
 static void InitBoxMonIconScroll(u8 boxId, s8 direction)
 {
     sStorage->iconScrollState = 0;
-    sStorage->iconScrollToBoxId = boxId;
-    sStorage->iconScrollDirection = direction;
+    sStorage->scrollToBoxId = boxId;
+    sStorage->scrollDirection = direction;
     sStorage->iconScrollDistance = 32;
     sStorage->iconScrollSpeed = -(6 * direction);
     sStorage->iconScrollNumIncoming = 0;
@@ -4688,7 +4689,7 @@ static bool8 UpdateBoxMonIconScroll(void)
         {
             // A column of icons has gone offscreen, destroy them
             DestroyBoxMonIconsInColumn(sStorage->iconScrollCurColumn);
-            sStorage->iconScrollPos += sStorage->iconScrollDirection * 24;
+            sStorage->iconScrollPos += sStorage->scrollDirection * 24;
             sStorage->iconScrollState++;
         }
         break;
@@ -4697,8 +4698,8 @@ static bool8 UpdateBoxMonIconScroll(void)
         sStorage->iconScrollPos += sStorage->iconScrollSpeed;
         sStorage->iconScrollNumIncoming += CreateBoxMonIconsInColumn(sStorage->iconScrollCurColumn, sStorage->iconScrollDistance, sStorage->iconScrollSpeed);
 
-        if ((sStorage->iconScrollDirection > 0 && sStorage->iconScrollCurColumn == IN_BOX_COLUMNS - 1)
-         || (sStorage->iconScrollDirection < 0 && sStorage->iconScrollCurColumn == 0))
+        if ((sStorage->scrollDirection > 0 && sStorage->iconScrollCurColumn == IN_BOX_COLUMNS - 1)
+         || (sStorage->scrollDirection < 0 && sStorage->iconScrollCurColumn == 0))
         {
             // Scroll has reached final column
             sStorage->iconScrollState++;
@@ -4706,7 +4707,7 @@ static bool8 UpdateBoxMonIconScroll(void)
         else
         {
             // Continue scrolling
-            sStorage->iconScrollCurColumn += sStorage->iconScrollDirection;
+            sStorage->iconScrollCurColumn += sStorage->scrollDirection;
             sStorage->iconScrollState = 0;
         }
         break;
@@ -6936,6 +6937,7 @@ static void SetDisplayMonData(void *pokemon, u8 mode)
             sStorage->displayMonLevel = GetMonData(mon, MON_DATA_LEVEL);
             sStorage->displayMonMarkings = GetMonData(mon, MON_DATA_MARKINGS);
             sStorage->displayMonPersonality = GetMonData(mon, MON_DATA_PERSONALITY);
+            sStorage->displayMonOtID = GetMonData(mon, MON_DATA_OT_ID);
             sStorage->displayMonPalette = GetMonFrontSpritePal(mon);
             gender = GetMonGender(mon);
             sStorage->displayMonItemId = GetMonData(mon, MON_DATA_HELD_ITEM);
@@ -6961,6 +6963,7 @@ static void SetDisplayMonData(void *pokemon, u8 mode)
             sStorage->displayMonLevel = GetLevelFromBoxMonExp(boxMon);
             sStorage->displayMonMarkings = GetBoxMonData(boxMon, MON_DATA_MARKINGS);
             sStorage->displayMonPersonality = GetBoxMonData(boxMon, MON_DATA_PERSONALITY);
+            sStorage->displayMonOtID = GetBoxMonData(boxMon, MON_DATA_OT_ID);
             sStorage->displayMonPalette = GetMonSpritePalFromSpeciesAndPersonality(sStorage->displayMonSpecies, otId, sStorage->displayMonPersonality);
             gender = GetGenderFromSpeciesAndPersonality(sStorage->displayMonSpecies, sStorage->displayMonPersonality);
             sStorage->displayMonItemId = GetBoxMonData(boxMon, MON_DATA_HELD_ITEM);
@@ -8060,7 +8063,7 @@ static void AddMenu(void)
     PrintMenuTable(sStorage->menuWindowId, sStorage->menuItemsCount, (void *)sStorage->menuItems);
     InitMenuInUpperLeftCornerNormal(sStorage->menuWindowId, sStorage->menuItemsCount, 0);
     ScheduleBgCopyTilemapToVram(0);
-    sStorage->menuUnusedField = 0;
+    // sStorage->menuUnusedField = 0;
 }
 
 // Called after AddMenu to determine whether or not the handler callback should
@@ -10137,7 +10140,7 @@ void UpdateSpeciesSpritePSS(struct BoxPokemon *boxMon)
     sStorage->displayMonPalette = GetMonSpritePalFromSpeciesAndPersonality(species, otId, pid);
     if (!sJustOpenedBag)
     {
-        LoadDisplayMonGfx(species, pid);
+        LoadDisplayMonGfx(species, pid, otId);
         StartDisplayMonMosaicEffect();
 
         // Recreate icon sprite

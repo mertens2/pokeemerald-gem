@@ -1,6 +1,7 @@
 #include "global.h"
 #include "event_data.h"
 #include "pokedex.h"
+#include "random.h"
 
 #define NUM_SPECIAL_FLAGS (SPECIAL_FLAGS_END - SPECIAL_FLAGS_START + 1)
 #define NUM_TEMP_FLAGS    (TEMP_FLAGS_END - TEMP_FLAGS_START + 1)
@@ -31,6 +32,9 @@ EWRAM_DATA u16 gSpecialVar_MonBoxId = 0;
 EWRAM_DATA u16 gSpecialVar_MonBoxPos = 0;
 EWRAM_DATA u16 gSpecialVar_Unused_0x8014 = 0;
 EWRAM_DATA static u8 sSpecialFlags[SPECIAL_FLAGS_SIZE] = {0};
+static bool8 IsBattleCafeTrainerAvailable(u32 trainerToday, const u32 trainerYesterday, const u32 allTrainersToday);
+
+
 
 extern u16 *const gSpecialVars[];
 
@@ -251,4 +255,36 @@ bool8 FlagGet(u16 id)
         return FALSE;
 
     return TRUE;
+}
+
+void RerollBattleCafeTrainers(void) {
+	// VAR_DAILY_CAFE_TRAINERS
+	u8 todaysTrainers[4];
+	u8 i;
+	u8 lastTrainer;
+	
+	
+	for (i=0; i<4; i++){
+		do {
+			lastTrainer = todaysTrainers[i];
+			todaysTrainers[i] = Random() % 15;
+			if (i!=0)
+				lastTrainer = todaysTrainers[i-1];
+		}while (todaysTrainers[i] != gSaveBlock2Ptr->cafeTrainers[i] && (todaysTrainers[i] != lastTrainer));
+	}
+	for (i=0; i<4; i++)
+		gSaveBlock2Ptr->cafeTrainers[i] = todaysTrainers[i];
+}
+
+static bool8 IsBattleCafeTrainerAvailable(u32 trainerToday, const u32 trainerYesterday, const u32 allTrainersToday) { // por hacer wip
+	// u8 i;
+	// for (i=0;i<4;i++)
+	// {
+		// if (allTrainersToday[i] == trainerToday && i != 0)
+			// return FALSE;
+		// if (trainerYesterday[i] == trainerToday)
+			// return FALSE;
+		
+	// }
+	return TRUE;
 }

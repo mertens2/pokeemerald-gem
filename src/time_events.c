@@ -3,6 +3,7 @@
 #include "event_data.h"
 #include "field_weather.h"
 #include "pokemon.h"
+#include "pokemon_storage_system.h"
 #include "random.h"
 #include "overworld.h"
 #include "rtc.h"
@@ -39,17 +40,43 @@ void UpdateMirageRnd(u16 days)
     SetMirageRnd(rnd);
 }
 
-bool8 IsMirageIslandPresent(void)
+bool32 IsMirageIslandPresent(void)
 {
-    u16 rnd = GetMirageRnd();
-    int i;
+    bool32 species;
+    u32 personality;
+    int i, j;
+    struct Pokemon *curMon = &gPlayerParty[0];
+    struct Pokemon *partyEnd = &gPlayerParty[PARTY_SIZE];
+	struct BoxPokemon *curBoxMon = &gPokemonStoragePtr->boxes[0][0];
+    struct BoxPokemon *boxMonEnd = &gPokemonStoragePtr->boxes[TOTAL_BOXES_COUNT][IN_BOX_COUNT];
+	u32 rnd = GetMirageRnd();
 
-    for (i = 0; i < PARTY_SIZE; i++)
-        if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES) && ((GetMonData(&gPlayerParty[i], MON_DATA_PERSONALITY) % 100) == rnd))
+    do
+    {
+        species = curMon->box.species;
+        if (!species) 
+            break;
+        personality = curMon->box.personality & 0xFFFF;
+        if ((personality >> 16) == rnd)
             return TRUE;
+		if (((personality << 16) >> 16) == rnd)
+            return TRUE;
+    } while (++curMon < partyEnd);
+
+    do {
+        species = curBoxMon->species;
+        if (species) {
+            personality = curBoxMon->personality & 0xffff;
+            if ((personality >> 16) == rnd)
+				return TRUE;
+			if (((personality << 16) >> 16) == rnd)
+				return TRUE;
+        }
+    } while (++curBoxMon < boxMonEnd);
 
     return FALSE;
 }
+
 
 void UpdateShoalTideFlag(void)
 {

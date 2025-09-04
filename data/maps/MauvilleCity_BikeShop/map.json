@@ -46,18 +46,20 @@
       "x": 3,
       "y": 8,
       "elevation": 0,
-      "dest_map": "MAP_MAUVILLE_CITY",
-      "dest_warp_id": "2"
+      "dest_map": "MAP_MAUVILLE_CITY_INSIDE",
+      "dest_warp_id": "9"
     },
     {
       "x": 4,
       "y": 8,
       "elevation": 0,
-      "dest_map": "MAP_MAUVILLE_CITY",
-      "dest_warp_id": "2"
+      "dest_map": "MAP_MAUVILLE_CITY_INSIDE",
+      "dest_warp_id": "9"
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+
+  ],
   "bg_events": [
     {
       "type": "sign",

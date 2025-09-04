@@ -1,4 +1,82 @@
 
+script Debug_Script_1 {
+	setflag (FLAG_SYS_POKEDEX_GET)
+    setflag (FLAG_SYS_POKEMON_GET)
+    setflag (FLAG_SYS_POKENAV_GET)
+	setflag (FLAG_MENU_DEXRELATED)
+	setflag (FLAG_SYS_DEXNAV_GET)
+	setflag (FLAG_SYS_QUEST_MENU_GET)
+	setflag (FLAG_ENABLED_PC)
+	if (!flag(FLAG_SHINY_CREATION)){
+		setflag(FLAG_SHINY_CREATION)
+	}
+	else {
+		clearflag(FLAG_SHINY_CREATION)
+	}
+	clearflag(FLAG_NO_SHINIES)
+	releaseall
+	end
+}
+
+script Debug_Script_GiveAllDecor {
+	lockall
+	msgbox(format("Dando decoraciones{TEXT_SPEED 2}.........."))
+	setvar(VAR_0x8004, 120)
+	while (var(VAR_0x8004) > 0) {
+		setflag(FLAG_TEMP_1)
+		givedecoration(VAR_0x8004)
+		subvar(VAR_0x8004, 1)
+	}
+	msgbox(format("¡{PLAY_SE SE_PIN}Listo! ¡Se han añadido todas las decoraciones!"))
+	closemessage
+	releaseall
+}
+
+script Debug_Script_5 {
+	lockall
+	givedecoration(DECOR_B_NOTE_MAT)
+	givedecoration(DECOR_B_NOTE_MAT)
+	givedecoration(DECOR_B_NOTE_MAT)
+	givedecoration(DECOR_B_NOTE_MAT)
+	givedecoration(DECOR_B_NOTE_MAT)
+	givedecoration(DECOR_B_NOTE_MAT)
+	givedecoration(DECOR_B_NOTE_MAT)
+	givedecoration(DECOR_A_NOTE_MAT)
+	givedecoration(DECOR_A_NOTE_MAT)
+	givedecoration(DECOR_A_NOTE_MAT)
+	givedecoration(DECOR_A_NOTE_MAT)
+	givedecoration(DECOR_A_NOTE_MAT)
+	givedecoration(DECOR_G_NOTE_MAT)
+	givedecoration(DECOR_F_NOTE_MAT)
+	givedecoration(DECOR_C_HIGH_NOTE_MAT)
+	givedecoration(DECOR_C_LOW_NOTE_MAT)
+	givedecoration(DECOR_B_NOTE_MAT)
+	givedecoration(DECOR_B_NOTE_MAT)
+	givedecoration(DECOR_B_NOTE_MAT)
+	givedecoration(DECOR_B_NOTE_MAT)
+	givedecoration(DECOR_B_NOTE_MAT)
+	givedecoration(DECOR_B_NOTE_MAT)
+	givedecoration(DECOR_B_NOTE_MAT)
+	givedecoration(DECOR_A_NOTE_MAT)
+	givedecoration(DECOR_A_NOTE_MAT)
+	givedecoration(DECOR_A_NOTE_MAT)
+	givedecoration(DECOR_A_NOTE_MAT)
+	givedecoration(DECOR_A_NOTE_MAT)
+	givedecoration(DECOR_G_NOTE_MAT)
+	givedecoration(DECOR_F_NOTE_MAT)
+	// FREEDOM MOTIF LMAO
+	 // DECOR_C_LOW_NOTE_MAT   51
+// #define DECOR_D_NOTE_MAT       52
+// #define DECOR_E_NOTE_MAT       53
+// #define DECOR_F_NOTE_MAT       54
+// #define DECOR_G_NOTE_MAT       55
+// #define DECOR_A_NOTE_MAT       56
+// #define DECOR_B_NOTE_MAT       57
+// #define DECOR_C_HIGH_NOTE_MAT  58
+	closemessage
+	releaseall
+}
+
 script Debug_Script_3 {
 	lockall
 	msgbox(format("Cambiarás tu apariencia. Elige color de piel"))
@@ -97,16 +175,7 @@ Debug_CheatStart::
 	release
 	end
 
-Debug_Script_1::
-	setflag FLAG_SYS_POKEDEX_GET
-    setflag FLAG_SYS_POKEMON_GET
-    setflag FLAG_SYS_POKENAV_GET
-	setflag FLAG_MENU_DEXRELATED
-	setflag FLAG_SYS_DEXNAV_GET
-	setflag FLAG_SYS_QUEST_MENU_GET
-	setflag FLAG_ENABLED_PC
-	releaseall
-	end
+
 
 Debug_Script_2::
 	givemon SPECIES_UNOWN, 20, ITEM_NONE
@@ -145,11 +214,6 @@ Debug_Script_2B::
 	clearflag FLAG_SHINY_CREATION
 	end
 
-Debug_Script_4::
-	end
-
-Debug_Script_5::
-	end
 
 Debug_Script_6::
 	end

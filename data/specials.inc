@@ -569,3 +569,7 @@ gSpecials::
 	def_special DoesMonMatch
 	def_special SetCustomization
 	def_special DisplayPokedokuList
+	def_special DoPoisonEffect
+	def_special SetCafeTrainersToday
+	def_special GetCafeTrainersBattleText
+	def_special GetCafeTrainersAfterBattleData

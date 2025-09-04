@@ -164,6 +164,10 @@
 #define MAP_MAUVILLE_CITY_POKEMON_CENTER_2F (6 | (10 << 8))
 #define MAP_MAUVILLE_CITY_MART              (7 | (10 << 8))
 #define MAP_MAUVILLE_CITY_F1                (8 | (10 << 8))
+#define MAP_MAUVILLE_CITY_INSIDE            (9 | (10 << 8))
+#define MAP_MAUVILLE_CITY_INVERSE_BATTLE    (10 | (10 << 8))
+#define MAP_MAUVILLE_CITY_BATTLE_CAFE       (11 | (10 << 8))
+#define MAP_MAUVILLE_CITY_MIDDLE            (12 | (10 << 8))
 
 // gMapGroup_IndoorRustboro
 #define MAP_RUSTBORO_CITY_DEVON_CORP_1F     (0 | (11 << 8))
@@ -611,6 +615,6 @@
 
 #define MAP_GROUPS_COUNT 34
 
-// static const u8 MAP_GROUP_COUNT[] = {60, 6, 5, 6, 7, 8, 9, 7, 7, 14, 9, 17, 10, 23, 14, 15, 15, 3, 2, 2, 3, 1, 1, 2, 116, 61, 91, 2, 1, 13, 1, 1, 3, 1, 0};
+// static const u8 MAP_GROUP_COUNT[] = {60, 6, 5, 6, 7, 8, 9, 7, 7, 14, 13, 17, 10, 23, 14, 15, 15, 3, 2, 2, 3, 1, 1, 2, 116, 61, 91, 2, 1, 13, 1, 1, 3, 1, 0};
 
 #endif // GUARD_CONSTANTS_MAP_GROUPS_H

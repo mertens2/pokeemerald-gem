@@ -3,7 +3,10 @@
         "specialvar": {
             "var_name_arg_position": 0
         },
-        "getpartysize": {
+		"getpartysize": {
+            "var_name": "VAR_RESULT"
+        },
+        "setgetobjectflags": {
             "var_name": "VAR_RESULT"
         },
         "additem": {

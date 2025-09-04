@@ -2,7 +2,7 @@
   "id": "MAP_MAUVILLE_CITY_F1",
   "name": "MauvilleCity_F1",
   "layout": "LAYOUT_MAUVILLE_CITY_F1",
-  "music": "MUS_DEWFORD",
+  "music": "MUS_RUSTBORO",
   "region_map_section": "MAPSEC_MAUVILLE_CITY",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -42,8 +42,15 @@
       "x": 16,
       "y": 22,
       "elevation": 0,
-      "dest_map": "MAP_MAUVILLE_CITY",
-      "dest_warp_id": "4"
+      "dest_map": "MAP_MAUVILLE_CITY_INSIDE",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 16,
+      "y": 3,
+      "elevation": 0,
+      "dest_map": "MAP_MAUVILLE_CITY_F1",
+      "dest_warp_id": "1"
     }
   ],
   "coord_events": [

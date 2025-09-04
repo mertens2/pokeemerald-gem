@@ -414,10 +414,10 @@ const u8 gInitialMovementTypeFacingDirections[] = {
 #define OBJ_EVENT_PAL_TAG_NPC_2                   0x1104
 #define OBJ_EVENT_PAL_TAG_NPC_3                   0x1105
 #define OBJ_EVENT_PAL_TAG_NPC_4                   0x1106
-#define OBJ_EVENT_PAL_TAG_NPC_1_REFLECTION        0x1107
-#define OBJ_EVENT_PAL_TAG_NPC_2_REFLECTION        0x1108
-#define OBJ_EVENT_PAL_TAG_NPC_3_REFLECTION        0x1109
-#define OBJ_EVENT_PAL_TAG_NPC_4_REFLECTION        0x110A
+#define OBJ_EVENT_PAL_TAG_NPC_5        			  0x1107
+#define OBJ_EVENT_PAL_TAG_NPC_6        			  0x1108
+#define OBJ_EVENT_PAL_TAG_NPC_7        			  0x1109
+#define OBJ_EVENT_PAL_TAG_NPC_8        			  0x110A
 #define OBJ_EVENT_PAL_TAG_QUINTY_PLUMP            0x110B
 #define OBJ_EVENT_PAL_TAG_QUINTY_PLUMP_REFLECTION 0x110C
 #define OBJ_EVENT_PAL_TAG_TRUCK                   0x110D
@@ -468,10 +468,10 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_Npc2,                  OBJ_EVENT_PAL_TAG_NPC_2},
     {gObjectEventPal_Npc3,                  OBJ_EVENT_PAL_TAG_NPC_3},
     {gObjectEventPal_Npc4,                  OBJ_EVENT_PAL_TAG_NPC_4},
-    {gObjectEventPal_Npc1Reflection,        OBJ_EVENT_PAL_TAG_NPC_1_REFLECTION},
-    {gObjectEventPal_Npc2Reflection,        OBJ_EVENT_PAL_TAG_NPC_2_REFLECTION},
-    {gObjectEventPal_Npc3Reflection,        OBJ_EVENT_PAL_TAG_NPC_3_REFLECTION},
-    {gObjectEventPal_Npc4Reflection,        OBJ_EVENT_PAL_TAG_NPC_4_REFLECTION},
+    {gObjectEventPal_Npc5,        			OBJ_EVENT_PAL_TAG_NPC_5},
+    {gObjectEventPal_Npc6,        			OBJ_EVENT_PAL_TAG_NPC_6},
+    {gObjectEventPal_Npc7,        			OBJ_EVENT_PAL_TAG_NPC_7},
+    {gObjectEventPal_Npc8,        			OBJ_EVENT_PAL_TAG_NPC_8},
 	#if COLORSKINBRENDAN <= WHITESKIN
 		{gObjectEventPal_Brendan,               OBJ_EVENT_PAL_TAG_BRENDAN},
 	#endif
@@ -7976,7 +7976,32 @@ u8 GetLedgeJumpDirection(s16 x, s16 y, u8 direction)
     behavior = MapGridGetMetatileBehaviorAt(x, y);
 
     if (ledgeBehaviorFuncs[index](behavior) == TRUE)
-        return index + 1;
+	{
+        s16 x2 = x;
+        s16 y2 = y;
+        u8 collision;
+        switch(direction)
+        {
+            case DIR_SOUTH:
+                y2 += 1;
+                break;
+            case DIR_NORTH:
+                y2 -= 1;
+                break;
+            case DIR_WEST:
+                x2 -= 1;
+                break;
+            case DIR_EAST:
+                x2 += 1;
+                break;
+        }
+        collision = GetCollisionAtCoords(&gObjectEvents[gPlayerAvatar.objectEventId], x2, y2, direction);
+
+        if (collision == COLLISION_NONE)
+        {
+            return index + 1;
+        }
+    }
 
     return DIR_NONE;
 }

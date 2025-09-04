@@ -77,12 +77,12 @@ void DecompressPicFromTableGender(void* buffer, s32 species, u32 personality)
         DecompressPicFromTable(&gMonFrontPicTable[species], buffer, species);
 }
 
-void HandleLoadSpecialPokePic(bool32 isFrontPic, void *dest, s32 species, u32 personality)
+void HandleLoadSpecialPokePic(bool32 isFrontPic, void *dest, s32 species, u32 personality, u32 otId)
 {
-    LoadSpecialPokePic(dest, species, personality, isFrontPic);
+    LoadSpecialPokePic(dest, species, personality, isFrontPic, otId);
 }
 
-void LoadSpecialPokePic(void *dest, s32 species, u32 personality, bool8 isFrontPic)
+void LoadSpecialPokePic(void *dest, s32 species, u32 personality, bool8 isFrontPic, u32 otId)
 {
     if (species == SPECIES_UNOWN)
     {
@@ -102,17 +102,33 @@ void LoadSpecialPokePic(void *dest, s32 species, u32 personality, bool8 isFrontP
     }
     else if (ShouldShowFemaleDifferences(species, personality))
     {
-        if (isFrontPic)
-            LZ77UnCompWram(gMonFrontPicTableFemale[species].data, dest);
-        else
-            LZ77UnCompWram(gMonBackPicTableFemale[species].data, dest);
+		if (IsShinyOtIdPersonality(otId, personality) && gBaseStats[species].flags & FLAG_HAS_SHINY_SPRITE) {
+			if (isFrontPic)
+				LZ77UnCompWram(gMonFrontPicTableFemaleShiny[species].data, dest);
+			else
+				LZ77UnCompWram(gMonBackPicTableFemaleShiny[species].data, dest);
+		}
+		else {
+			if (isFrontPic)
+				LZ77UnCompWram(gMonFrontPicTableFemale[species].data, dest);
+			else
+				LZ77UnCompWram(gMonBackPicTableFemaleShiny[species].data, dest);
+		}
     }
     else
     {
-        if (isFrontPic)
-            LZ77UnCompWram(gMonFrontPicTable[species].data, dest);
-        else
-            LZ77UnCompWram(gMonBackPicTable[species].data, dest);
+		if (IsShinyOtIdPersonality(otId, personality) && gBaseStats[species].flags & FLAG_HAS_SHINY_SPRITE) {
+			if (isFrontPic)
+				LZ77UnCompWram(gMonFrontPicTableShiny[species].data, dest);
+			else
+				LZ77UnCompWram(gMonBackPicTableShiny[species].data, dest);
+		}
+		else {
+			if (isFrontPic)
+				LZ77UnCompWram(gMonFrontPicTable[species].data, dest);
+			else
+				LZ77UnCompWram(gMonBackPicTable[species].data, dest);
+		}
     }
 
     DrawSpindaSpots(species, personality, dest, isFrontPic);

@@ -261,7 +261,7 @@
 #define VAR_CUSTOMIZATION_HIGHLIGHT_1        0x40F2 
 #define VAR_CUSTOMIZATION_HIGHLIGHT_2        0x40F3 
 #define VAR_GIFT_UNUSED_7                    0x40F4 
-#define VAR_UNUSED_0x40E5                    0x40F5
+#define VAR_DAILY_CAFE_TRAINERS              0x40F5
 #define VAR_DAILY_SLOTS                      0x40F6
 #define VAR_DAILY_WILDS                      0x40F7
 #define VAR_DAILY_BLENDER                    0x40F8

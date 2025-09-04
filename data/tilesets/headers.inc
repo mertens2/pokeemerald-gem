@@ -940,3 +940,47 @@ gTileset_FallarborNew::
 	.4byte gMetatiles_FallarborNew
 	.4byte gMetatileAttributes_FallarborNew
 	.4byte NULL @ animation callback
+
+	.align 2
+gTileset_NatureBeach::
+	.byte TRUE @ is compressed
+	.byte FALSE @ is secondary
+	.2byte 0 @ padding
+	.4byte gTilesetTiles_NatureBeach
+	.4byte gTilesetPalettes_NatureBeach
+	.4byte gMetatiles_NatureBeach
+	.4byte gMetatileAttributes_NatureBeach
+	.4byte NULL @ animation callback
+
+	.align 2
+gTileset_FallarborNew2::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0 @ padding
+	.4byte gTilesetTiles_FallarborNew2
+	.4byte gTilesetPalettes_FallarborNew2
+	.4byte gMetatiles_FallarborNew2
+	.4byte gMetatileAttributes_FallarborNew2
+	.4byte NULL @ animation callback
+
+	.align 2
+gTileset_MauvilleInside::
+	.byte TRUE @ is compressed
+	.byte FALSE @ is secondary
+	.2byte 0 @ padding
+	.4byte gTilesetTiles_MauvilleInside
+	.4byte gTilesetPalettes_MauvilleInside
+	.4byte gMetatiles_MauvilleInside
+	.4byte gMetatileAttributes_MauvilleInside
+	.4byte NULL @ animation callback
+
+	.align 2
+gTileset_MauvilleDecor::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0 @ padding
+	.4byte gTilesetTiles_MauvilleDecor
+	.4byte gTilesetPalettes_MauvilleDecor
+	.4byte gMetatiles_MauvilleDecor
+	.4byte gMetatileAttributes_MauvilleDecor
+	.4byte NULL @ animation callback

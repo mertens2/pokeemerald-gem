@@ -46,13 +46,13 @@
 
 static EWRAM_DATA u8 sWildEncounterImmunitySteps = 0;
 static EWRAM_DATA u16 sPreviousPlayerMetatileBehavior = 0;
-// static EWRAM_DATA u8 sCurrentDirection = 0;
-// static EWRAM_DATA u8 sPreviousDirection = 0;
+static EWRAM_DATA u8 sCurrentDirection = 0;
+static EWRAM_DATA u8 sPreviousDirection = 0;
 
 u8 gSelectedObjectEvent;
 
-// static void SetDirectionFromHeldKeys(u16 heldKeys);
-// static u8 GetDirectionFromBitfield(u8 bitfield);
+static void SetDirectionFromHeldKeys(u16 heldKeys);
+static u8 GetDirectionFromBitfield(u8 bitfield);
 
 #define SIGNPOST_POKECENTER     0
 #define SIGNPOST_POKEMART       1
@@ -93,6 +93,7 @@ static bool8 TrySetUpWalkIntoSignpostScript(struct MapPosition * position, u16 m
 static void SetUpWalkIntoSignScript(const u8 *script, u8 playerDirection);
 static u8 GetFacingSignpostType(u16 metatileBehvaior, u8 direction);
 static const u8 *GetSignpostScriptAtMapPosition(struct MapPosition * position);
+static bool8 IsMetatileBehaviorMeltableIce(u8 metatileBehavior);
 
 
 void FieldClearPlayerInput(struct FieldInput *input)
@@ -113,55 +114,55 @@ void FieldClearPlayerInput(struct FieldInput *input)
 	input->pressedListButton = FALSE;
 }
 
-// static u8 GetDirectionFromBitfield(u8 bitfield)
-// {
-    // u8 direction = 0;
-    // while (bitfield >>= 1) direction++;
-    // return direction;
-// }
+static u8 GetDirectionFromBitfield(u8 bitfield)
+{
+    u8 direction = 0;
+    while (bitfield >>= 1) direction++;
+    return direction;
+}
 
-// static void SetDirectionFromHeldKeys(u16 heldKeys)
-// {
-    // u8 dpadDirections = 0;
+static void SetDirectionFromHeldKeys(u16 heldKeys)
+{
+    u8 dpadDirections = 0;
 
-    // if (heldKeys & DPAD_UP)
-        // dpadDirections |= (1 << DIR_NORTH);
-    // if (heldKeys & DPAD_DOWN)
-        // dpadDirections |= (1 << DIR_SOUTH);
-    // if (heldKeys & DPAD_LEFT)
-        // dpadDirections |= (1 << DIR_WEST);
-    // if (heldKeys & DPAD_RIGHT)
-        // dpadDirections |= (1 << DIR_EAST);
+    if (heldKeys & DPAD_UP)
+        dpadDirections |= (1 << DIR_NORTH);
+    if (heldKeys & DPAD_DOWN)
+        dpadDirections |= (1 << DIR_SOUTH);
+    if (heldKeys & DPAD_LEFT)
+        dpadDirections |= (1 << DIR_WEST);
+    if (heldKeys & DPAD_RIGHT)
+        dpadDirections |= (1 << DIR_EAST);
 
-    // if (dpadDirections == 0) // no dir is pushed
-    // {
-        // sCurrentDirection = DIR_NONE;
-        // sPreviousDirection = DIR_NONE;
-        // return;
-    // }
+    if (dpadDirections == 0) // no dir is pushed
+    {
+        sCurrentDirection = DIR_NONE;
+        sPreviousDirection = DIR_NONE;
+        return;
+    }
 
-    // if ((dpadDirections & (dpadDirections - 1)) == 0) // only 1 dir is pushed
-    // {
-        // // simply set currDir to that dir
-        // sCurrentDirection = GetDirectionFromBitfield(dpadDirections);
-        // sPreviousDirection = DIR_NONE;
-        // return;
-    // }
+    if ((dpadDirections & (dpadDirections - 1)) == 0) // only 1 dir is pushed
+    {
+        // simply set currDir to that dir
+        sCurrentDirection = GetDirectionFromBitfield(dpadDirections);
+        sPreviousDirection = DIR_NONE;
+        return;
+    }
 
-    // if (((dpadDirections >> sCurrentDirection) & 1) == 0) // none of the multiple dirs pushed is currDir
-    // {
-        // sCurrentDirection = DIR_NONE;
-        // sPreviousDirection = DIR_NONE;
-    // }
-    // else if ((sPreviousDirection == DIR_NONE) || (((dpadDirections >> sPreviousDirection) & 1) == 0))
-    // {
-        // // turn
-        // sCurrentDirection = GetDirectionFromBitfield(dpadDirections & ~(1 << sCurrentDirection));
-        // sPreviousDirection = sCurrentDirection;
-    // }
-    // // else, currDir and prevDir are the dirs pushed
-    // // do nothing (keep the same currDir and prevDir)
-// }
+    if (((dpadDirections >> sCurrentDirection) & 1) == 0) // none of the multiple dirs pushed is currDir
+    {
+        sCurrentDirection = DIR_NONE;
+        sPreviousDirection = DIR_NONE;
+    }
+    else if ((sPreviousDirection == DIR_NONE) || (((dpadDirections >> sPreviousDirection) & 1) == 0))
+    {
+        // turn
+        sCurrentDirection = GetDirectionFromBitfield(dpadDirections & ~(1 << sCurrentDirection));
+        sPreviousDirection = sCurrentDirection;
+    }
+    // else, currDir and prevDir are the dirs pushed
+    // do nothing (keep the same currDir and prevDir)
+}
 
 void FieldGetPlayerInput(struct FieldInput *input, u16 newKeys, u16 heldKeys)
 {
@@ -206,16 +207,16 @@ void FieldGetPlayerInput(struct FieldInput *input, u16 newKeys, u16 heldKeys)
             input->checkStandardWildEncounter = TRUE;
     }
 
-    if (heldKeys & DPAD_UP)
-        input->dpadDirection = DIR_NORTH;
-    else if (heldKeys & DPAD_DOWN)
-        input->dpadDirection = DIR_SOUTH;
-    else if (heldKeys & DPAD_LEFT)
-        input->dpadDirection = DIR_WEST;
-    else if (heldKeys & DPAD_RIGHT)
-        input->dpadDirection = DIR_EAST;
-	// SetDirectionFromHeldKeys(heldKeys);
-    // input->dpadDirection = sCurrentDirection;
+    // if (heldKeys & DPAD_UP)
+        // input->dpadDirection = DIR_NORTH;
+    // else if (heldKeys & DPAD_DOWN)
+        // input->dpadDirection = DIR_SOUTH;
+    // else if (heldKeys & DPAD_LEFT)
+        // input->dpadDirection = DIR_WEST;
+    // else if (heldKeys & DPAD_RIGHT)
+        // input->dpadDirection = DIR_EAST;
+	SetDirectionFromHeldKeys(heldKeys);
+    input->dpadDirection = sCurrentDirection;
 	
 	#if TX_DEBUG_SYSTEM_ENABLE == TRUE && TX_DEBUG_SYSTEM_IN_MENU == FALSE
     if ((heldKeys & TX_DEBUG_SYSTEM_HELD_KEYS) && input->TX_DEBUG_SYSTEM_TRIGGER_EVENT)
@@ -226,6 +227,12 @@ void FieldGetPlayerInput(struct FieldInput *input, u16 newKeys, u16 heldKeys)
 #endif
 }
 
+static bool8 IsMetatileBehaviorMeltableIce(u8 metatileBehavior) {
+	if ((MetatileBehavior_IsIce(metatileBehavior)) || (MetatileBehavior_IsIce_2(metatileBehavior)))
+		return TRUE;
+	return FALSE;
+}
+
 int ProcessPlayerFieldInput(struct FieldInput *input)
 {
     struct MapPosition position;
@@ -234,6 +241,7 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
 	s8 x1;
 	s8 y1;
 	u8 objectEventId;
+	s8 i;
 
     gSpecialVar_LastTalked = 0;
     gSelectedObjectEvent = 0;
@@ -266,8 +274,8 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
          {
             GetInFrontOfPlayerPosition(&position);
             metatileBehavior = MapGridGetMetatileBehaviorAt(position.x, position.y);
-            if (TrySetUpWalkIntoSignpostScript(&position, metatileBehavior, playerDirection) == TRUE)
-                 return TRUE;
+            // if (TrySetUpWalkIntoSignpostScript(&position, metatileBehavior, playerDirection) == TRUE)
+                 // return TRUE;
              GetPlayerPosition(&position);
              metatileBehavior = MapGridGetMetatileBehaviorAt(position.x, position.y);
         }
@@ -285,11 +293,11 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
     metatileBehavior = MapGridGetMetatileBehaviorAt(position.x, position.y);
 	objectEventId = GetObjectEventIdByXY(position.x, position.y);
     
-    if (input->heldDirection && input->dpadDirection == playerDirection)
-    {
-        if (TrySetUpWalkIntoSignpostScript(&position, metatileBehavior, playerDirection) == TRUE)
-            return TRUE;
-    }
+    // if (input->heldDirection && input->dpadDirection == playerDirection)
+    // {
+        // if (TrySetUpWalkIntoSignpostScript(&position, metatileBehavior, playerDirection) == TRUE)
+            // return TRUE;
+    // }
     
     if (input->pressedAButton && TryStartInteractionScript(&position, metatileBehavior, playerDirection) == TRUE)
         return TRUE;
@@ -339,60 +347,25 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
 				ScriptContext_SetupScript(EventScript_ActuallyOpenRegidragoDoor);
 		}
 		else {
-			if (MetatileBehavior_IsIce(metatileBehavior))
+			i = 0;
+			if (IsMetatileBehaviorMeltableIce(metatileBehavior))
 				MapGridSetMetatileIdAt(x1, y1, METATILE_Cave_IceCaveFloor);
-			if (MetatileBehavior_IsIce(MapGridGetMetatileBehaviorAt(x1 + 1, y1)))
-				MapGridSetMetatileIdAt(x1 + 1, y1, METATILE_Cave_IceCaveFloor);
-			if (MetatileBehavior_IsIce(MapGridGetMetatileBehaviorAt(x1 - 1, y1)))
-				MapGridSetMetatileIdAt(x1 - 1, y1, METATILE_Cave_IceCaveFloor);
-			if (MetatileBehavior_IsIce(MapGridGetMetatileBehaviorAt(x1, y1 + 1)))
-				MapGridSetMetatileIdAt(x1, y1 + 1, METATILE_Cave_IceCaveFloor);
-			if (MetatileBehavior_IsIce(MapGridGetMetatileBehaviorAt(x1, y1 - 1)))
-				MapGridSetMetatileIdAt(x1, y1 - 1, METATILE_Cave_IceCaveFloor);
-			if (MetatileBehavior_IsIce(MapGridGetMetatileBehaviorAt(x1 + 1, y1 + 1)))
-				MapGridSetMetatileIdAt(x1 + 1, y1 + 1, METATILE_Cave_IceCaveFloor);
-			if (MetatileBehavior_IsIce(MapGridGetMetatileBehaviorAt(x1 + 1, y1 - 1)))
-				MapGridSetMetatileIdAt(x1 + 1, y1 - 1, METATILE_Cave_IceCaveFloor);
-			if (MetatileBehavior_IsIce(MapGridGetMetatileBehaviorAt(x1 - 1, y1 + 1)))
-				MapGridSetMetatileIdAt(x1 - 1, y1 + 1, METATILE_Cave_IceCaveFloor);
-			if (MetatileBehavior_IsIce(MapGridGetMetatileBehaviorAt(x1 - 1, y1 - 1)))
-				MapGridSetMetatileIdAt(x1 - 1, y1 - 1, METATILE_Cave_IceCaveFloor);
-			if (MetatileBehavior_IsIce_2(metatileBehavior))
-				MapGridSetMetatileIdAt(x1, y1, METATILE_Cave_IceCaveFloor);
-			if (MetatileBehavior_IsIce_2(MapGridGetMetatileBehaviorAt(x1 + 1, y1)))
-				MapGridSetMetatileIdAt(x1 + 1, y1, METATILE_Cave_IceCaveFloor);
-			if (MetatileBehavior_IsIce_2(MapGridGetMetatileBehaviorAt(x1 - 1, y1)))
-				MapGridSetMetatileIdAt(x1 - 1, y1, METATILE_Cave_IceCaveFloor);
-			if (MetatileBehavior_IsIce_2(MapGridGetMetatileBehaviorAt(x1, y1 + 1)))
-				MapGridSetMetatileIdAt(x1, y1 + 1, METATILE_Cave_IceCaveFloor);
-			if (MetatileBehavior_IsIce_2(MapGridGetMetatileBehaviorAt(x1, y1 - 1)))
-				MapGridSetMetatileIdAt(x1, y1 - 1, METATILE_Cave_IceCaveFloor);
-			if (MetatileBehavior_IsIce_2(MapGridGetMetatileBehaviorAt(x1 + 1, y1 + 1)))
-				MapGridSetMetatileIdAt(x1 + 1, y1 + 1, METATILE_Cave_IceCaveFloor);
-			if (MetatileBehavior_IsIce_2(MapGridGetMetatileBehaviorAt(x1 + 1, y1 - 1)))
-				MapGridSetMetatileIdAt(x1 + 1, y1 - 1, METATILE_Cave_IceCaveFloor);
-			if (MetatileBehavior_IsIce_2(MapGridGetMetatileBehaviorAt(x1 - 1, y1 + 1)))
-				MapGridSetMetatileIdAt(x1 - 1, y1 + 1, METATILE_Cave_IceCaveFloor);
-			if (MetatileBehavior_IsIce_2(MapGridGetMetatileBehaviorAt(x1 - 1, y1 - 1)))
-				MapGridSetMetatileIdAt(x1 - 1, y1 - 1, METATILE_Cave_IceCaveFloor);
-			if (MetatileBehavior_IsIce_3(metatileBehavior))
-				MapGridSetMetatileIdAt(x1, y1, METATILE_Cave_SwitchIceNotPressed);
-			if (MetatileBehavior_IsIce_3(MapGridGetMetatileBehaviorAt(x1 + 1, y1)))
-				MapGridSetMetatileIdAt(x1 + 1, y1, METATILE_Cave_SwitchIceNotPressed);
-			if (MetatileBehavior_IsIce_3(MapGridGetMetatileBehaviorAt(x1 - 1, y1)))
-				MapGridSetMetatileIdAt(x1 - 1, y1, METATILE_Cave_SwitchIceNotPressed);
-			if (MetatileBehavior_IsIce_3(MapGridGetMetatileBehaviorAt(x1, y1 + 1)))
-				MapGridSetMetatileIdAt(x1, y1 + 1, METATILE_Cave_SwitchIceNotPressed);
-			if (MetatileBehavior_IsIce_3(MapGridGetMetatileBehaviorAt(x1, y1 - 1)))
-				MapGridSetMetatileIdAt(x1, y1 - 1, METATILE_Cave_SwitchIceNotPressed);
-			if (MetatileBehavior_IsIce_3(MapGridGetMetatileBehaviorAt(x1 + 1, y1 + 1)))
-				MapGridSetMetatileIdAt(x1 + 1, y1 + 1, METATILE_Cave_SwitchIceNotPressed);
-			if (MetatileBehavior_IsIce_3(MapGridGetMetatileBehaviorAt(x1 + 1, y1 - 1)))
-				MapGridSetMetatileIdAt(x1 + 1, y1 - 1, METATILE_Cave_SwitchIceNotPressed);
-			if (MetatileBehavior_IsIce_3(MapGridGetMetatileBehaviorAt(x1 - 1, y1 + 1)))
-				MapGridSetMetatileIdAt(x1 - 1, y1 + 1, METATILE_Cave_SwitchIceNotPressed);
-			if (MetatileBehavior_IsIce_3(MapGridGetMetatileBehaviorAt(x1 - 1, y1 - 1)))
-				MapGridSetMetatileIdAt(x1 - 1, y1 - 1, METATILE_Cave_SwitchIceNotPressed);
+			for (i=-1;i<2;i++){
+				if (i != 0){
+					if (IsMetatileBehaviorMeltableIce(MapGridGetMetatileBehaviorAt(x1 + i, y1)))
+						MapGridSetMetatileIdAt(x1 + i, y1, METATILE_Cave_IceCaveFloor);
+					if (IsMetatileBehaviorMeltableIce(MapGridGetMetatileBehaviorAt(x1 + i, y1 + i)))
+						MapGridSetMetatileIdAt(x1 + i, y1 + i, METATILE_Cave_IceCaveFloor);
+					if (IsMetatileBehaviorMeltableIce(MapGridGetMetatileBehaviorAt(x1, y1 + i)))
+						MapGridSetMetatileIdAt(x1, y1 + i, METATILE_Cave_IceCaveFloor);
+					if (MetatileBehavior_IsIce_3(MapGridGetMetatileBehaviorAt(x1 + i, y1)))
+						MapGridSetMetatileIdAt(x1 + i, y1, METATILE_Cave_SwitchIceNotPressed);
+					if (MetatileBehavior_IsIce_3(MapGridGetMetatileBehaviorAt(x1 + i, y1 + i)))
+						MapGridSetMetatileIdAt(x1 + i, y1 + i, METATILE_Cave_SwitchIceNotPressed);
+					if (MetatileBehavior_IsIce_3(MapGridGetMetatileBehaviorAt(x1, y1 + i)))
+						MapGridSetMetatileIdAt(x1, y1 + i, METATILE_Cave_SwitchIceNotPressed);
+				}
+			}
 			DrawWholeMapView();
 		}
 	}

@@ -67,6 +67,7 @@
 #include "constants/battle_frontier.h"
 #include "constants/weather.h"
 #include "constants/metatile_labels.h"
+#include "constants/opponents.h"
 #include "palette.h"
 #include "pokedex.h"
 #include "item.h"
@@ -139,6 +140,221 @@ static void SetInitialFansOfPlayer(void);
 static u16 PlayerGainRandomTrainerFan(void);
 static void BufferFanClubTrainerName_(struct LinkBattleRecords *, u8, u8);
 extern struct Evolution gEvolutionTable[][EVOS_PER_MON];
+
+enum {
+	CAFE_TRAINER_HIKER = 0,
+	CAFE_TRAINER_ACE_TRAINER_1,
+	CAFE_TRAINER_ACE_TRAINER_2,
+	CAFE_TRAINER_EV_TRAIN_MEN,
+	CAFE_TRAINER_WIVES,
+	CAFE_TRAINER_TV,
+	CAFE_TRAINER_RIVAL,
+	CAFE_TRAINER_WALLY_SISTER,
+	CAFE_TRAINER_POLY_1,
+	CAFE_TRAINER_POLY_2,
+	CAFE_TRAINER_OLD_LADY,
+	CAFE_TRAINER_OLD_MAN,
+	CAFE_TRAINER_BEAUTY,
+	CAFE_TRAINER_PARASOL_LADY,
+	CAFE_TRAINER_LASS,
+	CAFE_TRAINER_ROXANNE,
+	CAFE_TRAINER_BRAWLY,
+	CAFE_TRAINER_WATTSON,
+	CAFE_TRAINER_FLANNERY,
+	CAFE_TRAINER_NORMAN,
+	CAFE_TRAINER_TATE_LIZA,
+	CAFE_TRAINER_JUAN,
+	CAFE_TRAINER_SIDNEY,
+	CAFE_TRAINER_PHOEBE,
+	CAFE_TRAINER_GLACIA,
+	CAFE_TRAINER_DRAKE,
+	CAFE_TRAINER_WALLACE,
+	CAFE_TRAINER_BIRCH,
+	CAFE_TRAINER_WALLY,
+	CAFE_TRAINER_EVIL_TEAM_LEADERS,
+	CAFE_TRAINER_EVIL_TEAM_ADMINS_M,
+	CAFE_TRAINER_EVIL_TEAM_ADMINS_F,
+};
+
+
+#define BATTLE_CAFE_SPECIAL_TRAINERS_START CAFE_TRAINER_ROXANNE
+#define CAFE_TRAINER_COUNT CAFE_TRAINER_EVIL_TEAM_ADMINS_F
+
+struct CafeTrainer {
+	u16 graphicsId;
+	u16 trainerPartyId;
+	const u8 *introText;
+	const u8 *lossText;
+	const u8 *afterBattleText;
+	u16 itemToGiveId;
+	const u8 *afterGiveItemText;
+};
+
+
+const struct CafeTrainer sCafeTrainers[BATTLE_CAFE_SPECIAL_TRAINERS_START + 1] =
+{
+	[CAFE_TRAINER_HIKER] = {
+		.graphicsId = OBJ_EVENT_GFX_HIKER,
+		.trainerPartyId = TRAINER_DUSTY_1,
+		.introText = COMPOUND_STRING("¡Ah! ¡Luchemos!"),
+		.lossText = COMPOUND_STRING("¡Ah! ¡Perdí!"),
+		.afterBattleText = COMPOUND_STRING("¡Ten esto!"),
+		.afterGiveItemText = COMPOUND_STRING("¡Eres fuerte!"),
+		.itemToGiveId = ITEM_POKE_BALL,
+		
+	},
+	[CAFE_TRAINER_ACE_TRAINER_1] = {
+		.graphicsId = OBJ_EVENT_GFX_MAN_3,
+		.trainerPartyId = TRAINER_DUSTY_1,
+		.introText = COMPOUND_STRING("¡Ah! ¡Luchemos!"),
+		.lossText = COMPOUND_STRING("¡Ah! ¡Perdí!"),
+		.afterBattleText = COMPOUND_STRING("¡Ten esto!"),
+		.afterGiveItemText = COMPOUND_STRING("¡Eres fuerte!"),
+		.itemToGiveId = ITEM_NONE,
+		
+	}, 
+	[CAFE_TRAINER_ACE_TRAINER_2] = {
+		.graphicsId = OBJ_EVENT_GFX_WOMAN_3,
+		.trainerPartyId = TRAINER_DUSTY_1,
+		.introText = COMPOUND_STRING("¡Ah! ¡Luchemos!"),
+		.lossText = COMPOUND_STRING("¡Ah! ¡Perdí!"),
+		.afterBattleText = COMPOUND_STRING("¡Ten esto!"),
+		.afterGiveItemText = COMPOUND_STRING("¡Eres fuerte!"),
+		.itemToGiveId = ITEM_NONE,
+		
+	},
+	[CAFE_TRAINER_EV_TRAIN_MEN]  =  {
+		.graphicsId = OBJ_EVENT_GFX_BLACK_BELT,
+		.trainerPartyId = TRAINER_DUSTY_1,
+		.introText = COMPOUND_STRING("¡Ah! ¡Luchemos!"),
+		.lossText = COMPOUND_STRING("¡Ah! ¡Perdí!"),
+		.afterBattleText = COMPOUND_STRING("¡Ten esto!"),
+		.afterGiveItemText = COMPOUND_STRING("¡Eres fuerte!"),
+		.itemToGiveId = ITEM_PROTEIN,
+		
+	},
+	[CAFE_TRAINER_WIVES]         =  {
+		.graphicsId = OBJ_EVENT_GFX_WOMAN_1,
+		.trainerPartyId = TRAINER_DUSTY_1,
+		.introText = COMPOUND_STRING("¡Ah! ¡Luchemos!"),
+		.lossText = COMPOUND_STRING("¡Ah! ¡Perdí!"),
+		.afterBattleText = COMPOUND_STRING("¡Ten esto!"),
+		.afterGiveItemText = COMPOUND_STRING("¡Eres fuerte!"),
+		.itemToGiveId = ITEM_NONE,
+		
+	},
+	[CAFE_TRAINER_TV] =  {
+		.graphicsId = OBJ_EVENT_GFX_REPORTER_F,
+		.trainerPartyId = TRAINER_DUSTY_1,
+		.introText = COMPOUND_STRING("¡Ah! ¡Luchemos!"),
+		.lossText = COMPOUND_STRING("¡Ah! ¡Perdí!"),
+		.afterBattleText = COMPOUND_STRING("¡Ten esto!"),
+		.afterGiveItemText = COMPOUND_STRING("¡Eres fuerte!"),
+		.itemToGiveId = ITEM_NONE,
+		
+	},
+	[CAFE_TRAINER_RIVAL]         =  {
+		.graphicsId = OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL,
+		.trainerPartyId = TRAINER_DUSTY_1,
+		.introText = COMPOUND_STRING("¡Ah! ¡Luchemos!"),
+		.lossText = COMPOUND_STRING("¡Ah! ¡Perdí!"),
+		.afterBattleText = COMPOUND_STRING("¡Ten esto!"),
+		.afterGiveItemText = COMPOUND_STRING("¡Eres fuerte!"),
+		.itemToGiveId = ITEM_NONE,
+		
+	},
+	[CAFE_TRAINER_WALLY_SISTER] =  {
+		.graphicsId = OBJ_EVENT_GFX_WOMAN_2,
+		.trainerPartyId = TRAINER_DUSTY_1,
+		.introText = COMPOUND_STRING("¡Ah! ¡Luchemos!"),
+		.lossText = COMPOUND_STRING("¡Ah! ¡Perdí!"),
+		.afterBattleText = COMPOUND_STRING("¡Ten esto!"),
+		.afterGiveItemText = COMPOUND_STRING("¡Eres fuerte!"),
+		.itemToGiveId = ITEM_ULTRA_BALL,
+		
+	},
+	[CAFE_TRAINER_POLY_1] =  {
+		.graphicsId = OBJ_EVENT_GFX_BLACK_BELT,
+		.trainerPartyId = TRAINER_DUSTY_1,
+		.introText = COMPOUND_STRING("¡Ah! ¡Luchemos!"),
+		.lossText = COMPOUND_STRING("¡Ah! ¡Perdí!"),
+		.afterBattleText = COMPOUND_STRING("¡Ten esto!"),
+		.afterGiveItemText = COMPOUND_STRING("¡Eres fuerte!"),
+		.itemToGiveId = ITEM_DUSK_BALL,
+	},
+	[CAFE_TRAINER_POLY_2] =  {
+		.graphicsId = OBJ_EVENT_GFX_AQUA_MEMBER_M,
+		.trainerPartyId = TRAINER_DUSTY_1,
+		.introText = COMPOUND_STRING("¡Ah! ¡Luchemos!"),
+		.lossText = COMPOUND_STRING("¡Ah! ¡Perdí!"),
+		.afterBattleText = COMPOUND_STRING("¡Ten esto!"),
+		.afterGiveItemText = COMPOUND_STRING("¡Eres fuerte!"),
+		.itemToGiveId = ITEM_DIVE_BALL,
+		
+	},
+	[CAFE_TRAINER_OLD_LADY]      =  {
+		.graphicsId = OBJ_EVENT_GFX_EXPERT_F,
+		.trainerPartyId = TRAINER_DUSTY_1,
+		.introText = COMPOUND_STRING("¡Ah! ¡Luchemos!"),
+		.lossText = COMPOUND_STRING("¡Ah! ¡Perdí!"),
+		.afterBattleText = COMPOUND_STRING("¡Ten esto!"),
+		.afterGiveItemText = COMPOUND_STRING("¡Eres fuerte!"),
+		.itemToGiveId = ITEM_OLD_GATEAU,
+		
+	},
+	[CAFE_TRAINER_OLD_MAN]       =  {
+		.graphicsId = OBJ_EVENT_GFX_EXPERT_M,
+		.trainerPartyId = TRAINER_DUSTY_1,
+		.introText = COMPOUND_STRING("¡Ah! ¡Luchemos!"),
+		.lossText = COMPOUND_STRING("¡Ah! ¡Perdí!"),
+		.afterBattleText = COMPOUND_STRING("¡Ten esto!"),
+		.afterGiveItemText = COMPOUND_STRING("¡Eres fuerte!"),
+		.itemToGiveId = ITEM_OLD_GATEAU,
+		
+	},
+	[CAFE_TRAINER_BEAUTY]        =  {
+		.graphicsId = OBJ_EVENT_GFX_BEAUTY,
+		.trainerPartyId = TRAINER_DUSTY_1,
+		.introText = COMPOUND_STRING("¡Ah! ¡Luchemos!"),
+		.lossText = COMPOUND_STRING("¡Ah! ¡Perdí!"),
+		.afterBattleText = COMPOUND_STRING("¡Ten esto!"),
+		.afterGiveItemText = COMPOUND_STRING("¡Eres fuerte!"),
+		.itemToGiveId = ITEM_BOTTLE_CAP,
+		
+	},
+	[CAFE_TRAINER_PARASOL_LADY]  =  {
+		.graphicsId = OBJ_EVENT_GFX_WOMAN_4,
+		.trainerPartyId = TRAINER_DUSTY_1,
+		.introText = COMPOUND_STRING("¡Ah! ¡Luchemos!"),
+		.lossText = COMPOUND_STRING("¡Ah! ¡Perdí!"),
+		.afterBattleText = COMPOUND_STRING("¡Ten esto!"),
+		.afterGiveItemText = COMPOUND_STRING("¡Eres fuerte!"),
+		.itemToGiveId = ITEM_BOTTLE_CAP,
+		
+	},
+	[CAFE_TRAINER_LASS]          =  {
+		.graphicsId = OBJ_EVENT_GFX_LASS,
+		.trainerPartyId = TRAINER_DUSTY_1,
+		.introText = COMPOUND_STRING("¡Ah! ¡Luchemos!"),
+		.lossText = COMPOUND_STRING("¡Ah! ¡Perdí!"),
+		.afterBattleText = COMPOUND_STRING("¡Ten esto!"),
+		.afterGiveItemText = COMPOUND_STRING("¡Eres fuerte!"),
+		.itemToGiveId = ITEM_BOTTLE_CAP,
+		
+	},
+	[CAFE_TRAINER_ROXANNE]       =  {
+		.graphicsId = OBJ_EVENT_GFX_ROXANNE,
+		.trainerPartyId = TRAINER_ROXANNE_1,
+		.introText = COMPOUND_STRING("¡Ah! ¡Luchemos!"),
+		.lossText = COMPOUND_STRING("¡Ah! ¡Perdí!"),
+		.afterBattleText = COMPOUND_STRING("¡Ten esto!"),
+		.afterGiveItemText = COMPOUND_STRING("¡Eres fuerte!"),
+		.itemToGiveId = ITEM_GOLD_BOTTLE_CAP,
+		
+	}, // por hacer wip
+};
+
+extern const struct CafeTrainer sCafeTrainers[];
 
 void GetDayOrNight(void)
 {
@@ -4659,3 +4875,29 @@ enum {
 	POKEDOKU_EGG_GROUP,
 }
 */
+
+void DoPoisonEffect(void) {
+	// FldEffPoison_Start2();
+	// ScriptContext_Stop();
+}
+
+void SetCafeTrainersToday(void) // por hacer wip
+{
+	u8 i;
+	for (i=0;i<4;i++){
+		VarSet(VAR_OBJ_GFX_ID_0 + i, sCafeTrainers[gSaveBlock2Ptr->cafeTrainers[i]].graphicsId);
+		VarSet(VAR_TEMP_0 + i, sCafeTrainers[gSaveBlock2Ptr->cafeTrainers[i]].trainerPartyId);
+		FlagClear(TRAINER_FLAGS_START + sCafeTrainers[gSaveBlock2Ptr->cafeTrainers[i]].trainerPartyId);
+	}
+}
+
+void GetCafeTrainersBattleText(void) {
+	StringExpandPlaceholders(gStringVar1, sCafeTrainers[gSaveBlock2Ptr->cafeTrainers[gSpecialVar_0x8000]].introText);
+	StringExpandPlaceholders(gStringVar2, sCafeTrainers[gSaveBlock2Ptr->cafeTrainers[gSpecialVar_0x8000]].lossText);
+}
+
+void GetCafeTrainersAfterBattleData(void) {
+	StringExpandPlaceholders(gStringVar1, sCafeTrainers[gSaveBlock2Ptr->cafeTrainers[gSpecialVar_0x8000]].afterBattleText);
+	StringExpandPlaceholders(gStringVar2, sCafeTrainers[gSaveBlock2Ptr->cafeTrainers[gSpecialVar_0x8000]].afterGiveItemText);
+	VarSet(VAR_TEMP_0, sCafeTrainers[gSaveBlock2Ptr->cafeTrainers[gSpecialVar_0x8000]].itemToGiveId);
+}

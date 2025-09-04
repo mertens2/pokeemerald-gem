@@ -9,11 +9,15 @@ Std_ObtainItem::
 	return
 
 EventScript_ObtainItemMessage::
+	goto_if_set FLAG_TEMP_1, EventScript_ObtainItemSilent
 	bufferitemnameplural STR_VAR_2, ITEMID, AMOUNT
 	checkitemtype ITEMID
 	call EventScript_BufferPocketNameAndTryFanfare
 	call_if_eq VAR_0x8007, TRUE, EventScript_ObtainedItem
 	call_if_eq VAR_0x8007, FALSE, EventScript_NoRoomForItem
+	return
+
+EventScript_ObtainItemSilent::
 	return
 
 EventScript_BufferPocketNameAndTryFanfare::
@@ -85,10 +89,15 @@ EventScript_ObtainDecorationMessage::
 	return
 
 EventScript_ObtainedDecor::
+	goto_if_set FLAG_TEMP_1, EventScript_ObtainedDecorSilent
 	playfanfare MUS_OBTAIN_ITEM
 	message gText_ObtainedTheDecor
 	waitfanfare
 	msgbox gText_TheDecorWasTransferredToThePC, MSGBOX_DEFAULT
+	setvar VAR_RESULT, TRUE
+	return
+
+EventScript_ObtainedDecorSilent::
 	setvar VAR_RESULT, TRUE
 	return
 

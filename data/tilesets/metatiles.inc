@@ -637,3 +637,35 @@ gMetatiles_FallarborNew::
 	.align 1
 gMetatileAttributes_FallarborNew::
 	.incbin "data/tilesets/secondary/fallarbor_new/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_NatureBeach::
+	.incbin "data/tilesets/primary/nature_beach/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_NatureBeach::
+	.incbin "data/tilesets/primary/nature_beach/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_FallarborNew2::
+	.incbin "data/tilesets/secondary/fallarbor_new_2/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_FallarborNew2::
+	.incbin "data/tilesets/secondary/fallarbor_new_2/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_MauvilleInside::
+	.incbin "data/tilesets/primary/mauville_inside/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_MauvilleInside::
+	.incbin "data/tilesets/primary/mauville_inside/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_MauvilleDecor::
+	.incbin "data/tilesets/secondary/mauville_decor/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_MauvilleDecor::
+	.incbin "data/tilesets/secondary/mauville_decor/metatile_attributes.bin"

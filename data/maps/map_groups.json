@@ -193,7 +193,11 @@
     "MauvilleCity_PokemonCenter_1F",
     "MauvilleCity_PokemonCenter_2F",
     "MauvilleCity_Mart",
-    "MauvilleCity_F1"
+    "MauvilleCity_F1",
+    "MauvilleCity_Inside",
+    "MauvilleCity_InverseBattle",
+    "MauvilleCity_BattleCafe",
+    "MauvilleCity_Middle"
   ],
   "gMapGroup_IndoorRustboro": [
     "RustboroCity_DevonCorp_1F",

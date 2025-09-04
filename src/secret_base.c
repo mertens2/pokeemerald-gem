@@ -651,7 +651,7 @@ void HideSecretBaseDecorationSprites(void)
     for (objectEventId = 0; objectEventId < gMapHeader.events->objectEventCount; objectEventId++)
     {
         flag = gMapHeader.events->objectEvents[objectEventId].flagId;
-        if (flag >= FLAG_DECORATION_1 && flag <= FLAG_DECORATION_14)
+        if (flag >= FLAG_DECORATION_1 && flag <= FLAG_DECORATION_28)
         {
             RemoveObjectEventByLocalIdAndMap(
                 gMapHeader.events->objectEvents[objectEventId].localId,
@@ -664,7 +664,7 @@ void HideSecretBaseDecorationSprites(void)
 
 void SetSecretBaseOwnerGfxId(void)
 {
-    VarSet(VAR_OBJ_GFX_ID_F, sSecretBaseOwnerGfxIds[GetSecretBaseOwnerType(VarGet(VAR_CURRENT_SECRET_BASE))]);
+    VarSet(VAR_OBJ_GFX_ID_1F, sSecretBaseOwnerGfxIds[GetSecretBaseOwnerType(VarGet(VAR_CURRENT_SECRET_BASE))]);
 }
 
 void SetCurSecretBaseIdFromPosition(const struct MapPosition *position, const struct MapEvents *events)

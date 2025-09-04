@@ -20,8 +20,8 @@
       "height": 60,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_Nature",
-      "secondary_tileset": "gTileset_SlateportCity",
+      "primary_tileset": "gTileset_NatureBeach",
+      "secondary_tileset": "gTileset_SlateportNew",
       "border_filepath": "data/layouts/SlateportCity/border.bin",
       "blockdata_filepath": "data/layouts/SlateportCity/map.bin"
     },
@@ -292,11 +292,11 @@
     {
       "id": "LAYOUT_ROUTE109",
       "name": "Route109_Layout",
-      "width": 40,
-      "height": 67,
+      "width": 44,
+      "height": 62,
       "border_width": 6,
       "border_height": 6,
-      "primary_tileset": "gTileset_Nature",
+      "primary_tileset": "gTileset_NatureBeach",
       "secondary_tileset": "gTileset_SlateportNew",
       "border_filepath": "data/layouts/Route109/border.bin",
       "blockdata_filepath": "data/layouts/Route109/map.bin"
@@ -2356,8 +2356,8 @@
     {
       "id": "LAYOUT_SECRET_BASE_RED_CAVE1",
       "name": "SecretBase_RedCave1_Layout",
-      "width": 11,
-      "height": 9,
+      "width": 12,
+      "height": 10,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_SecretBase",
@@ -2368,8 +2368,8 @@
     {
       "id": "LAYOUT_SECRET_BASE_BROWN_CAVE1",
       "name": "SecretBase_BrownCave1_Layout",
-      "width": 11,
-      "height": 9,
+      "width": 12,
+      "height": 10,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_SecretBase",
@@ -2380,8 +2380,8 @@
     {
       "id": "LAYOUT_SECRET_BASE_BLUE_CAVE1",
       "name": "SecretBase_BlueCave1_Layout",
-      "width": 11,
-      "height": 9,
+      "width": 12,
+      "height": 10,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_SecretBase",
@@ -2392,8 +2392,8 @@
     {
       "id": "LAYOUT_SECRET_BASE_YELLOW_CAVE1",
       "name": "SecretBase_YellowCave1_Layout",
-      "width": 11,
-      "height": 9,
+      "width": 12,
+      "height": 10,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_SecretBase",
@@ -2404,8 +2404,8 @@
     {
       "id": "LAYOUT_SECRET_BASE_TREE1",
       "name": "SecretBase_Tree1_Layout",
-      "width": 11,
-      "height": 9,
+      "width": 12,
+      "height": 10,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_SecretBase",
@@ -2416,8 +2416,8 @@
     {
       "id": "LAYOUT_SECRET_BASE_SHRUB1",
       "name": "SecretBase_Shrub1_Layout",
-      "width": 11,
-      "height": 9,
+      "width": 12,
+      "height": 10,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_SecretBase",
@@ -2500,8 +2500,8 @@
     {
       "id": "LAYOUT_SECRET_BASE_RED_CAVE3",
       "name": "SecretBase_RedCave3_Layout",
-      "width": 18,
-      "height": 11,
+      "width": 20,
+      "height": 12,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_SecretBase",
@@ -2524,7 +2524,7 @@
     {
       "id": "LAYOUT_SECRET_BASE_BLUE_CAVE3",
       "name": "SecretBase_BlueCave3_Layout",
-      "width": 12,
+      "width": 16,
       "height": 20,
       "border_width": 2,
       "border_height": 2,
@@ -2548,7 +2548,7 @@
     {
       "id": "LAYOUT_SECRET_BASE_TREE3",
       "name": "SecretBase_Tree3_Layout",
-      "width": 21,
+      "width": 24,
       "height": 8,
       "border_width": 2,
       "border_height": 2,
@@ -2560,7 +2560,7 @@
     {
       "id": "LAYOUT_SECRET_BASE_SHRUB3",
       "name": "SecretBase_Shrub3_Layout",
-      "width": 13,
+      "width": 15,
       "height": 15,
       "border_width": 2,
       "border_height": 2,
@@ -2572,8 +2572,8 @@
     {
       "id": "LAYOUT_SECRET_BASE_RED_CAVE4",
       "name": "SecretBase_RedCave4_Layout",
-      "width": 15,
-      "height": 15,
+      "width": 20,
+      "height": 20,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_SecretBase",
@@ -2585,7 +2585,7 @@
       "id": "LAYOUT_SECRET_BASE_BROWN_CAVE4",
       "name": "SecretBase_BrownCave4_Layout",
       "width": 20,
-      "height": 14,
+      "height": 20,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_SecretBase",
@@ -2596,8 +2596,8 @@
     {
       "id": "LAYOUT_SECRET_BASE_BLUE_CAVE4",
       "name": "SecretBase_BlueCave4_Layout",
-      "width": 13,
-      "height": 17,
+      "width": 24,
+      "height": 24,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_SecretBase",
@@ -2608,8 +2608,8 @@
     {
       "id": "LAYOUT_SECRET_BASE_YELLOW_CAVE4",
       "name": "SecretBase_YellowCave4_Layout",
-      "width": 17,
-      "height": 14,
+      "width": 20,
+      "height": 20,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_SecretBase",
@@ -2620,8 +2620,8 @@
     {
       "id": "LAYOUT_SECRET_BASE_TREE4",
       "name": "SecretBase_Tree4_Layout",
-      "width": 17,
-      "height": 17,
+      "width": 20,
+      "height": 20,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_SecretBase",
@@ -2632,8 +2632,8 @@
     {
       "id": "LAYOUT_SECRET_BASE_SHRUB4",
       "name": "SecretBase_Shrub4_Layout",
-      "width": 18,
-      "height": 14,
+      "width": 20,
+      "height": 20,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_SecretBase",
@@ -5508,6 +5508,54 @@
       "secondary_tileset": "gTileset_Route110",
       "border_filepath": "data/layouts/MauvilleCity_F1/border.bin",
       "blockdata_filepath": "data/layouts/MauvilleCity_F1/map.bin"
+    },
+    {
+      "id": "LAYOUT_MAUVILLE_CITY_INSIDE",
+      "name": "MauvilleCity_Inside_Layout",
+      "width": 50,
+      "height": 25,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_MauvilleInside",
+      "secondary_tileset": "gTileset_MauvilleDecor",
+      "border_filepath": "data/layouts/MauvilleCity_Inside/border.bin",
+      "blockdata_filepath": "data/layouts/MauvilleCity_Inside/map.bin"
+    },
+    {
+      "id": "LAYOUT_MAUVILLE_CITY_INVERSE_BATTLE",
+      "name": "MauvilleCity_InverseBattle_Layout",
+      "width": 19,
+      "height": 19,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_MauvilleInside",
+      "secondary_tileset": "gTileset_MauvilleDecor",
+      "border_filepath": "data/layouts/MauvilleCity_InverseBattle/border.bin",
+      "blockdata_filepath": "data/layouts/MauvilleCity_InverseBattle/map.bin"
+    },
+    {
+      "id": "LAYOUT_MAUVILLE_CITY_BATTLE_CAFE",
+      "name": "MauvilleCity_BattleCafe_Layout",
+      "width": 19,
+      "height": 19,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_MauvilleInside",
+      "secondary_tileset": "gTileset_MauvilleDecor",
+      "border_filepath": "data/layouts/MauvilleCity_BattleCafe/border.bin",
+      "blockdata_filepath": "data/layouts/MauvilleCity_BattleCafe/map.bin"
+    },
+    {
+      "id": "LAYOUT_MAUVILLE_CITY_MIDDLE",
+      "name": "MauvilleCity_Middle_Layout",
+      "width": 40,
+      "height": 25,
+      "border_width": 1,
+      "border_height": 1,
+      "primary_tileset": "gTileset_MauvilleInside",
+      "secondary_tileset": "gTileset_MauvilleDecor",
+      "border_filepath": "data/layouts/MauvilleCity_Middle/border.bin",
+      "blockdata_filepath": "data/layouts/MauvilleCity_Middle/map.bin"
     }
   ]
 }

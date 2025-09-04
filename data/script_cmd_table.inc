@@ -238,7 +238,8 @@ gScriptCmdTable::
 	.4byte ScrCmd_givecustommon				@ 0xeb
 	.4byte ScrCmd_dynmultipush				@ 0xeC
 	.4byte ScrCmd_showmonpicshiny			@ 0xeD
-	.4byte ScrCmd_setmonmovevar				@ 0xef
+	.4byte ScrCmd_setmonmovevar				@ 0xee
+	.4byte ScrCmd_setgetobjectflags			@ 0xef
 
 gScriptCmdTableEnd::
 	.4byte ScrCmd_nop

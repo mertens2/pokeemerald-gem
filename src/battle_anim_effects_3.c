@@ -2418,7 +2418,7 @@ void AnimTask_TransformMon(u8 taskId)
 
             StartSpriteAffineAnim(&gSprites[gBattlerSpriteIds[gBattleAnimAttacker]], BATTLER_AFFINE_NORMAL);
         }
-
+	
         gTasks[taskId].data[0]++;
         break;
     case 3:

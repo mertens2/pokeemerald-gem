@@ -1235,6 +1235,12 @@ void FldEffPoison_Start(void)
     CreateTask(Task_FieldPoisonEffect, 80);
 }
 
+void FldEffPoison_Start2(void)
+{
+    PlaySE(SE_FIELD_POISON);
+    CreateTask(Task_FieldPoisonEffect, 0);
+}
+
 bool32 FldEffPoison_IsActive(void)
 {
     return FuncIsActiveTask(Task_FieldPoisonEffect);

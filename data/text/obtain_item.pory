@@ -79,7 +79,7 @@ text gText_ObtainedTheDecor {
 text gText_NoRoomLeftForAnother {
 	poryswitch(LANGUAGE){
 		ES {
-			format("¡Pero ya no hay espacio para más\n{STR_VAR_2}!")
+			format("¡Mala suerte! ¡Ya no hay espacio para\nmás {STR_VAR_2}!")
 		}
 		EN {
 			format("Too bad! There's no room left for another {STR_VAR_2}…")

@@ -836,6 +836,7 @@
 	.2byte \x
 	.2byte \y
 	.endm
+	
 
 	@ Copies a live object event's xy position to its template, so that if the sprite goes off screen
 	@ it'll still be there when it comes back on screen.
@@ -1847,6 +1848,8 @@
 	.byte \var
 	.endm
 	
+	
+	
 	@ return current (posType = 0) or map (posType = 1) position of object to VAR_0x8007 (x), VAR_0x8008 (y)
 	.macro getobjectxy localId:req, posType:req
 	setvar VAR_0x8000, \localId
@@ -2033,11 +2036,26 @@
 	@ If a value greater than PARTY_SIZE is given for partyIndex it will use the last Pokémon in the party instead.
 	@ Takes a var for the move.
 	.macro setmonmovevar partyIndex:req, slot:req, move:req
-	.byte 0xef
+	.byte 0xee
 	.byte \partyIndex
 	.byte \slot
 	.2byte \move
 	.endm
+	
+	GET_EVENT_FLAG = 0
+	SET_EVENT_FLAG = 1
+	
+	
+	@ Sets the flag of an object's template, so that if the sprite goes off screen
+	@ they'll be intact when it comes back on screen. if something was gotten, stores it in VAR_RESULT
+	.macro setgetobjectflags localId:req, flagIndex:req, value:req, getOrSet:req 
+	.byte 0xef
+	.2byte \localId
+	.byte \flagIndex
+	.byte \value
+	.byte \getOrSet
+	.endm
+	
 
 @ Supplementary
 

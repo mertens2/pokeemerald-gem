@@ -1929,3 +1929,83 @@ gTilesetPalettes_FallarborNew::
 	.align 2
 gTilesetTiles_FallarborNew::
 	.incbin "data/tilesets/secondary/fallarbor_new/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_NatureBeach::
+	.incbin "data/tilesets/primary/nature_beach/palettes/00.gbapal"
+	.incbin "data/tilesets/primary/nature_beach/palettes/01.gbapal"
+	.incbin "data/tilesets/primary/nature_beach/palettes/02.gbapal"
+	.incbin "data/tilesets/primary/nature_beach/palettes/03.gbapal"
+	.incbin "data/tilesets/primary/nature_beach/palettes/04.gbapal"
+	.incbin "data/tilesets/primary/nature_beach/palettes/05.gbapal"
+	.incbin "data/tilesets/primary/nature_beach/palettes/06.gbapal"
+	.incbin "data/tilesets/primary/nature_beach/palettes/07.gbapal"
+	.incbin "data/tilesets/primary/nature_beach/palettes/08.gbapal"
+	.incbin "data/tilesets/primary/nature_beach/palettes/09.gbapal"
+	.incbin "data/tilesets/primary/nature_beach/palettes/10.gbapal"
+	.incbin "data/tilesets/primary/nature_beach/palettes/11.gbapal"
+	.incbin "data/tilesets/primary/nature_beach/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_NatureBeach::
+	.incbin "data/tilesets/primary/nature_beach/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_FallarborNew2::
+	.incbin "data/tilesets/secondary/fallarbor_new_2/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/fallarbor_new_2/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/fallarbor_new_2/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/fallarbor_new_2/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/fallarbor_new_2/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/fallarbor_new_2/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/fallarbor_new_2/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/fallarbor_new_2/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/fallarbor_new_2/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/fallarbor_new_2/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/fallarbor_new_2/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/fallarbor_new_2/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/fallarbor_new_2/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_FallarborNew2::
+	.incbin "data/tilesets/secondary/fallarbor_new_2/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_MauvilleInside::
+	.incbin "data/tilesets/primary/mauville_inside/palettes/00.gbapal"
+	.incbin "data/tilesets/primary/mauville_inside/palettes/01.gbapal"
+	.incbin "data/tilesets/primary/mauville_inside/palettes/02.gbapal"
+	.incbin "data/tilesets/primary/mauville_inside/palettes/03.gbapal"
+	.incbin "data/tilesets/primary/mauville_inside/palettes/04.gbapal"
+	.incbin "data/tilesets/primary/mauville_inside/palettes/05.gbapal"
+	.incbin "data/tilesets/primary/mauville_inside/palettes/06.gbapal"
+	.incbin "data/tilesets/primary/mauville_inside/palettes/07.gbapal"
+	.incbin "data/tilesets/primary/mauville_inside/palettes/08.gbapal"
+	.incbin "data/tilesets/primary/mauville_inside/palettes/09.gbapal"
+	.incbin "data/tilesets/primary/mauville_inside/palettes/10.gbapal"
+	.incbin "data/tilesets/primary/mauville_inside/palettes/11.gbapal"
+	.incbin "data/tilesets/primary/mauville_inside/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_MauvilleInside::
+	.incbin "data/tilesets/primary/mauville_inside/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_MauvilleDecor::
+	.incbin "data/tilesets/secondary/mauville_decor/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/mauville_decor/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/mauville_decor/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/mauville_decor/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/mauville_decor/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/mauville_decor/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/mauville_decor/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/mauville_decor/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/mauville_decor/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/mauville_decor/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/mauville_decor/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/mauville_decor/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/mauville_decor/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_MauvilleDecor::
+	.incbin "data/tilesets/secondary/mauville_decor/tiles.4bpp.lz"

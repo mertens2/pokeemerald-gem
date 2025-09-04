@@ -33,8 +33,8 @@ gText_ObtainedTheDecor::
 
 gText_NoRoomLeftForAnother::
 # 79 "data/text/obtain_item.pory"
-	.string "¡Pero ya no hay espacio para más\n"
-	.string "{STR_VAR_2}!$"
+	.string "¡Mala suerte! ¡Ya no hay espacio para\n"
+	.string "más {STR_VAR_2}!$"
 
 gText_TheDecorWasTransferredToThePC::
 # 90 "data/text/obtain_item.pory"

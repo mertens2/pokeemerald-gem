@@ -109,15 +109,15 @@
 // as these below. Because of this, there is a theory (Two Team Theory) that states that these
 // programming projects had more than 1 "programming team" which utilized different macros for
 // each of the files that were worked on.
-#define T1_READ_8(ptr)  ((ptr)[0])
-#define T1_READ_16(ptr) ((ptr)[0] | ((ptr)[1] << 8))
-#define T1_READ_32(ptr) ((ptr)[0] | ((ptr)[1] << 8) | ((ptr)[2] << 16) | ((ptr)[3] << 24))
+#define T1_READ_8(ptr)   ((ptr)[0])
+#define T1_READ_16(ptr)  ((ptr)[0] | ((ptr)[1] << 8))
+#define T1_READ_32(ptr)  ((ptr)[0] | ((ptr)[1] << 8) | ((ptr)[2] << 16) | ((ptr)[3] << 24))
 #define T1_READ_PTR(ptr) (u8 *) T1_READ_32(ptr)
 
 // T2_READ_8 is a duplicate to remain consistent with each group.
-#define T2_READ_8(ptr)  ((ptr)[0])
-#define T2_READ_16(ptr) ((ptr)[0] + ((ptr)[1] << 8))
-#define T2_READ_32(ptr) ((ptr)[0] + ((ptr)[1] << 8) + ((ptr)[2] << 16) + ((ptr)[3] << 24))
+#define T2_READ_8(ptr)   ((ptr)[0])
+#define T2_READ_16(ptr)  ((ptr)[0] + ((ptr)[1] << 8))
+#define T2_READ_32(ptr)  ((ptr)[0] + ((ptr)[1] << 8) + ((ptr)[2] << 16) + ((ptr)[3] << 24))
 #define T2_READ_PTR(ptr) (void *) T2_READ_32(ptr)
 
 // Macros for checking the joypad
@@ -155,6 +155,13 @@
 // This produces an error at compile-time if expr is zero.
 // It looks like file.c:line: size of array `id' is negative
 #define STATIC_ASSERT(expr, id) typedef char id[(expr) ? 1 : -1];
+
+// these functions will give  you the value of a specific byte of an u32. named from left to right.
+// "first byte" will give the leftmost byte
+#define GET_FIRST_BYTE(var)  ((var) = (var) >> 24)
+#define GET_SECOND_BYTE(var) ((var) = ((var) << 8) >> 24)
+#define GET_THIRD_BYTE(var)  ((var) = ((var) << 16) >> 24)
+#define GET_FOURTH_BYTE(var) ((var) = ((var) << 24) >> 24)
 
 struct Coords8
 {
@@ -539,6 +546,7 @@ struct SaveBlock2
 			   
     /*0xF2C*/  u8 itemFlags[ITEM_FLAGS_COUNT];
 			   u8 playerPronouns; //pronombres duh
+			   u8 cafeTrainers[4];
 }; // sizeof=0xF2C
 
 extern struct SaveBlock2 *gSaveBlock2Ptr;

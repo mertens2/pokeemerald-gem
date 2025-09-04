@@ -6278,6 +6278,21 @@ const struct MonCoords gMonBackPicCoords[] =
         .size = MON_COORDS_SIZE(64, 56),
         .y_offset = 7,
     },
+	[SPECIES_HAWLUCHA_MEGA] =
+    {
+        .size = MON_COORDS_SIZE(64, 56),
+        .y_offset = 7,
+    },
+	[SPECIES_DRAGONITE_MEGA] =
+    {
+        .size = MON_COORDS_SIZE(64, 56),
+        .y_offset = 7,
+    },
+	[SPECIES_VICTREEBEL_MEGA] =
+    {
+        .size = MON_COORDS_SIZE(64, 56),
+        .y_offset = 7,
+    },
     [SPECIES_ROWLET_ASH] =
     {
         .size = MON_COORDS_SIZE(48, 40),

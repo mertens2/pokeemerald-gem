@@ -37,7 +37,7 @@ gText_Birch_WhatsYourName::
 
 gText_Birch_SoItsPlayer::
 # 71 "data/text/birch_speech.pory"
-	.string "¿{PLAYER}{KUN}?$"
+	.string "¿{PLAYER}?$"
 
 gText_Birch_YourePlayer::
 # 83 "data/text/birch_speech.pory"
@@ -55,20 +55,33 @@ gText_Birch_AreYouReady::
 
 gText_Birch_YouCantBirch::
 # 107 "data/text/birch_speech.pory"
-	.string "N-no…\pEse… Ese es MI nombre…\pElige otro nombre.$"
+	.string "N-no…\p"
+	.string "Ese… Ese es MI nombre…\p"
+	.string "Elige otro nombre.$"
 
 gText_Birch_WaitYoureG::
-# 111 "data/text/birch_speech.pory"
-	.string "E-eres… ¿{PLAYER}?\p¡Genial, yo soy bi!\pPero ahora, por favor, escribe un nombre…\pA menos que quieras que te digan así.\p¿Quieres llamarte {PLAYER}?$"
+# 118 "data/text/birch_speech.pory"
+	.string "E-eres… ¿{PLAYER}?\p"
+	.string "¡Genial, yo soy bi!\p"
+	.string "Pero ahora, por favor, escribe un\n"
+	.string "nombre…\p"
+	.string "A menos que quieras que te digan así.\p"
+	.string "¿Quieres llamarte {PLAYER}?$"
 
 gText_Birch_TheSameAsDaughter::
-# 115 "data/text/birch_speech.pory"
-	.string "¡Ah, igual que mi hija entonces!\pEspero no confunda…\n¿{PLAYER} te parece bien?$"
+# 132 "data/text/birch_speech.pory"
+	.string "¡Ah, igual que mi hija entonces!\p"
+	.string "Espero no confunda…\n"
+	.string "¿{PLAYER} te parece bien?$"
 
 gText_Birch_TheSameAsSon::
-# 119 "data/text/birch_speech.pory"
-	.string "¡Ah, igual que mi hijo entonces!\pEspero no confunda…\n¿{PLAYER} te parece bien?$"
+# 143 "data/text/birch_speech.pory"
+	.string "¡Ah, igual que mi hijo entonces!\p"
+	.string "Espero no confunda…\n"
+	.string "¿{PLAYER} te parece bien?$"
 
 gText_Birch_NotVeryOriginal::
-# 123 "data/text/birch_speech.pory"
-	.string "Ah, ¡{PLAYER}, entonces!\pUn nombre muy popular.\p¿{PLAYER} te parece bien?$"
+# 154 "data/text/birch_speech.pory"
+	.string "Ah, ¡{PLAYER}, entonces!\p"
+	.string "¿No estamos muy originales hoy, eh?\p"
+	.string "¿{PLAYER} te parece bien?$"

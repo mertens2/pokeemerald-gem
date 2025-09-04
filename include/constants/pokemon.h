@@ -451,6 +451,7 @@
 #define FLAG_BABY				(1 << 7)
 #define FLAG_STARTER			(1 << 8)
 #define FLAG_FOSSIL				(1 << 9)
+#define FLAG_HAS_SHINY_SPRITE	(1 << 10)
 
 #define LEGENDARY_PERFECT_IV_COUNT 3
 

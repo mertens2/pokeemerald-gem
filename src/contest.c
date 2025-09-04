@@ -3257,7 +3257,7 @@ static u8 CreateContestantSprite(u16 species, u32 otId, u32 personality, u32 ind
     u8 spriteId;
     species = SanitizeSpecies(species);
 
-    HandleLoadSpecialPokePic(FALSE, gMonSpritesGfxPtr->sprites.ptr[B_POSITION_PLAYER_LEFT], species, personality);
+    HandleLoadSpecialPokePic(FALSE, gMonSpritesGfxPtr->sprites.ptr[B_POSITION_PLAYER_LEFT], species, personality, otId);
 
     LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(species, otId, personality), 0x120, 0x20);
     SetMultiuseSpriteTemplateToPokemon(species, B_POSITION_PLAYER_LEFT);

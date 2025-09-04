@@ -24,6 +24,7 @@ bool8 FldEff_SandPillar(void);
 void InteractWithShieldOrTVDecoration(void);
 bool8 IsLargeBreakableDecoration(u16 metatileId, bool8 checkBase);
 void FldEffPoison_Start(void);
+void FldEffPoison_Start2(void);
 bool32 FldEffPoison_IsActive(void);
 void DoWateringBerryTreeAnim(void);
 u8 CreateRecordMixingLights(void);

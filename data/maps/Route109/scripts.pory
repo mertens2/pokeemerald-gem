@@ -1,3 +1,8 @@
+script Route109_EventScript_SlateportSign {
+	// msgbox (format("{UP_ARROW} CIUDAD SLATEPORT\N{LEFT_ARROW} DEBERÍA APUNTAR HACIA ABAJO, PERO RUTA 110"), MSGBOX_SIGN)
+	msgbox (format("{UP_ARROW} CIUDAD SLATEPORT\N{LEFT_ARROW} DEBERÍA APUNTAR HACIA ABAJO, PERO RUTA 110"), MSGBOX_SIGN)
+}
+
 raw `
 @ NOTE: Route 109's sail to Dewford script references local IDs from Dewford's map.
 @  These are labeled in DewfordTown/scripts.inc

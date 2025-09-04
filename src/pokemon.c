@@ -1648,6 +1648,9 @@ static const u16 sSpeciesToNationalPokedexNum[NUM_SPECIES - 1] =
     [SPECIES_RILLABOOM_GIGANTAMAX - 1] = NATIONAL_DEX_RILLABOOM,
     [SPECIES_CINDERACE_GIGANTAMAX - 1] = NATIONAL_DEX_CINDERACE,
     [SPECIES_INTELEON_GIGANTAMAX - 1] = NATIONAL_DEX_INTELEON,
+	[SPECIES_HAWLUCHA_MEGA - 1] = NATIONAL_DEX_HAWLUCHA,
+	[SPECIES_DRAGONITE_MEGA - 1] = NATIONAL_DEX_DRAGONITE,
+	[SPECIES_VICTREEBEL_MEGA - 1] = NATIONAL_DEX_VICTREEBEL,
 #endif
 };
 
@@ -8505,7 +8508,7 @@ u32 CalculateShininess(bool8 affectsShinyFlags, u8 method, u8 flagAffected, u16 
 		}
 	}
 	
-	if ((GET_SHINY_VALUE(value, personality)) < SHINY_ODDS && affectsShinyFlags){
+	if (((GET_SHINY_VALUE(value, personality)) < SHINY_ODDS && affectsShinyFlags) || FlagGet(FLAG_SHINY_CREATION)){
 		switch (flagAffected){
 			case 0:
 				VarSet(VAR_SHINY_TREECKO, species);
@@ -8519,7 +8522,7 @@ u32 CalculateShininess(bool8 affectsShinyFlags, u8 method, u8 flagAffected, u16 
 			
 		}
 	}
-	else if ((GET_SHINY_VALUE(value, personality)) >= SHINY_ODDS && affectsShinyFlags) {
+	else if (((GET_SHINY_VALUE(value, personality)) >= SHINY_ODDS && affectsShinyFlags) || FlagGet(FLAG_NO_SHINIES)) {
 		switch (flagAffected){
 			case 0:
 				VarSet(VAR_SHINY_TREECKO, species+1);
