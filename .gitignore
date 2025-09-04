@@ -17,6 +17,9 @@
 *.latfont
 *.hwjpnfont
 *.fwjpnfont
+*.png
+primary/
+secondary/
 sound/**/*.bin
 sound/songs/midi/*.s
 tools/agbcc

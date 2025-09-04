@@ -172,22 +172,18 @@ static const u8 *ExpandPlaceholder_AE(void)
 
 static const u8 *ExpandPlaceholder_ElElla(void)
 {
-	if (gSaveBlock2Ptr->playerPronouns == PRONOUNS_HE)
+    if (gSaveBlock2Ptr->playerGender == MALE)
         return gText_ExpandedPlaceholder_El2;
-    else if (gSaveBlock2Ptr->playerPronouns == PRONOUNS_SHE)
+    else
         return gText_ExpandedPlaceholder_Ella;
-	else
-		return gText_ExpandedPlaceholder_Elle;
 }
 
 static const u8 *ExpandPlaceholder_ELELLA(void)
 {
-	if (gSaveBlock2Ptr->playerPronouns == PRONOUNS_HE)
+    if (gSaveBlock2Ptr->playerGender == MALE)
         return gText_ExpandedPlaceholder_EL2;
-    else if (gSaveBlock2Ptr->playerPronouns == PRONOUNS_SHE)
+    else
         return gText_ExpandedPlaceholder_ELLA;
-	else
-		return gText_ExpandedPlaceholder_ELLE;
 }
 
 static const u8 *ExpandPlaceholder_EllaEl(void)
