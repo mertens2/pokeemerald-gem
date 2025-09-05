@@ -7,12 +7,12 @@ mapscripts MauvilleCity_BattleCafe_MapScripts {
 // por hacer wip
 script MauvilleCity_BattleCafe_Scripts_DailyTrainersBattle {
 	special(GetCafeTrainersBattleText)
-	trainerbattle_single(VAR_TEMP_0, "{STR_VAR_1}", "{STR_VAR_2}")
+	trainerbattle_single(VAR_RESULT, "{STR_VAR_1}", "{STR_VAR_2}")
 	special(GetCafeTrainersAfterBattleData)
 	msgbox(format("{STR_VAR_1}"))
-	if (var(VAR_TEMP_0) != 0) {
-		giveitem(VAR_TEMP_0, 1)
-		msgbox(format("{STR_VAR_2}"))
+	if (var(VAR_RESULT) != 0) {
+		giveitem(VAR_RESULT, 1)
+		msgbox(format("{STR_VAR_3}"))
 	}
 	closemessage
 	releaseall

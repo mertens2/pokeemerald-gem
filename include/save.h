@@ -3,11 +3,11 @@
 
 // Each 4 KiB flash sector contains 3968 bytes of actual data followed by a 128 byte footer.
 // Only 12 bytes of the footer are used.
-#define SECTOR_DATA_SIZE 3968
-#define SECTOR_FOOTER_SIZE 128
+#define SECTOR_DATA_SIZE 4084
+#define SECTOR_FOOTER_SIZE 12
 #define SECTOR_SIZE (SECTOR_DATA_SIZE + SECTOR_FOOTER_SIZE)
 
-// #define NUM_SAVE_SLOTS 2
+#define NUM_SAVE_SLOTS 2
 
 // If the sector's signature field is not this value then the sector is either invalid or empty.
 #define SECTOR_SIGNATURE 0x8012025

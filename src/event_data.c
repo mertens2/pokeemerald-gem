@@ -261,16 +261,16 @@ void RerollBattleCafeTrainers(void) {
 	// VAR_DAILY_CAFE_TRAINERS
 	u8 todaysTrainers[4];
 	u8 i;
-	u8 lastTrainer;
+	u8 lastTrainer = 0;
 	
 	
 	for (i=0; i<4; i++){
-		do {
-			lastTrainer = todaysTrainers[i];
-			todaysTrainers[i] = Random() % 15;
-			if (i!=0)
-				lastTrainer = todaysTrainers[i-1];
-		}while (todaysTrainers[i] != gSaveBlock2Ptr->cafeTrainers[i] && (todaysTrainers[i] != lastTrainer));
+		// do {
+			// todaysTrainers[i] = Random() % 15;
+			// if (i!=0)
+				// lastTrainer = todaysTrainers[i-1];
+		// }while (todaysTrainers[i] != gSaveBlock2Ptr->cafeTrainers[i] && (todaysTrainers[i] != lastTrainer));
+		todaysTrainers[i] = i+1;
 	}
 	for (i=0; i<4; i++)
 		gSaveBlock2Ptr->cafeTrainers[i] = todaysTrainers[i];

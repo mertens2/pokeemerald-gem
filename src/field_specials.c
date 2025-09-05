@@ -196,159 +196,159 @@ const struct CafeTrainer sCafeTrainers[BATTLE_CAFE_SPECIAL_TRAINERS_START + 1] =
 	[CAFE_TRAINER_HIKER] = {
 		.graphicsId = OBJ_EVENT_GFX_HIKER,
 		.trainerPartyId = TRAINER_DUSTY_1,
-		.introText = (const u8[]) _("¡Ah! ¡Luchemos!"),
-		.lossText = (const u8[]) _("¡Ah! ¡Perdí!"),
-		.afterBattleText = (const u8[]) _("¡Ten esto!"),
-		.afterGiveItemText = (const u8[]) _("¡Eres fuerte!"),
+		.introText = COMPOUND_STRING("¡Ah! ¡Luchemos!"),
+		.lossText = COMPOUND_STRING("¡Ah! ¡Perdí!"),
+		.afterBattleText = COMPOUND_STRING("¡Ten esto!"),
+		.afterGiveItemText = COMPOUND_STRING("¡Eres fuerte!"),
 		.itemToGiveId = ITEM_POKE_BALL,
 		
 	},
 	[CAFE_TRAINER_ACE_TRAINER_1] = {
 		.graphicsId = OBJ_EVENT_GFX_MAN_3,
 		.trainerPartyId = TRAINER_DUSTY_1,
-		.introText = (const u8[]) _("¡Ah! ¡Luchemos!"),
-		.lossText = (const u8[]) _("¡Ah! ¡Perdí!"),
-		.afterBattleText = (const u8[]) _("¡Ten esto!"),
-		.afterGiveItemText = (const u8[]) _("¡Eres fuerte!"),
+		.introText = COMPOUND_STRING("¡Soy Dusty! ¡Pelea!"),
+		.lossText = COMPOUND_STRING("??? ¡Perdí!"),
+		.afterBattleText = COMPOUND_STRING("¡Nada!"),
+		.afterGiveItemText = COMPOUND_STRING("¡Eres fuerte!"),
 		.itemToGiveId = ITEM_NONE,
 		
 	}, 
 	[CAFE_TRAINER_ACE_TRAINER_2] = {
 		.graphicsId = OBJ_EVENT_GFX_WOMAN_3,
 		.trainerPartyId = TRAINER_DUSTY_1,
-		.introText = (const u8[]) _("¡Ah! ¡Luchemos!"),
-		.lossText = (const u8[]) _("¡Ah! ¡Perdí!"),
-		.afterBattleText = (const u8[]) _("¡Ten esto!"),
-		.afterGiveItemText = (const u8[]) _("¡Eres fuerte!"),
+		.introText = COMPOUND_STRING("¡Muere!"),
+		.lossText = COMPOUND_STRING("¡Muerte a tí!"),
+		.afterBattleText = COMPOUND_STRING("¡Nada!"),
+		.afterGiveItemText = COMPOUND_STRING("¡Eres fuerte!"),
 		.itemToGiveId = ITEM_NONE,
 		
 	},
 	[CAFE_TRAINER_EV_TRAIN_MEN]  =  {
 		.graphicsId = OBJ_EVENT_GFX_BLACK_BELT,
 		.trainerPartyId = TRAINER_DUSTY_1,
-		.introText = (const u8[]) _("¡Ah! ¡Luchemos!"),
-		.lossText = (const u8[]) _("¡Ah! ¡Perdí!"),
-		.afterBattleText = (const u8[]) _("¡Ten esto!"),
-		.afterGiveItemText = (const u8[]) _("¡Eres fuerte!"),
+		.introText = COMPOUND_STRING("¡Ah! ¡Luchemos!"),
+		.lossText = COMPOUND_STRING("¡Ah! ¡Perdí!"),
+		.afterBattleText = COMPOUND_STRING("¡Ten esto!"),
+		.afterGiveItemText = COMPOUND_STRING("¡Eres fuerte!"),
 		.itemToGiveId = ITEM_PROTEIN,
 		
 	},
 	[CAFE_TRAINER_WIVES]         =  {
 		.graphicsId = OBJ_EVENT_GFX_WOMAN_1,
 		.trainerPartyId = TRAINER_DUSTY_1,
-		.introText = (const u8[]) _("¡Ah! ¡Luchemos!"),
-		.lossText = (const u8[]) _("¡Ah! ¡Perdí!"),
-		.afterBattleText = (const u8[]) _("¡Ten esto!"),
-		.afterGiveItemText = (const u8[]) _("¡Eres fuerte!"),
+		.introText = COMPOUND_STRING("¡Ah! ¡Luchemos!"),
+		.lossText = COMPOUND_STRING("¡Ah! ¡Perdí!"),
+		.afterBattleText = COMPOUND_STRING("¡Ten esto!"),
+		.afterGiveItemText = COMPOUND_STRING("¡Eres fuerte!"),
 		.itemToGiveId = ITEM_NONE,
 		
 	},
 	[CAFE_TRAINER_TV] =  {
 		.graphicsId = OBJ_EVENT_GFX_REPORTER_F,
 		.trainerPartyId = TRAINER_DUSTY_1,
-		.introText = (const u8[]) _("¡Ah! ¡Luchemos!"),
-		.lossText = (const u8[]) _("¡Ah! ¡Perdí!"),
-		.afterBattleText = (const u8[]) _("¡Ten esto!"),
-		.afterGiveItemText = (const u8[]) _("¡Eres fuerte!"),
+		.introText = COMPOUND_STRING("¡Ah! ¡Luchemos!"),
+		.lossText = COMPOUND_STRING("¡Ah! ¡Perdí!"),
+		.afterBattleText = COMPOUND_STRING("¡Ten esto!"),
+		.afterGiveItemText = COMPOUND_STRING("¡Eres fuerte!"),
 		.itemToGiveId = ITEM_NONE,
 		
 	},
 	[CAFE_TRAINER_RIVAL]         =  {
 		.graphicsId = OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL,
 		.trainerPartyId = TRAINER_DUSTY_1,
-		.introText = (const u8[]) _("¡Ah! ¡Luchemos!"),
-		.lossText = (const u8[]) _("¡Ah! ¡Perdí!"),
-		.afterBattleText = (const u8[]) _("¡Ten esto!"),
-		.afterGiveItemText = (const u8[]) _("¡Eres fuerte!"),
+		.introText = COMPOUND_STRING("¡Ah! ¡Luchemos!"),
+		.lossText = COMPOUND_STRING("¡Ah! ¡Perdí!"),
+		.afterBattleText = COMPOUND_STRING("¡Ten esto!"),
+		.afterGiveItemText = COMPOUND_STRING("¡Eres fuerte!"),
 		.itemToGiveId = ITEM_NONE,
 		
 	},
 	[CAFE_TRAINER_WALLY_SISTER] =  {
 		.graphicsId = OBJ_EVENT_GFX_WOMAN_2,
 		.trainerPartyId = TRAINER_DUSTY_1,
-		.introText = (const u8[]) _("¡Ah! ¡Luchemos!"),
-		.lossText = (const u8[]) _("¡Ah! ¡Perdí!"),
-		.afterBattleText = (const u8[]) _("¡Ten esto!"),
-		.afterGiveItemText = (const u8[]) _("¡Eres fuerte!"),
+		.introText = COMPOUND_STRING("¡Ah! ¡Luchemos!"),
+		.lossText = COMPOUND_STRING("¡Ah! ¡Perdí!"),
+		.afterBattleText = COMPOUND_STRING("¡Ten esto!"),
+		.afterGiveItemText = COMPOUND_STRING("¡Eres fuerte!"),
 		.itemToGiveId = ITEM_ULTRA_BALL,
 		
 	},
 	[CAFE_TRAINER_POLY_1] =  {
 		.graphicsId = OBJ_EVENT_GFX_BLACK_BELT,
 		.trainerPartyId = TRAINER_DUSTY_1,
-		.introText = (const u8[]) _("¡Ah! ¡Luchemos!"),
-		.lossText = (const u8[]) _("¡Ah! ¡Perdí!"),
-		.afterBattleText = (const u8[]) _("¡Ten esto!"),
-		.afterGiveItemText = (const u8[]) _("¡Eres fuerte!"),
+		.introText = COMPOUND_STRING("¡Ah! ¡Luchemos!"),
+		.lossText = COMPOUND_STRING("¡Ah! ¡Perdí!"),
+		.afterBattleText = COMPOUND_STRING("¡Ten esto!"),
+		.afterGiveItemText = COMPOUND_STRING("¡Eres fuerte!"),
 		.itemToGiveId = ITEM_DUSK_BALL,
 	},
 	[CAFE_TRAINER_POLY_2] =  {
 		.graphicsId = OBJ_EVENT_GFX_AQUA_MEMBER_M,
 		.trainerPartyId = TRAINER_DUSTY_1,
-		.introText = (const u8[]) _("¡Ah! ¡Luchemos!"),
-		.lossText = (const u8[]) _("¡Ah! ¡Perdí!"),
-		.afterBattleText = (const u8[]) _("¡Ten esto!"),
-		.afterGiveItemText = (const u8[]) _("¡Eres fuerte!"),
+		.introText = COMPOUND_STRING("¡Ah! ¡Luchemos!"),
+		.lossText = COMPOUND_STRING("¡Ah! ¡Perdí!"),
+		.afterBattleText = COMPOUND_STRING("¡Ten esto!"),
+		.afterGiveItemText = COMPOUND_STRING("¡Eres fuerte!"),
 		.itemToGiveId = ITEM_DIVE_BALL,
 		
 	},
 	[CAFE_TRAINER_OLD_LADY]      =  {
 		.graphicsId = OBJ_EVENT_GFX_EXPERT_F,
 		.trainerPartyId = TRAINER_DUSTY_1,
-		.introText = (const u8[]) _("¡Ah! ¡Luchemos!"),
-		.lossText = (const u8[]) _("¡Ah! ¡Perdí!"),
-		.afterBattleText = (const u8[]) _("¡Ten esto!"),
-		.afterGiveItemText = (const u8[]) _("¡Eres fuerte!"),
+		.introText = COMPOUND_STRING("¡Ah! ¡Luchemos!"),
+		.lossText = COMPOUND_STRING("¡Ah! ¡Perdí!"),
+		.afterBattleText = COMPOUND_STRING("¡Ten esto!"),
+		.afterGiveItemText = COMPOUND_STRING("¡Eres fuerte!"),
 		.itemToGiveId = ITEM_OLD_GATEAU,
 		
 	},
 	[CAFE_TRAINER_OLD_MAN]       =  {
 		.graphicsId = OBJ_EVENT_GFX_EXPERT_M,
 		.trainerPartyId = TRAINER_DUSTY_1,
-		.introText = (const u8[]) _("¡Ah! ¡Luchemos!"),
-		.lossText = (const u8[]) _("¡Ah! ¡Perdí!"),
-		.afterBattleText = (const u8[]) _("¡Ten esto!"),
-		.afterGiveItemText = (const u8[]) _("¡Eres fuerte!"),
+		.introText = COMPOUND_STRING("¡Ah! ¡Luchemos!"),
+		.lossText = COMPOUND_STRING("¡Ah! ¡Perdí!"),
+		.afterBattleText = COMPOUND_STRING("¡Ten esto!"),
+		.afterGiveItemText = COMPOUND_STRING("¡Eres fuerte!"),
 		.itemToGiveId = ITEM_OLD_GATEAU,
 		
 	},
 	[CAFE_TRAINER_BEAUTY]        =  {
 		.graphicsId = OBJ_EVENT_GFX_BEAUTY,
 		.trainerPartyId = TRAINER_DUSTY_1,
-		.introText = (const u8[]) _("¡Ah! ¡Luchemos!"),
-		.lossText = (const u8[]) _("¡Ah! ¡Perdí!"),
-		.afterBattleText = (const u8[]) _("¡Ten esto!"),
-		.afterGiveItemText = (const u8[]) _("¡Eres fuerte!"),
+		.introText = COMPOUND_STRING("¡Ah! ¡Luchemos!"),
+		.lossText = COMPOUND_STRING("¡Ah! ¡Perdí!"),
+		.afterBattleText = COMPOUND_STRING("¡Ten esto!"),
+		.afterGiveItemText = COMPOUND_STRING("¡Eres fuerte!"),
 		.itemToGiveId = ITEM_BOTTLE_CAP,
 		
 	},
 	[CAFE_TRAINER_PARASOL_LADY]  =  {
 		.graphicsId = OBJ_EVENT_GFX_WOMAN_4,
 		.trainerPartyId = TRAINER_DUSTY_1,
-		.introText = (const u8[]) _("¡Ah! ¡Luchemos!"),
-		.lossText = (const u8[]) _("¡Ah! ¡Perdí!"),
-		.afterBattleText = (const u8[]) _("¡Ten esto!"),
-		.afterGiveItemText = (const u8[]) _("¡Eres fuerte!"),
+		.introText = COMPOUND_STRING("¡Ah! ¡Luchemos!"),
+		.lossText = COMPOUND_STRING("¡Ah! ¡Perdí!"),
+		.afterBattleText = COMPOUND_STRING("¡Ten esto!"),
+		.afterGiveItemText = COMPOUND_STRING("¡Eres fuerte!"),
 		.itemToGiveId = ITEM_BOTTLE_CAP,
 		
 	},
 	[CAFE_TRAINER_LASS]          =  {
 		.graphicsId = OBJ_EVENT_GFX_LASS,
 		.trainerPartyId = TRAINER_DUSTY_1,
-		.introText = (const u8[]) _("¡Ah! ¡Luchemos!"),
-		.lossText = (const u8[]) _("¡Ah! ¡Perdí!"),
-		.afterBattleText = (const u8[]) _("¡Ten esto!"),
-		.afterGiveItemText = (const u8[]) _("¡Eres fuerte!"),
+		.introText = COMPOUND_STRING("¡Ah! ¡Luchemos!"),
+		.lossText = COMPOUND_STRING("¡Ah! ¡Perdí!"),
+		.afterBattleText = COMPOUND_STRING("¡Ten esto!"),
+		.afterGiveItemText = COMPOUND_STRING("¡Eres fuerte!"),
 		.itemToGiveId = ITEM_BOTTLE_CAP,
 		
 	},
 	[CAFE_TRAINER_ROXANNE]       =  {
 		.graphicsId = OBJ_EVENT_GFX_ROXANNE,
 		.trainerPartyId = TRAINER_ROXANNE_1,
-		.introText = (const u8[]) _("¡Ah! ¡Luchemos!"),
-		.lossText = (const u8[]) _("¡Ah! ¡Perdí!"),
-		.afterBattleText = (const u8[]) _("¡Ten esto!"),
-		.afterGiveItemText = (const u8[]) _("¡Eres fuerte!"),
+		.introText = COMPOUND_STRING("¡Ah! ¡Luchemos!"),
+		.lossText = COMPOUND_STRING("¡Ah! ¡Perdí!"),
+		.afterBattleText = COMPOUND_STRING("¡Ten esto!"),
+		.afterGiveItemText = COMPOUND_STRING("¡Eres fuerte!"),
 		.itemToGiveId = ITEM_GOLD_BOTTLE_CAP,
 		
 	}, // por hacer wip
@@ -4891,13 +4891,13 @@ void SetCafeTrainersToday(void) // por hacer wip
 }
 
 void GetCafeTrainersBattleText(void) {
-	VarSet(VAR_TEMP_0, sCafeTrainers[gSaveBlock2Ptr->cafeTrainers[gSpecialVar_0x8000]].trainerPartyId);
+	gSpecialVar_Result = sCafeTrainers[gSaveBlock2Ptr->cafeTrainers[gSpecialVar_0x8000]].trainerPartyId;
 	StringExpandPlaceholders(gStringVar1, sCafeTrainers[gSaveBlock2Ptr->cafeTrainers[gSpecialVar_0x8000]].introText);
 	StringExpandPlaceholders(gStringVar2, sCafeTrainers[gSaveBlock2Ptr->cafeTrainers[gSpecialVar_0x8000]].lossText);
 }
 
 void GetCafeTrainersAfterBattleData(void) {
 	StringExpandPlaceholders(gStringVar1, sCafeTrainers[gSaveBlock2Ptr->cafeTrainers[gSpecialVar_0x8000]].afterBattleText);
-	StringExpandPlaceholders(gStringVar2, sCafeTrainers[gSaveBlock2Ptr->cafeTrainers[gSpecialVar_0x8000]].afterGiveItemText);
-	VarSet(VAR_TEMP_0, sCafeTrainers[gSaveBlock2Ptr->cafeTrainers[gSpecialVar_0x8000]].itemToGiveId);
+	StringExpandPlaceholders(gStringVar3, sCafeTrainers[gSaveBlock2Ptr->cafeTrainers[gSpecialVar_0x8000]].afterGiveItemText);
+	gSpecialVar_Result = sCafeTrainers[gSaveBlock2Ptr->cafeTrainers[gSpecialVar_0x8000]].itemToGiveId;
 }
