@@ -4886,12 +4886,12 @@ void SetCafeTrainersToday(void) // por hacer wip
 	u8 i;
 	for (i=0;i<4;i++){
 		VarSet(VAR_OBJ_GFX_ID_0 + i, sCafeTrainers[gSaveBlock2Ptr->cafeTrainers[i]].graphicsId);
-		VarSet(VAR_TEMP_0 + i, sCafeTrainers[gSaveBlock2Ptr->cafeTrainers[i]].trainerPartyId);
 		FlagClear(TRAINER_FLAGS_START + sCafeTrainers[gSaveBlock2Ptr->cafeTrainers[i]].trainerPartyId);
 	}
 }
 
 void GetCafeTrainersBattleText(void) {
+	VarSet(VAR_TEMP_0, sCafeTrainers[gSaveBlock2Ptr->cafeTrainers[gSpecialVar_0x8000]].trainerPartyId);
 	StringExpandPlaceholders(gStringVar1, sCafeTrainers[gSaveBlock2Ptr->cafeTrainers[gSpecialVar_0x8000]].introText);
 	StringExpandPlaceholders(gStringVar2, sCafeTrainers[gSaveBlock2Ptr->cafeTrainers[gSpecialVar_0x8000]].lossText);
 }

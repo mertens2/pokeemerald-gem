@@ -114,6 +114,7 @@ enum { // Flags and Vars
     DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_LOCATIONS,
     DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_BADGES_ALL,
     DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_FRONTIER_PASS,
+    DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_BATTLE_DMG,
     DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_COLISSION,
     DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_ENCOUNTER,
     DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_TRAINER_SEE,
@@ -345,6 +346,7 @@ static void DebugAction_FlagsVars_SwitchPokeNav(u8 taskId);
 static void DebugAction_FlagsVars_ToggleFlyFlags(u8 taskId);
 static void DebugAction_FlagsVars_ToggleBadgeFlags(u8 taskId);
 static void DebugAction_FlagsVars_ToggleFrontierPass(u8 taskId);
+static void DebugAction_FlagsVars_BattleDmgOnOff(u8 taskId);
 static void DebugAction_FlagsVars_CollisionOnOff(u8 taskId);
 static void DebugAction_FlagsVars_EncounterOnOff(u8 taskId);
 static void DebugAction_FlagsVars_TrainerSeeOnOff(u8 taskId);
@@ -442,10 +444,10 @@ static const u8 sDebugText_Sound[] =            _("Sound…{CLEAR_TO 110}{RIGHT_
 static const u8 sDebugText_AccessPC[] =         _("Access PC…{CLEAR_TO 110}{RIGHT_ARROW}");
 static const u8 sDebugText_Cancel[] =           _("Cancel");
 // Script menu
-static const u8 sDebugText_Util_Script_1[] =               _("Script 1");
-static const u8 sDebugText_Util_Script_2[] =               _("Script 2");
+static const u8 sDebugText_Util_Script_1[] =               _("Opciones Full");
+static const u8 sDebugText_Util_Script_2[] =               _("Dar Unown");
 static const u8 sDebugText_Util_Script_3[] =               _("Cambiar Ropa");
-static const u8 sDebugText_Util_Script_4[] =               _("Llenar Decor");
+static const u8 sDebugText_Util_Script_4[] =               _("Dar Decors");
 static const u8 sDebugText_Util_Script_5[] =               _("Script 5");
 static const u8 sDebugText_Util_Script_6[] =               _("Script 6");
 static const u8 sDebugText_Util_Script_7[] =               _("Script 7");
@@ -486,6 +488,7 @@ static const u8 sDebugText_FlagsVars_RunningShoes[] =           _("Toggle {STR_V
 static const u8 sDebugText_FlagsVars_ToggleFlyFlags[] =         _("Toggle {STR_VAR_1}Fly Flags");
 static const u8 sDebugText_FlagsVars_ToggleAllBadges[] =        _("Toggle {STR_VAR_1}All badges");
 static const u8 sDebugText_FlagsVars_ToggleFrontierPass[] =     _("Toggle {STR_VAR_1}Frontier Pass");
+static const u8 sDebugText_FlagsVars_BattleDmg[] =              _("Toggle {STR_VAR_1}BattleDmg OFF");
 static const u8 sDebugText_FlagsVars_SwitchCollision[] =        _("Toggle {STR_VAR_1}Collision OFF");
 static const u8 sDebugText_FlagsVars_SwitchEncounter[] =        _("Toggle {STR_VAR_1}Encounter OFF");
 static const u8 sDebugText_FlagsVars_SwitchTrainerSee[] =       _("Toggle {STR_VAR_1}TrainerSee OFF");
@@ -677,6 +680,7 @@ static const struct ListMenuItem sDebugMenu_Items_FlagsVars[] =
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_LOCATIONS]     = {sDebugText_FlagsVars_ToggleFlyFlags,     DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_LOCATIONS},
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_BADGES_ALL]    = {sDebugText_FlagsVars_ToggleAllBadges,    DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_BADGES_ALL},
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_FRONTIER_PASS] = {sDebugText_FlagsVars_ToggleFrontierPass, DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_FRONTIER_PASS},
+    [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_BATTLE_DMG]    = {sDebugText_FlagsVars_BattleDmg,          DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_BATTLE_DMG},
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_COLISSION]     = {sDebugText_FlagsVars_SwitchCollision,    DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_COLISSION},
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_ENCOUNTER]     = {sDebugText_FlagsVars_SwitchEncounter,    DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_ENCOUNTER},
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_TRAINER_SEE]   = {sDebugText_FlagsVars_SwitchTrainerSee,   DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_TRAINER_SEE},
@@ -824,6 +828,7 @@ static void (*const sDebugMenu_Actions_Flags[])(u8) =
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_LOCATIONS]     = DebugAction_FlagsVars_ToggleFlyFlags,
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_BADGES_ALL]    = DebugAction_FlagsVars_ToggleBadgeFlags,
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_FRONTIER_PASS] = DebugAction_FlagsVars_ToggleFrontierPass,
+    [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_BATTLE_DMG]    = DebugAction_FlagsVars_BattleDmgOnOff,
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_COLISSION]     = DebugAction_FlagsVars_CollisionOnOff,
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_ENCOUNTER]     = DebugAction_FlagsVars_EncounterOnOff,
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_TRAINER_SEE]   = DebugAction_FlagsVars_TrainerSeeOnOff,
@@ -1005,12 +1010,10 @@ void Debug_ShowMainMenu(void)
 
     Debug_ShowMenu(DebugTask_HandleMenuInput_Main, sDebugMenu_ListTemplate_Main);
 }
-void Debug_ReShowMainMenu(void)
+static void Debug_ReShowMainMenu(void)
 {
     Debug_ShowMenu(DebugTask_HandleMenuInput_Main, sDebugMenu_ListTemplate_Main);
 }
-
-
 static u8 Debug_ShowMenu(void (*HandleInput)(u8), struct ListMenuTemplate LMtemplate)
 {
     struct ListMenuTemplate menuTemplate;
@@ -1150,6 +1153,9 @@ static u8 Debug_CheckToggleFlags(u8 id)
             break;
         case DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_FRONTIER_PASS:
             result = FlagGet(FLAG_SYS_FRONTIER_PASS);
+            break;
+        case DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_BATTLE_DMG:
+            result = FlagGet(FLAG_SYS_NO_BATTLE_DMG);
             break;
         case DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_COLISSION:
             result = FlagGet(FLAG_SYS_NO_COLLISION);
@@ -2034,6 +2040,7 @@ static void DebugAction_Util_SetWallClock(u8 taskId)
 {
     Debug_DestroyMenu_Full(taskId);
     LockPlayerFieldControls();
+	RerollBattleCafeTrainers();
     ScriptContext_SetupScript(PlayersHouse_2F_EventScript_SetWallClock);
 }
 static void DebugAction_Util_WatchCredits(u8 taskId)
@@ -2053,7 +2060,6 @@ static void DebugAction_Util_Trainer_Gender(u8 taskId)
         gSaveBlock2Ptr->playerGender = 1;
     else
         gSaveBlock2Ptr->playerGender = 0;
-	gSaveBlock1Ptr->trainerType = 1;
     ScriptContext_Enable();
     Debug_DestroyMenu_Full(taskId);
 }
@@ -2549,6 +2555,14 @@ static void DebugAction_FlagsVars_ToggleFrontierPass(u8 taskId)
         PlaySE(SE_PC_LOGIN);
     FlagToggle(FLAG_SYS_FRONTIER_PASS);
 }
+static void DebugAction_FlagsVars_BattleDmgOnOff(u8 taskId)
+{
+    if (FlagGet(FLAG_SYS_NO_BATTLE_DMG))
+        PlaySE(SE_PC_OFF);
+    else
+        PlaySE(SE_PC_LOGIN);
+    FlagToggle(FLAG_SYS_NO_BATTLE_DMG);
+}
 static void DebugAction_FlagsVars_CollisionOnOff(u8 taskId)
 {
     if (FlagGet(FLAG_SYS_NO_COLLISION))
@@ -2759,7 +2773,7 @@ static void DebugAction_Give_AllTMs(u8 taskId)
 {
     u16 i;
     PlayFanfare(MUS_OBTAIN_TMHM);
-    for (i = ITEM_TM01; i <= ITEM_TM100; i++)
+    for (i = ITEM_TM01; i <= ITEM_TM50; i++)
         if (!CheckBagHasItem(i, 1))
             AddBagItem(i, 1);
     Debug_DestroyMenu_Full(taskId);
@@ -3096,7 +3110,7 @@ static void DebugAction_Give_Pokemon_SelectNature(u8 taskId)
 
     if (gMain.newKeys & A_BUTTON)
     {
-        u16 abilityId;
+        u8 abilityId;
         sDebugMonData->mon_natureId = gTasks[taskId].data[3]; //NatureId
         gTasks[taskId].data[3] = 0;
         gTasks[taskId].data[4] = 0;
@@ -3120,7 +3134,7 @@ static void DebugAction_Give_Pokemon_SelectNature(u8 taskId)
 }
 static void DebugAction_Give_Pokemon_SelectAbility(u8 taskId)
 {
-    u16 abilityId;
+    u8 abilityId;
     u8 abilityCount = 2 - 1; //-1 for proper iteration
     u8 i = 0;
     #ifdef POKEMON_EXPANSION
@@ -4513,6 +4527,7 @@ static void Task_WaitFadeAccessPC(u8 taskId)
     if (!gPaletteFade.active)
     {
         DestroyTask(taskId);
+        FlagSet(FLAG_SYS_PC_FROM_DEBUG_MENU);
         EnterPokeStorage(2);
     }
 }

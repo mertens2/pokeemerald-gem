@@ -383,10 +383,10 @@ void ApplyPaletteChanges(u16* colors) {
 }
 void LoadOutfitPalette(const u32 *src, u16 offset, u16 size)
 {
-    LZDecompressWram(src, gPaletteDecompressionBuffer);
-	ApplyPaletteChanges((u16*) gPaletteDecompressionBuffer);
-    CpuCopy16(gPaletteDecompressionBuffer, gPlttBufferUnfaded + offset, size);
-    CpuCopy16(gPaletteDecompressionBuffer, gPlttBufferFaded + offset, size);
+    LZDecompressWram(src, gDecompressionBuffer);
+	ApplyPaletteChanges((u16*) gDecompressionBuffer);
+    CpuCopy16(gDecompressionBuffer, gPlttBufferUnfaded + offset, size);
+    CpuCopy16(gDecompressionBuffer, gPlttBufferFaded + offset, size);
 }
 void LoadOutfitPaletteOW(const u16 *src, u16 offset, u16 size, u8 index)
 {
