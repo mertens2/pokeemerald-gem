@@ -1,5 +1,5 @@
 mapscripts GraniteCave_B2F_MapScripts {
-	map_script MAP_SCRIPT_ON_TRANSITION: GraniteCave_SetFlashLevel
+	MAP_SCRIPT_ON_TRANSITION: GraniteCave_SetFlashLevel
 }
 
 script GraniteCave_B2F_EventScript_BlueRock2 {
