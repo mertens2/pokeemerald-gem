@@ -155,7 +155,6 @@ SUPER_RE    = A0
 EMOJI_DIZZYEGG = F7
 TALL_PLUS   = FC 0C FB
 '$'         = FF
-
 @ Semantica del género gramatical
 OA            = FD 0E
 A             = FD 0F
@@ -164,11 +163,9 @@ ElLa          = FD 11
 ITA           = FD 12
 ITOITA        = FD 13
 EA            = FD 14
-
 @ Colores según género
 COLOR_PLAYER  = FD 15
 COLOR_RIVAL   = FD 16
-
 @ semántica del género del rival
 AO            = FD 17
 ARIVAL        = FD 18
@@ -182,7 +179,6 @@ ELELLA        = FD 1F
 EllaEl        = FD 20
 ELLAEL        = FD 21
 GENDER        = FD 22
-
 @ Hiragana
 'あ' = 01
 'い' = 02
@@ -264,7 +260,6 @@ GENDER        = FD 22
 'ぺ' = 4E
 'ぽ' = 4F
 'っ' = 50
-
 @ Katakana
 'ア' = 51
 'イ' = 52
@@ -346,7 +341,6 @@ GENDER        = FD 22
 'ペ' = 9E
 'ポ' = 9F
 'ッ' = A0
-
 @ Japanese punctuation
 '　' = 00
 '！' = AB
@@ -354,9 +348,7 @@ GENDER        = FD 22
 '。' = AD
 'ー' = AE
 '⋯' = B0
-
 STRING = FD
-
 @ string placeholders
 PLAYER         = FD 01
 STR_VAR_1      = FD 02
@@ -373,9 +365,7 @@ ARCHIE         = FD 0A
 MAXIE          = FD 0B
 KYOGRE         = FD 0C
 GROUDON        = FD 0D
-
 @ battle string placeholders
-
 B_BUFF1 = FD 00
 B_BUFF2 = FD 01
 B_COPY_VAR_1 = FD 02
@@ -439,16 +429,11 @@ B_DEF_TEAM2 = FD 3B
 B_ACTIVE_NAME = FD 3C
 B_ACTIVE_NAME2 = FD 3D @ no Illusion check
 B_TARGET_OF_REVIVE = FD 3E
-
-
 @ indicates the end of a town/city name (before " TOWN" or " CITY")
 NAME_END = FC 00
-
 @ special 0xF7 character
 DYNAMIC  =   F7
-
 @ more text functions
-
 COLOR = FC 01 @ use a color listed below right after
 HIGHLIGHT = FC 02 @ same as fc 01
 SHADOW = FC 03 @ same as fc 01
@@ -476,9 +461,7 @@ RESUME_MUSIC = FC 18
 TEXT_SPEED = FC 19
 SHAKE_SCREEN = FC 1A
 FLASH = FC 1B
-
 @ fonts
-
 FONT_SMALL = FC 06 00
 FONT_NORMAL = FC 06 01
 FONT_SHORT = FC 06 02
@@ -487,9 +470,7 @@ FONT_SMALL_NARROW = FC 06 08
 FONT_NARROWER = FC 06 0A
 FONT_SMALL_NARROWER = FC 06 0B
 FONT_SHORT_NARROW = FC 06 0C
-
 @ colors
-
 TRANSPARENT = 00
 WHITE = 01
 DARK_GRAY = 02
@@ -508,9 +489,7 @@ DYNAMIC_COLOR3 = 0C @ white 2
 DYNAMIC_COLOR4 = 0D @ aquamarine
 DYNAMIC_COLOR5 = 0E @ blue-green
 DYNAMIC_COLOR6 = 0F @ cerulean
-
 @ sound and music
-
 MUS_DUMMY = 00 00
 SE_USE_ITEM = 01 00
 SE_PC_LOGIN = 02 00
@@ -1041,7 +1020,6 @@ PH_CURE_SOLO = 5E 02
 PH_NURSE_BLEND = 5F 02
 PH_NURSE_HELD = 60 02
 PH_NURSE_SOLO = 61 02
-
 A_BUTTON = F8 00
 B_BUTTON = F8 01
 L_BUTTON = F8 02
@@ -1055,7 +1033,6 @@ DPAD_RIGHT = F8 09
 DPAD_UPDOWN = F8 0A
 DPAD_LEFTRIGHT = F8 0B
 DPAD_NONE = F8 0C
-
 UP_ARROW_2 = F9 00
 DOWN_ARROW_2 = F9 01
 LEFT_ARROW_2 = F9 02
@@ -1080,7 +1057,6 @@ ROUND_RIGHT_PAREN = F9 14
 CIRCLE_DOT = F9 15
 TRIANGLE = F9 16
 BIG_MULT_X = F9 17
-
 EMOJI_UNDERSCORE = F9 D0
 EMOJI_PIPE = F9 D1
 EMOJI_HIGHBAR = F9 D2
@@ -1128,7 +1104,6 @@ EMOJI_TIRED = F9 FB
 EMOJI_NEUTRAL = F9 FC
 EMOJI_SHOCKED = F9 FD
 EMOJI_BIGANGER = F9 FE
-
 '\l' = FA @ scroll up window text
 '\p' = FB @ new paragraph
 '\n' = FE @ new line
